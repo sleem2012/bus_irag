@@ -10,6 +10,7 @@ import '../../../shared/theme/colors.dart';
 import '../../../shared/theme/helper.dart';
 import '../../../shared/widgets/custom_button.dart';
 import '../../../shared/widgets/text_field.dart';
+import '../forget_pass/forget_pass_view.dart';
 import '../register/register_view.dart';
 import '../widget/phone_form.dart';
 
@@ -97,11 +98,16 @@ class LoginView extends StatelessWidget {
                 11.h,
                 Align(
                   alignment: Alignment.bottomRight,
-                  child: Text(
-                    Tr.get.forget_password,
-                    style: KTextStyle.of(context).ten.copyWith(
-                          color: KColors.mainColor,
-                        ),
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(() => const ForgetPassView());
+                    },
+                    child: Text(
+                      Tr.get.forget_password,
+                      style: KTextStyle.of(context).ten.copyWith(
+                            color: KColors.mainColor,
+                          ),
+                    ),
                   ),
                 ),
                 38.h,

@@ -29,7 +29,7 @@ class KButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return isLoading!
         ? FluxImage(
-            imageUrl: "assets/json/Animation - 1708377844738.json",
+            imageUrl: "assets/json/busAnimate.json",
             height: Get.height * .15,
             alignment: Alignment.center,
           )
@@ -39,9 +39,11 @@ class KButton extends StatelessWidget {
               padding: const EdgeInsets.all(0.0),
               backgroundColor: Colors.transparent,
               shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(15),
-                      topLeft: Radius.circular(15))),
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(15),
+                  topLeft: Radius.circular(15),
+                ),
+              ),
             ),
             child: Ink(
               decoration: BoxDecoration(

@@ -46,6 +46,8 @@ dependencies:
   location:
   extended_image: 8.1.0
   lottie:
+  pinput:
+  awesome_dialog: ^3.2.0
 
 dependency_overrides:
   modal_bottom_sheet: ^3.0.0-pre

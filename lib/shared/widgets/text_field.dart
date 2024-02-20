@@ -75,7 +75,7 @@ class KTextFormField extends StatelessWidget {
             maxLines: maxLines ?? (obscureText ? 1 : null),
             decoration: InputDecoration(
               // hintText: hintText,
-              // filled: true,
+              filled: kFillColor!=null,
               fillColor: kFillColor ?? KColors.textFieldD,
               hintStyle: KTextStyle.of(context).hint,
               hintText: "",

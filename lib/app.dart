@@ -1,11 +1,9 @@
-import 'package:bus_iraq2/shared/widgets/text_field.dart';
 import 'package:bus_iraq2/views/main_screen/main_screen.dart';
 import 'package:bus_iraq2/views/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import 'shared/cache/locale_storage.dart';
 import 'shared/widgets/no_conniction_view.dart';
 import 'views/auth/login/login_view.dart';
