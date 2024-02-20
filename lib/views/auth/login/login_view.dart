@@ -1,25 +1,16 @@
 import 'package:bus_iraq2/shared/theme/text_theme.dart';
-import 'package:bus_iraq2/shared/widgets/drop_down.dart';
 import 'package:bus_iraq2/shared/widgets/flux_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
-import '../../../di.dart';
-import '../../../logic/login/login_bloc.dart';
-import '../../../logic/login/login_state.dart';
 import '../../../shared/constants.dart';
 import '../../../shared/extensions.dart';
 import '../../../shared/localization/trans.dart';
 import '../../../shared/theme/colors.dart';
 import '../../../shared/theme/helper.dart';
 import '../../../shared/widgets/custom_button.dart';
-import '../../../shared/widgets/lang_toggle_btn.dart';
-import '../../../shared/widgets/loading/loading_overlay.dart';
-import '../../../shared/widgets/nav.dart';
 import '../../../shared/widgets/text_field.dart';
-import '../../main_screen/main_screen.dart';
+import '../register/register_view.dart';
 import '../widget/phone_form.dart';
 
 class LoginView extends StatelessWidget {
@@ -50,7 +41,7 @@ class LoginView extends StatelessWidget {
                 ),
 
                 41.h,
-                FluxImage(
+                const FluxImage(
                   imageUrl: Constant.loginLogo,
                   useExtendedImage: true,
                   // fit: BoxFit.fitHeight,
@@ -67,15 +58,16 @@ class LoginView extends StatelessWidget {
                 ),
                 11.h,
                 Align(
-                    alignment: Alignment.topRight,
-                    child: Text(
-                      "الرجاء ادخال البيانات المطلوبة",
-                      style: KTextStyle.of(context)
-                          .ten
-                          .copyWith(color: KColors.mainColor.withOpacity(.5)),
-                    )),
+                  alignment: Alignment.topRight,
+                  child: Text(
+                    "الرجاء ادخال البيانات المطلوبة",
+                    style: KTextStyle.of(context)
+                        .ten
+                        .copyWith(color: KColors.mainColor.withOpacity(.5)),
+                  ),
+                ),
                 11.h,
-                PhoneFormField(),
+                const PhoneFormField(),
                 SizedBox(height: KHelper.listPadding),
                 KTextFormField(
                   // controller: login.passController,
@@ -102,14 +94,18 @@ class LoginView extends StatelessWidget {
                     },
                   ),
                 ),
+                11.h,
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    Tr.get.forget_password,
+                    style: KTextStyle.of(context).ten.copyWith(
+                          color: KColors.mainColor,
+                        ),
+                  ),
+                ),
                 38.h,
-                // Align(
-                //     alignment: Alignment.bottomRight,
-                //     child: Text(
-                //       Tr.get.forget_password,
-                //       style: KTextStyle.of(context).body,
-                //     )),
-                // const SizedBox(height: 34),
+
                 KButton(
                   isLoading: false,
                   title: Tr.get.login,
@@ -120,7 +116,18 @@ class LoginView extends StatelessWidget {
                     }
                   },
                 ),
-                Lottie.asset('assets/json/splash_animation.json')
+                20.h,
+                InkWell(
+                  onTap: () {
+                    Get.to(() => const RegisterView());
+                  },
+                  child: Text(
+                    "انشاء حساب جديد",
+                    style: KTextStyle.of(context)
+                        .ten
+                        .copyWith(color: KColors.mainColor),
+                  ),
+                ),
               ],
             ),
           ),

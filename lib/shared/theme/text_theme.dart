@@ -87,7 +87,7 @@ class KTextStyle {
   }
 
   TextStyle get seven {
-    return TextStyle(
+    return const TextStyle(
         color: KColors.mainColor,
         fontSize: 7,
         fontFamily: fontFamily,

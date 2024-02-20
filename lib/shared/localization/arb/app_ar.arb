@@ -30,7 +30,7 @@
   "email": "البريد الإلكتروني",
   "send_code": "ارسال",
   "please_enter_your_email": "ادخل البريد الإلكتروني",
-  "forget_password": "هل نسيت كلمةالمرور",
+  "forget_password": "هل نسيت كلمةالمرور؟",
   "pass_change_success": "تم تغيير كلمةالمرور بنجاح",
   "log_out": "تسجيل الخروج",
   "email_check": "من فضلك تححق من البريد الالكتروني...",
