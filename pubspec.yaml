@@ -1,0 +1,99 @@
+name: bus_iraq2
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+
+
+dependencies:
+  animated_bottom_navigation_bar:
+  cached_network_image:
+  connectivity_plus: ^5.0.2
+  dartz:
+  dio:
+  flutter:
+    sdk: flutter
+  flutter_bloc:
+  flutter_localizations:
+    sdk: flutter
+  flutter_svg:
+  get:
+  get_it:
+  get_storage:
+  google_maps_flutter:
+  image_picker:
+  file_picker:
+  intl:
+  geolocator:
+  photo_view:
+  shimmer:
+  permission_handler:
+  url_launcher:
+  syncfusion_flutter_datepicker:
+  font_awesome_flutter:
+  azlistview: 2.0.0
+  flutter_slidable:
+  image_cropper: ^5.0.1
+  cached_network_svg_image: ^0.0.5
+  http:
+  uuid:
+  flutter_animate:
+  location:
+  extended_image: 8.1.0
+  lottie:
+
+dependency_overrides:
+  modal_bottom_sheet: ^3.0.0-pre
+
+dev_dependencies:
+  build_runner:
+  flutter_lints:
+  freezed: '2.3.2'
+  freezed_annotation:
+  json_annotation:
+  json_serializable:
+  flutter_native_splash: #  flutter pub run flutter_native_splash:create
+  flutter_launcher_icons: #  flutter pub run flutter_launcher_icons:main
+  change_app_package_name: #  flutter pub run change_app_package_name:main com.new.package.name
+
+flutter_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/launcher/White.jpg"
+
+flutter_native_splash:
+  background_image: "assets/launcher/icon.png"
+  fullscreen: true
+  android: true
+  ios: true
+  web: true
+
+flutter:
+  uses-material-design: true
+
+  generate: true
+
+  assets:
+    - assets/
+    - assets/images/
+    - assets/fonts/
+    - assets/json/
+
+  fonts:
+    - family: URW-DIN-Arabic
+      fonts:
+        - asset: assets/fonts/URW-DIN-Arabic.ttf
+          weight: 700
+
+        - asset: assets/fonts/URW DIN Arabic Regular.ttf
+          weight: 400
+
+
+
+
