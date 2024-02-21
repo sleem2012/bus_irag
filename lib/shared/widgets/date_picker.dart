@@ -85,7 +85,7 @@ class SfDatePicker extends StatelessWidget {
       child: Container(
         height: height * .6,
         margin: const EdgeInsets.all(12),
-        decoration: KHelper.of(context).elevatedBox,
+        decoration: KHelper.of(context).circledTopContainer,
         child: hijri
             ? SfHijriDateRangePicker(
                 minDate: HijriDateTime.fromDateTime(start),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../shared/localization/trans.dart';
-import '../../shared/theme/helper.dart';
 
 @immutable
 class MainViewState {
@@ -28,11 +27,16 @@ class MainViewBloc extends Cubit<MainViewState> {
     emit(MainViewState(index: page));
   }
 
-  List<IconData> navItems = [
-    KHelper.home,
-
-    KHelper.person,
+  List<String> navItems = [
+    "assets/images/home.png",
+    "assets/images/reservation.png",
+    "assets/images/accounts.png",
+    "assets/images/notification.png"
   ];
-  List<String> label = [Tr.get.home,  Tr.get.profile,];
-
+  List<String> label = [
+    Tr.get.home,
+    "الحجوزات",
+    "الحسابات",
+    "الاشعارات"
+  ];
 }

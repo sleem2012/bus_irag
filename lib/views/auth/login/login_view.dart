@@ -1,5 +1,6 @@
 import 'package:bus_iraq2/shared/theme/text_theme.dart';
 import 'package:bus_iraq2/shared/widgets/flux_image.dart';
+import 'package:bus_iraq2/views/main_screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -116,6 +117,7 @@ class LoginView extends StatelessWidget {
                   isLoading: false,
                   title: Tr.get.login,
                   onPressed: () {
+                    Get.offAll(() => const MainNavPages());
                     if (formKey.currentState!.validate()) {
                       FocusManager.instance.primaryFocus?.unfocus();
                       // login.login();

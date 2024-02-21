@@ -58,7 +58,7 @@ class _PickProImageWidgetState extends State<PickProImageWidget> {
         return Container(
           height: widget.radius ?? 70,
           width: widget.radius ?? 70,
-          decoration: (widget.decoration ?? KHelper.of(context).roundedFields).copyWith(
+          decoration: (widget.decoration ?? KHelper.of(context).roundedContainer).copyWith(
             borderRadius: borderRadius,
             border: formState.hasError ? KHelper.of(context).eBorder : null,
           ),

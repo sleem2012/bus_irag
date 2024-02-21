@@ -106,14 +106,16 @@ abstract class KHelper {
       backgroundColor: Colors.transparent,
       builder: (widgetContext) => StatefulBuilder(
         builder: (context, setState) => DecoratedBox(
-          decoration: KHelper.of(Nav.navigator.currentContext!).elevatedBox,
+          decoration:
+              KHelper.of(Nav.navigator.currentContext!).circledTopContainer,
           child: IntrinsicHeight(
             child: Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: DecoratedBox(
-                      decoration: of(Nav.navigator.currentContext!).elevatedBox,
+                      decoration:
+                          of(Nav.navigator.currentContext!).circledTopContainer,
                       child: const SizedBox(height: 8, width: 80)),
                 ),
                 Expanded(
@@ -146,13 +148,14 @@ abstract class KHelper {
       context: Nav.navigator.currentContext!,
       backgroundColor: Colors.transparent,
       builder: (widgetContext) => DecoratedBox(
-        decoration: of(Nav.navigator.currentContext!).elevatedBox,
+        decoration: of(Nav.navigator.currentContext!).circledTopContainer,
         child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: DecoratedBox(
-                  decoration: of(Nav.navigator.currentContext!).elevatedBox,
+                  decoration:
+                      of(Nav.navigator.currentContext!).circledTopContainer,
                   child: const SizedBox(height: 8, width: 80)),
             ),
             Expanded(
@@ -234,17 +237,18 @@ class KHelperGetters {
     );
   }
 
-  BoxDecoration get elevatedBox {
-    return BoxDecoration(
-      color: KColors.elevatedBoxD,
-      borderRadius: BorderRadius.circular(KHelper.cornerRadius),
+  BoxDecoration get circledTopContainer {
+    return const BoxDecoration(
+      color: KColors.whiteColor,
+      borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(22), topRight: Radius.circular(22)),
     );
   }
 
-  BoxDecoration get roundedFields {
+  BoxDecoration get roundedContainer {
     return BoxDecoration(
-      color: KColors.backgroundD,
-      borderRadius: BorderRadius.circular(22),
+      color: KColors.lightGreyColor,
+      borderRadius: BorderRadius.circular(2),
     );
   }
 
@@ -255,10 +259,8 @@ class KHelperGetters {
       color: KColors.elevatedBoxD,
       borderRadius: BorderRadius.circular(KHelper.cornerRadius),
       boxShadow: [
-        BoxShadow(
-            blurRadius: 2.0,
-            offset: const Offset(0, 2),
-            color: KColors.shadowD),
+        const BoxShadow(
+            blurRadius: 2.0, offset: Offset(0, 2), color: KColors.shadowD),
       ],
     );
   }
@@ -272,8 +274,8 @@ class KHelperGetters {
 
   BoxDecoration get textFieldDecoration {
     return BoxDecoration(
-
-        borderRadius: BorderRadius.circular(2),border:Border.all(color: const Color(0xff000000),width: .2) );
+        borderRadius: BorderRadius.circular(2),
+        border: Border.all(color: const Color(0xff000000), width: .2));
   }
 
   BoxDecoration get errorBorder {

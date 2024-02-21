@@ -16,13 +16,17 @@ abstract class KColors {
   static const Color shadowD = Color(0x20000000);
   static const Color cursorD = Color(0xFFBE0202);
   static const Color textFieldD = Color(0xffE6E9EA);
-  static const Color accentColor = Color(0xff0765A7);
-  
+
   //New
   static const Color mainColor = Color(0xff125878);
   static const Color mainFifty = Color(0xff125878);
   static const Color whiteColor = Colors.white;
   static const Color blackColor = Colors.black;
-  static const Color greenColor = Color(0xff59B179);
+  static const Color greenColor = Color(0xff4ADE80);
+  static const Color lightGreen = Color(0xffEEFFF4);
+  static const Color unselectedColor = Color(0xffD3D5DA);
+  static const Color accentColor = Color(0xff3BA7DE);
+  static const Color lightGreyColor = Color(0xffF5F8FB);
+
 }
 

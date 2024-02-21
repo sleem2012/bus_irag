@@ -15,7 +15,9 @@ class KButton extends StatelessWidget {
       this.isLoading = false,
       this.kFillColor,
       this.isFlat = false,
-      this.iconPath});
+      this.iconPath,
+      this.textColor,
+      this.borderColor});
 
   final String title;
   final bool? isLoading;
@@ -24,6 +26,8 @@ class KButton extends StatelessWidget {
   final double? width, hieght;
   final String? iconPath;
   final bool isFlat;
+  final Color? textColor;
+  final Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +51,9 @@ class KButton extends StatelessWidget {
             ),
             child: Ink(
               decoration: BoxDecoration(
-                color: kFillColor ?? KColors.mainColor,
-                borderRadius: BorderRadius.circular(8),
-              ),
+                  color: kFillColor ?? KColors.mainColor,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: borderColor ?? Colors.transparent)),
               child: Container(
                 width: width ?? Get.width / 1.1,
                 height: hieght ?? Get.height * .064,
@@ -58,15 +62,17 @@ class KButton extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     if (iconPath != null)
-                      Image.asset(
+                 ...[     Image.asset(
                         iconPath ?? '',
                       ),
                     const SizedBox(
-                      width: 4,
-                    ),
+                      width: 30,
+                    ),],
                     Text(
                       title,
-                      style: KTextStyle.of(context).btnTitle,
+                      style: KTextStyle.of(context)
+                          .btnTitle
+                          .copyWith(color: textColor),
                     ),
                   ],
                 ),
