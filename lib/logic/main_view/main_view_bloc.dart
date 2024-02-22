@@ -1,7 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../shared/localization/trans.dart';
 
 @immutable
 class MainViewState {
@@ -18,11 +18,16 @@ class MainViewBloc extends Cubit<MainViewState> {
   }
 
   PageController pageCtrl = PageController();
+  int index = 0;
 
   void navTaped(int page) {
     if (page != pageCtrl.page?.toInt()) {
-      pageCtrl.jumpToPage(page);
-      // pageCtrl.animateToPage(page, duration: const Duration(milliseconds: 450), curve: Curves.easeOutCubic);
+      // pageCtrl.jumpToPage(page);
+      index = page;
+
+      pageCtrl.animateToPage(page,
+          duration: const Duration(milliseconds: 450),
+          curve: Curves.decelerate);
     }
     emit(MainViewState(index: page));
   }
@@ -34,9 +39,15 @@ class MainViewBloc extends Cubit<MainViewState> {
     "assets/images/notification.png"
   ];
   List<String> label = [
-    Tr.get.home,
+    "الرئيسية",
     "الحجوزات",
     "الحسابات",
-    "الاشعارات"
+    "الاشعارات",
+    "الرحلات المباشرة"
   ];
+
+  bool get showClientName => index == 0;
+  bool get showClientImage=> index == 0||index == 4;
+  bool get showNotification=> index == 0||index == 4;
+  bool get showTitle=> index == 4;
 }

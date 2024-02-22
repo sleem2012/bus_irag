@@ -4,7 +4,6 @@ abstract class KColors {
 
 
 
-  static const Color backgroundD = Color(0xff2F2E41);
   static const Color elevatedBoxD = Color(0xFF3C3A56);
   static const Color navBarD = Color(0xFF222134);
   static const Color actionBTND = Color(0xFF05B646);
@@ -23,10 +22,16 @@ abstract class KColors {
   static const Color whiteColor = Colors.white;
   static const Color blackColor = Colors.black;
   static const Color greenColor = Color(0xff4ADE80);
+  static const Color boldGreenColor = Color(0xff007A3D);
   static const Color lightGreen = Color(0xffEEFFF4);
   static const Color unselectedColor = Color(0xffD3D5DA);
   static const Color accentColor = Color(0xff3BA7DE);
   static const Color lightGreyColor = Color(0xffF5F8FB);
+  static const Color vDividerColor = Color(0xffD9D9D9);
+  static const Color redColor = Color(0xffFF3333);
+  static const Color lightBlueColor = Color(0xffE0EEFF);
+  static const Color backgroundD = Color(0xffF9F9F9);
+
 
 }
 

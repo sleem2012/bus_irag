@@ -16,6 +16,8 @@ class KDropdownBtn<T> extends StatelessWidget {
   final bool? showArrow;
   final bool? showAz;
   final bool isLoading;
+  final Color? hintColor;
+  final Widget? suffixIcon;
 
   const KDropdownBtn({
     Key? key,
@@ -29,7 +31,7 @@ class KDropdownBtn<T> extends StatelessWidget {
     this.showArrow,
     this.btnDecoration,
     this.showAz,
-    this.isLoading = false,
+    this.isLoading = false,  this.hintColor, this.suffixIcon,
   }) : super(key: key);
 
   @override
@@ -40,13 +42,15 @@ class KDropdownBtn<T> extends StatelessWidget {
       onChanged: onChanged,
       validator: validator,
       type: SelectorViewType.sheet,
+      suffixIcon: suffixIcon,
+
 
       showArrow: showArrow,
       value: value,
       popupDecoration: KHelper.of(context).msgBubble,
-      btnDecoration: btnDecoration ??  KHelper.of(context).textFieldDecoration,
+      btnDecoration: btnDecoration ??  KHelper.of(context).textFieldDecoration.copyWith(),
       error: error,
-      hintStyle: KTextStyle.of(context).hint.copyWith(fontSize: 10,color: KColors.blackColor),
+      hintStyle: KTextStyle.of(context).hint.copyWith(fontSize: 10,color: hintColor??KColors.blackColor),
       showAz: showAz,
     );
   }

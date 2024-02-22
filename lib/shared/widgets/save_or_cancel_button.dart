@@ -21,7 +21,7 @@ class SaveOrCancelButton extends StatelessWidget {
         const SizedBox(width: 20),
         Expanded(
           child: TextButton(
-            child: Text(Tr.get.cancel, style: TextStyle(color: KColors.accentColor)),
+            child: Text(Tr.get.cancel, style: const TextStyle(color: KColors.accentColor)),
             onPressed: () {
               Nav.back();
             },

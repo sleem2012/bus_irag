@@ -51,7 +51,7 @@ class _CachedSvgImageState extends State<CachedSvgImage> {
         widget.url,
         color: widget.overrideColor ? (widget.color ?? KColors.accentColor) : null,
         placeholder: widget.placeHolder,
-        errorWidget: Icon(Icons.error, color: KColors.accentColor),
+        errorWidget: const Icon(Icons.error, color: KColors.accentColor),
         width: widget.width,
         height: widget.height,
         fadeDuration: const Duration(milliseconds: 500),

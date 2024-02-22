@@ -28,7 +28,8 @@ class KTextStyle {
         color: Colors.white,
         fontSize: 11,
         fontFamily: fontFamily,
-        fontWeight: FontWeight.bold,);
+        fontWeight: FontWeight.bold,
+    );
   }
 
   TextStyle get body2 {
@@ -89,7 +90,7 @@ class KTextStyle {
   TextStyle get seven {
     return const TextStyle(
         color: KColors.mainColor,
-        fontSize: 7,
+        fontSize: 8,
         fontFamily: fontFamily,
         fontWeight: FontWeight.bold);
   }

@@ -95,7 +95,7 @@ class RegisterView extends StatelessWidget {
               ),
 
               11.h,
-              PhoneFormField(),
+              const PhoneFormField(),
               SizedBox(height: KHelper.listPadding),
               KTextFormField(
                 // controller: login.passController,

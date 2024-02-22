@@ -14,6 +14,7 @@ class KSingleSelector<T> extends StatefulWidget {
   final String? error;
   final bool? showArrow;
   final bool? showAz;
+  final Widget? suffixIcon;
 
   final TextStyle? titleStyle, hintStyle;
   final InputDecoration? textFieldDecoration;
@@ -34,7 +35,7 @@ class KSingleSelector<T> extends StatefulWidget {
     this.textFieldDecoration,
     this.type = SelectorViewType.sheet,
     this.popupDecoration,
-    this.hintStyle,
+    this.hintStyle, this.suffixIcon,
   }) : super(key: key);
 
   @override
@@ -73,21 +74,21 @@ class _KSingleSelectorState<T> extends State<KSingleSelector<T>> {
     super.didUpdateWidget(oldWidget);
   }
 
-  @override
-  void didChangeDependencies() {
-    debugPrint('=================  didChangeDependencies : ${widget.title}');
-    _items = widget.items;
-    _initItems = widget.items;
-    if (_selectedIndex != -1 && _items.isNotEmpty) {
-      //_selectedItem = _items[_selectedIndex];
-      _selectedItem = _initItems.where((element) => element.value == widget.value).firstOrNull;
-
-      _value = _selectedItem?.value;
-      // debugPrint('========= did Change Dependencies ==== _selectedValue ${widget.value == _selectedValue} ==== _selectedIndex $_selectedIndex ');
-      // debugPrint('========= did Change Dependencies ==== _selectedValue ${widget.value} ==== _selectedIndex $_selectedIndex ');
-    }
-    super.didChangeDependencies();
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   debugPrint('=================  didChangeDependencies : ${widget.title}');
+  //   _items = widget.items;
+  //   _initItems = widget.items;
+  //   if (_selectedIndex != -1 && _items.isNotEmpty) {
+  //     //_selectedItem = _items[_selectedIndex];
+  //     _selectedItem = _initItems.where((element) => element.value == widget.value).firstOrNull;
+  //
+  //     _value = _selectedItem?.value;
+  //     // debugPrint('========= did Change Dependencies ==== _selectedValue ${widget.value == _selectedValue} ==== _selectedIndex $_selectedIndex ');
+  //     // debugPrint('========= did Change Dependencies ==== _selectedValue ${widget.value} ==== _selectedIndex $_selectedIndex ');
+  //   }
+  //   super.didChangeDependencies();
+  // }
 
   void _onItemSelected(int index) {
     _selectedItem = _items[index];
@@ -217,6 +218,7 @@ class _KSingleSelectorState<T> extends State<KSingleSelector<T>> {
                 errorDecoration: widget.errorDecoration,
                 hasError: formState.hasError,
                 titleStyle: widget.hintStyle,
+                suffixIcon:widget.suffixIcon ,
                 showArrow: widget.showArrow ?? true,
                 child: Row(
                   children: [

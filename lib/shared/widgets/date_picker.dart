@@ -1,3 +1,5 @@
+import 'package:bus_iraq2/shared/theme/colors.dart';
+import 'package:bus_iraq2/shared/theme/text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_core/core.dart';
@@ -85,7 +87,7 @@ class SfDatePicker extends StatelessWidget {
       child: Container(
         height: height * .6,
         margin: const EdgeInsets.all(12),
-        decoration: KHelper.of(context).circledTopContainer,
+        decoration: KHelper.of(context).roundedContainer,
         child: hijri
             ? SfHijriDateRangePicker(
                 minDate: HijriDateTime.fromDateTime(start),
@@ -102,6 +104,9 @@ class SfDatePicker extends StatelessWidget {
                 maxDate: end,
                 selectionMode: DateRangePickerSelectionMode.single,
                 showActionButtons: true,
+                selectionColor: KColors.mainColor,
+
+                headerStyle: DateRangePickerHeaderStyle(textStyle: KTextStyle.of(context).ten.copyWith(color: KColors.blackColor,),textAlign: TextAlign.center),
                 onCancel: () => Navigator.of(context).pop(),
                 onSubmit: (p0) => onSubmit(context, p0),
               ),

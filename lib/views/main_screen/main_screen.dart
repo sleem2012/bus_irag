@@ -1,4 +1,5 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:bus_iraq2/shared/custom_header.dart';
 import 'package:bus_iraq2/shared/theme/text_theme.dart';
 import 'package:bus_iraq2/views/home/home_view.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../logic/main_view/main_view_bloc.dart';
 import '../../shared/theme/colors.dart';
+import '../reservation/available_trips.dart';
+import '../reservation/direct_reservation.dart';
 
 class MainNavPages extends StatelessWidget {
   const MainNavPages({Key? key}) : super(key: key);
@@ -16,14 +19,27 @@ class MainNavPages extends StatelessWidget {
       create: (context) => MainViewBloc(),
       child: BlocBuilder<MainViewBloc, MainViewState>(
         builder: (context, state) {
+          final mainBloc = MainViewBloc.of(context);
           return Scaffold(
-            // extendBodyBehindAppBar: true,
             backgroundColor: KColors.mainColor,
             extendBody: true,
+            appBar: CustomHeader(
+              showClientImage: mainBloc.showClientImage,
+              showClientName: mainBloc.showClientName,
+              showNotification: mainBloc.showNotification,
+              showTitle: mainBloc.showTitle,
+            ),
             body: PageView(
               controller: MainViewBloc.of(context).pageCtrl,
               physics: const NeverScrollableScrollPhysics(),
-              children: const [HomeView()],
+              children: [
+                const HomeView(),
+                Container(),
+                Container(),
+                Container(),
+                const DirectReservation(), //direct reserve
+                const AvailableTrips(),
+              ],
             ),
             bottomNavigationBar: AnimatedBottomNavigationBar.builder(
               tabBuilder: (int index, bool isActive) {

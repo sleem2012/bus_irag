@@ -28,6 +28,7 @@ abstract class MultiSelector {
     TextStyle? hintStyle,
     T? value,
     InputDecoration? textFieldDecoration,
+    Widget? suffixIcon,
   }) {
     return KSingleSelector<T>(
       title: title,
@@ -42,6 +43,7 @@ abstract class MultiSelector {
       showArrow: showArrow,
       showAz: showAz,
       hintStyle: hintStyle,
+      suffixIcon: suffixIcon,
       textFieldDecoration: textFieldDecoration,
       popupDecoration: popupDecoration,
       errorDecoration: errorDecoration,

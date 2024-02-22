@@ -194,7 +194,7 @@ abstract class KHelper {
   }
 
   static String apiDateFormatter(DateTime date) {
-    return DateFormat('yyyy-MM-dd kk:mm').format(date);
+    return DateFormat('yyyy-MM-dd').format(date);
   }
 
   static Future<AddressResult?> showMaps(BuildContext context,
@@ -251,12 +251,27 @@ class KHelperGetters {
       borderRadius: BorderRadius.circular(2),
     );
   }
+  BoxDecoration get titledContainer {
+    return BoxDecoration(
+      color: KColors.whiteColor,
+
+      borderRadius: BorderRadius.circular(8),
+    );
+  }
+  BoxDecoration get dateContainer {
+    return BoxDecoration(
+      // color: KColors.lightGreyColor,
+
+      borderRadius: BorderRadius.circular(2),
+      border: Border.all(color: KColors.lightBlueColor,width: 1)
+    );
+  }
 
   Border get eBorder => Border.all(color: KColors.errorD, width: 1);
 
   BoxDecoration get msgBubble {
     return BoxDecoration(
-      color: KColors.elevatedBoxD,
+      color: KColors.whiteColor,
       borderRadius: BorderRadius.circular(KHelper.cornerRadius),
       boxShadow: [
         const BoxShadow(
@@ -275,7 +290,8 @@ class KHelperGetters {
   BoxDecoration get textFieldDecoration {
     return BoxDecoration(
         borderRadius: BorderRadius.circular(2),
-        border: Border.all(color: const Color(0xff000000), width: .2));
+        border: Border.all(
+            color: const Color(0xff000000).withOpacity(.7), width: .2));
   }
 
   BoxDecoration get errorBorder {
@@ -320,7 +336,15 @@ class KHelperGetters {
       value: value,
       searchValue: itemText,
       icon: icon,
-      child: Text(itemText, overflow: TextOverflow.ellipsis),
+      child: Text(itemText,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
+            // color: Colors.white,
+            fontSize: 13,
+            fontFamily: 'URW-DIN-Arabic',
+            fontWeight: FontWeight.bold,
+
+          )),
     );
   }
 }

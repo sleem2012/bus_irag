@@ -322,7 +322,7 @@ class _SearchBar extends StatelessWidget {
               onChanged: onSearch,
               // textInputAction: TextInputAction.search,
               // fillColor: color,
-              prefixIcon: Icon(KHelper.search, color: KColors.accentColor),
+              prefixIcon: const Icon(KHelper.search, color: KColors.accentColor),
               suffixIcon: suffixIcon,
             ),
           ),

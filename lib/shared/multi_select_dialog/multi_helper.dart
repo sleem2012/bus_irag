@@ -177,7 +177,7 @@ class HintContainer extends StatelessWidget {
     required this.hasError,
 
     // ignore: unused_element
-    this.selectedValues,
+    this.selectedValues, this.suffixIcon,
   })  : assert(child != null || title != null),
         super(key: key);
 
@@ -189,6 +189,7 @@ class HintContainer extends StatelessWidget {
   final BoxDecoration? errorDecoration;
   final bool hasError;
   final bool showArrow;
+  final Widget? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -215,7 +216,7 @@ class HintContainer extends StatelessWidget {
               Expanded(
                 child: child ?? Text(title ?? '', style: titleStyle ?? VM.of(context).hintStyle, overflow: TextOverflow.ellipsis),
               ),
-              if (showArrow) const Icon(Icons.keyboard_arrow_down_rounded,color: KColors.blackColor,),
+              if (showArrow)  (suffixIcon??const Icon(Icons.keyboard_arrow_down_rounded,color: KColors.blackColor,)),
             ],
           ),
           if ((selectedValues ?? []).isNotEmpty) ...[

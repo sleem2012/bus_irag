@@ -37,45 +37,36 @@ class KButton extends StatelessWidget {
             height: Get.height * .15,
             alignment: Alignment.center,
           )
-        : ElevatedButton(
-            onPressed: isLoading ?? false ? null : onPressed,
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.all(0.0),
-              backgroundColor: Colors.transparent,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(15),
-                  topLeft: Radius.circular(15),
-                ),
-              ),
-            ),
-            child: Ink(
+        : InkWell(
+            onTap: isLoading ?? false ? null : onPressed,
+            child: Container(
               decoration: BoxDecoration(
                   color: kFillColor ?? KColors.mainColor,
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: borderColor ?? Colors.transparent)),
-              child: Container(
-                width: width ?? Get.width / 1.1,
-                height: hieght ?? Get.height * .064,
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    if (iconPath != null)
-                 ...[     Image.asset(
-                        iconPath ?? '',
-                      ),
+              width: width ?? Get.width / 1.1,
+              height: hieght ?? Get.height * .064,
+              alignment: Alignment.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (iconPath != null) ...[
+                    Image.asset(
+                      iconPath ?? '',
+                    ),
                     const SizedBox(
                       width: 30,
-                    ),],
-                    Text(
+                    ),
+                  ],
+                  FittedBox(
+                    child: Text(
                       title,
                       style: KTextStyle.of(context)
                           .btnTitle
                           .copyWith(color: textColor),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           );

@@ -109,7 +109,7 @@ class ResetPassView extends StatelessWidget {
                                     .fifteen
                                     .copyWith(color: Colors.black),
                               ),
-                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
                               btnOk: Padding(
                                 padding: const EdgeInsets.only(top: 16.0),
                                 child: KButton(
