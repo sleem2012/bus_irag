@@ -29,6 +29,7 @@ abstract class KColors {
   static const Color lightGreyColor = Color(0xffF5F8FB);
   static const Color vDividerColor = Color(0xffD9D9D9);
   static const Color redColor = Color(0xffFF3333);
+  static const Color boldRedColor = Color(0xffA40113);
   static const Color lightBlueColor = Color(0xffE0EEFF);
   static const Color backgroundD = Color(0xffF9F9F9);
 

@@ -10,6 +10,7 @@ import '../../shared/theme/colors.dart';
 import '../reservation/available_trips.dart';
 import '../reservation/direct_reservation.dart';
 import '../reservation/passenger_info_form.dart';
+import '../reservation/reservation_history.dart';
 
 class MainNavPages extends StatelessWidget {
   const MainNavPages({Key? key}) : super(key: key);
@@ -35,7 +36,7 @@ class MainNavPages extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 const HomeView(),
-                Container(),
+                const ReservationHistory(),
                 Container(),
                 Container(),
                 const DirectReservation(), //direct reserve

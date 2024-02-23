@@ -10,8 +10,6 @@ import 'package:get/get.dart';
 import '../../shared/localization/trans.dart';
 import '../../shared/theme/colors.dart';
 import '../../shared/widgets/selectable_container.dart';
-import '../../shared/widgets/titled_container.dart';
-import 'widget/available_trip_card.dart';
 
 class PassengerInfoForm extends StatelessWidget {
   const PassengerInfoForm({super.key});
@@ -100,7 +98,7 @@ class PassengerInfoForm extends StatelessWidget {
                               left: -Get.width * .04,
                               top: Get.height * .1,
                               // bottom:Get.height * .4 ,
-                              child: SelectableContainer(
+                              child: const SelectableContainer(
                                 width: 38,
                                 isSelected: true,
                                 text: "A1",
@@ -111,8 +109,8 @@ class PassengerInfoForm extends StatelessWidget {
                         60.h,
                         Center(
                           child: KButton(
-                            width: Get.width*.4,
-                            hieght: Get.height*.05,
+                            width: Get.width * .4,
+                            hieght: Get.height * .05,
                             title: "احجز الأن",
                             onPressed: () {},
                           ),
