@@ -251,20 +251,32 @@ class KHelperGetters {
       borderRadius: BorderRadius.circular(2),
     );
   }
+
   BoxDecoration get titledContainer {
     return BoxDecoration(
       color: KColors.whiteColor,
-
       borderRadius: BorderRadius.circular(8),
     );
   }
+
+  BoxDecoration get shadowContainer {
+    return BoxDecoration(
+        color: KColors.whiteColor,
+        borderRadius: BorderRadius.circular(4),
+        boxShadow: [
+          BoxShadow(
+            color: KColors.blackColor.withOpacity(.2),
+            blurRadius: 8,
+          )
+        ]);
+  }
+
   BoxDecoration get dateContainer {
     return BoxDecoration(
-      // color: KColors.lightGreyColor,
+        // color: KColors.lightGreyColor,
 
-      borderRadius: BorderRadius.circular(2),
-      border: Border.all(color: KColors.lightBlueColor,width: 1)
-    );
+        borderRadius: BorderRadius.circular(2),
+        border: Border.all(color: KColors.lightBlueColor, width: 1));
   }
 
   Border get eBorder => Border.all(color: KColors.errorD, width: 1);
@@ -343,7 +355,6 @@ class KHelperGetters {
             fontSize: 13,
             fontFamily: 'URW-DIN-Arabic',
             fontWeight: FontWeight.bold,
-
           )),
     );
   }

@@ -13,7 +13,7 @@ class KTextFormField extends StatelessWidget {
   final Widget? suffixIcon, prefixIcon;
   final String? hintText, errorText, labelText,upperTitle;
   final bool autofocus, enabled, expanded;
-  final double? kWidth, height;
+  final double? width, height;
   final int? maxLines;
   final bool obscureText;
   final String? initVal;
@@ -36,7 +36,7 @@ class KTextFormField extends StatelessWidget {
     this.autofocus = false,
     this.prefixIcon,
     this.enabled = true,
-    this.kWidth,
+    this.width,
     this.height,
     this.maxLines,
     this.formatter,
@@ -51,7 +51,7 @@ class KTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: height,
-      width: kWidth,
+      width: width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

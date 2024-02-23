@@ -1,4 +1,5 @@
 import 'package:bus_iraq2/shared/extensions.dart';
+import 'package:bus_iraq2/shared/route/nav_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -159,7 +160,9 @@ class AvailableTripCard extends StatelessWidget {
           Center(
             child: KButton(
               title: "احجز الأن",
-              onPressed: () {},
+              onPressed: () {
+                NavHelper.of(context).navigateToPassengerInfo;
+              },
               width: Get.width * .4,
               // isLoading: true,
               hieght: Get.height * .04,
