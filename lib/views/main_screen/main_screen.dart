@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../logic/main_view/main_view_bloc.dart';
 import '../../shared/theme/colors.dart';
+import '../accounts_history/accounts_history_view.dart';
 import '../reservation/available_trips.dart';
 import '../reservation/custom_reservation.dart';
 import '../reservation/custom_trip_form.dart';
@@ -39,7 +40,7 @@ class MainNavPages extends StatelessWidget {
               children: [
                 const HomeView(),
                 const ReservationHistory(),
-                Container(),
+                const AccountsHistory(),
                 Container(),
                 const DirectReservation(), //direct reserve
                 const AvailableTrips(),
