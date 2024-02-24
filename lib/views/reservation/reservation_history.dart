@@ -1,6 +1,5 @@
 import 'package:bus_iraq2/shared/extensions.dart';
 import 'package:bus_iraq2/shared/theme/text_theme.dart';
-import 'package:bus_iraq2/shared/widgets/custom_button.dart';
 import 'package:bus_iraq2/shared/widgets/flux_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

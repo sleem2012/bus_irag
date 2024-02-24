@@ -17,6 +17,8 @@ class NavHelper {
 
   void get goHome => MainViewBloc.of(_context!).navTaped(0);
 
+  void get navToReservationHistory => MainViewBloc.of(_context!).navTaped(1);
+
   void get navigateToNotification => MainViewBloc.of(_context!).navTaped(3);
 
   void get navigateToDirectReservation =>
@@ -25,4 +27,9 @@ class NavHelper {
   void get navigateToAvailableTrips => MainViewBloc.of(_context!).navTaped(5);
 
   void get navigateToPassengerInfo => MainViewBloc.of(_context!).navTaped(6);
+
+  void get navigateToCustomReservation =>
+      MainViewBloc.of(_context!).navTaped(7);
+
+  void get navigateToCustomTripForm => MainViewBloc.of(_context!).navTaped(8);
 }

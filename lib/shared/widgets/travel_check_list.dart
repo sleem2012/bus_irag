@@ -5,7 +5,9 @@ import '../theme/colors.dart';
 import '../theme/text_theme.dart';
 
 class TravelCheckList extends StatefulWidget {
-  const TravelCheckList({super.key});
+  const TravelCheckList({super.key, this.backgroundColor});
+
+  final Color? backgroundColor;
 
   @override
   State<TravelCheckList> createState() => _TravelCheckListState();
@@ -25,7 +27,7 @@ class _TravelCheckListState extends State<TravelCheckList> {
         width: Get.width * .63,
         height: Get.height * .05,
         decoration: BoxDecoration(
-          color: const Color(0xffF9F9F9),
+          color: widget.backgroundColor ?? const Color(0xffF9F9F9),
           borderRadius: BorderRadius.circular(18),
         ),
         child: ListView.separated(
@@ -58,10 +60,9 @@ class _TravelCheckListState extends State<TravelCheckList> {
               );
             },
             separatorBuilder: (context, index) =>
-            const VerticalDivider(color: KColors.vDividerColor),
+                const VerticalDivider(color: KColors.vDividerColor),
             itemCount: 2),
       ),
     );
   }
 }
-

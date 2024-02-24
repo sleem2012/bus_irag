@@ -59,12 +59,17 @@ class HomeView extends StatelessWidget {
                       ),
                       RectangleHomeCard(
                         image: 'assets/images/customize_reserve.png',
-                        onTap: () {},
+                        onTap: () {
+                          NavHelper.of(context).navigateToCustomReservation;
+
+                        },
                         title: 'حجوزات مخصصة',
                       ),
                       RectangleHomeCard(
                         image: 'assets/images/reservehistory.png',
-                        onTap: () {},
+                        onTap: () {
+                          NavHelper.of(context).navToReservationHistory;
+                        },
                         title: 'سجل الحجوزات',
                       ),
                     ],

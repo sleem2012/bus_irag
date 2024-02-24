@@ -8,6 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../logic/main_view/main_view_bloc.dart';
 import '../../shared/theme/colors.dart';
 import '../reservation/available_trips.dart';
+import '../reservation/custom_reservation.dart';
+import '../reservation/custom_trip_form.dart';
 import '../reservation/direct_reservation.dart';
 import '../reservation/passenger_info_form.dart';
 import '../reservation/reservation_history.dart';
@@ -42,6 +44,8 @@ class MainNavPages extends StatelessWidget {
                 const DirectReservation(), //direct reserve
                 const AvailableTrips(),
                 const PassengerInfoForm(),
+                const CustomReservation(),
+                const CustomTripForm(),
               ],
             ),
             bottomNavigationBar: AnimatedBottomNavigationBar.builder(

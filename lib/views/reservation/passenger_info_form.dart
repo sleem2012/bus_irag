@@ -1,9 +1,11 @@
 import 'package:bus_iraq2/shared/extensions.dart';
+import 'package:bus_iraq2/shared/route/nav_helper.dart';
 import 'package:bus_iraq2/shared/theme/helper.dart';
 import 'package:bus_iraq2/shared/theme/text_theme.dart';
 import 'package:bus_iraq2/shared/widgets/custom_button.dart';
 import 'package:bus_iraq2/shared/widgets/drop_down.dart';
 import 'package:bus_iraq2/shared/widgets/text_field.dart';
+import 'package:bus_iraq2/views/reservation/widget/passenger_info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -45,74 +47,16 @@ class PassengerInfoForm extends StatelessWidget {
                               .copyWith(color: KColors.mainColor),
                         ),
                         18.h,
-                        Stack(
-                          clipBehavior: Clip.none,
-                          children: [
-                            Container(
-                              decoration: KHelper.of(context).shadowContainer,
-                              width: double.infinity,
-                              padding: const EdgeInsets.all(15),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    width: Get.width * .5,
-                                    child: KDropdownBtn(
-                                        hintColor: KColors.mainColor,
-                                        btnDecoration: KHelper.of(context)
-                                            .textFieldDecoration
-                                            .copyWith(
-                                                border: Border.all(
-                                                    color:
-                                                        KColors.vDividerColor,
-                                                    width: 2)),
-                                        title: "اختيار الجنس",
-                                        onChanged: (p0) {},
-                                        items: []),
-                                  ),
-                                  KTextFormField(
-                                    labelText: "اسم المسافر",
-                                    width: Get.width * .73,
-                                    validator: (p0) {
-                                      if (p0!.isEmpty) {
-                                        return Tr.get.field_required;
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                  KTextFormField(
-                                    labelText: "رقم الهاتف المحمول",
-                                    width: Get.width * .73,
-                                    keyboardType: TextInputType.phone,
-                                    validator: (p0) {
-                                      if (p0!.isEmpty) {
-                                        return Tr.get.field_required;
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Positioned(
-                              left: -Get.width * .04,
-                              top: Get.height * .1,
-                              // bottom:Get.height * .4 ,
-                              child: const SelectableContainer(
-                                width: 38,
-                                isSelected: true,
-                                text: "A1",
-                              ),
-                            )
-                          ],
-                        ),
+                        PassengerInfoCard(),
                         60.h,
                         Center(
                           child: KButton(
                             width: Get.width * .4,
                             hieght: Get.height * .05,
                             title: "احجز الأن",
-                            onPressed: () {},
+                            onPressed: () {
+                              NavHelper.of(context).navToReservationHistory;
+                            },
                           ),
                         )
                       ],

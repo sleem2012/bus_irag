@@ -14,7 +14,7 @@ class PhoneFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final Widget? suffixIcon, prefixIcon;
   final String? hintText, errorText, labelText,upperTitle;
-  final bool autofocus, enabled, expanded;
+  final bool autofocus, enabled, expanded,showUpperTitle;
   final double? kWidth, height;
   final int? maxLines;
   final bool obscureText;
@@ -46,7 +46,7 @@ class PhoneFormField extends StatelessWidget {
     this.initVal,
     this.style,
     this.kFillColor,
-    this.labelText, this.upperTitle,
+    this.labelText, this.upperTitle,  this.showUpperTitle=true,
   });
 
   @override
@@ -57,8 +57,8 @@ class PhoneFormField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("ادخل رقم الهاتف",style: KTextStyle.of(context).ten.copyWith(color: KColors.blackColor),),
-          11.h,
+        if(showUpperTitle) ...[ Text("ادخل رقم الهاتف",style: KTextStyle.of(context).ten.copyWith(color: KColors.blackColor),),
+          11.h,],
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -100,7 +100,7 @@ class PhoneFormField extends StatelessWidget {
                     suffixIcon: suffixIcon,
                     prefixIcon: prefixIcon,
                     isDense: false,
-                    labelText: "ادخل رقم هاتفك المحمول",
+                    labelText: labelText??"ادخل رقم هاتفك المحمول",
 
                   ),
                 ),
