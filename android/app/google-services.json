@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "92035119165",
+    "project_id": "bus-iraq",
+    "storage_bucket": "bus-iraq.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92035119165:android:a7afbbffb6eff260f3d254",
+        "android_client_info": {
+          "package_name": "com.bus_iraq.bus_iraq2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT3-h6VXBloJrW335xEx7GXG-GjZbBLJ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
