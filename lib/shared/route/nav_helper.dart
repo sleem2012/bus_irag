@@ -32,4 +32,7 @@ class NavHelper {
       MainViewBloc.of(_context!).navTaped(7);
 
   void get navigateToCustomTripForm => MainViewBloc.of(_context!).navTaped(8);
+
+  void get navigateToWallet => MainViewBloc.of(_context!).navTaped(9);
+  void get navigateAddMoney => MainViewBloc.of(_context!).navTaped(10);
 }

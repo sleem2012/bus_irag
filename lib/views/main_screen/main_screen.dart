@@ -14,6 +14,8 @@ import '../reservation/custom_trip_form.dart';
 import '../reservation/direct_reservation.dart';
 import '../reservation/passenger_info_form.dart';
 import '../reservation/reservation_history.dart';
+import '../wallet/add_money.dart';
+import '../wallet/wallet_view.dart';
 
 class MainNavPages extends StatelessWidget {
   const MainNavPages({Key? key}) : super(key: key);
@@ -47,6 +49,8 @@ class MainNavPages extends StatelessWidget {
                 const PassengerInfoForm(),
                 const CustomReservation(),
                 const CustomTripForm(),
+                const WalletView(),
+                const AddMoneyView(),
               ],
             ),
             bottomNavigationBar: AnimatedBottomNavigationBar.builder(

@@ -85,5 +85,5 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => Size(0, Get.height * .07);
+  Size get preferredSize => Size(0, Get.height * .08);
 }

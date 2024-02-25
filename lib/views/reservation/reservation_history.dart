@@ -79,6 +79,7 @@ class ReservationHistoryCard extends StatelessWidget {
                 width: Get.width * .25,
                 iconPath: "assets/images/ticket.png",
                 onPressed: () {},
+
               )
             ],
           ),

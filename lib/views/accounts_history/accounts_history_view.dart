@@ -4,7 +4,6 @@ import 'package:bus_iraq2/shared/widgets/flux_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../shared/small_button.dart';
 import '../../shared/theme/colors.dart';
 import '../../shared/theme/helper.dart';
 import '../../shared/widgets/titled_container.dart';
@@ -21,19 +20,19 @@ class AccountsHistory extends StatelessWidget {
         ),
         Expanded(
             child: Container(
-              color: KColors.backgroundD,
-              width: double.infinity,
-              child: ListView.separated(
-                  padding: EdgeInsets.only(
-                      top: 20, left: 20, right: 20, bottom: Get.height * .2),
-                  itemBuilder: (context, index) => const AccountsHistoryCard(),
-                  separatorBuilder: (context, index) {
-                    return const SizedBox(
-                      height: 20,
-                    );
-                  },
-                  itemCount: 4),
-            ))
+          color: KColors.backgroundD,
+          width: double.infinity,
+          child: ListView.separated(
+              padding: EdgeInsets.only(
+                  top: 20, left: 20, right: 20, bottom: Get.height * .2),
+              itemBuilder: (context, index) => const AccountsHistoryCard(),
+              separatorBuilder: (context, index) {
+                return const SizedBox(
+                  height: 20,
+                );
+              },
+              itemCount: 4),
+        ))
       ],
     );
   }
@@ -48,24 +47,40 @@ class AccountsHistoryCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 14),
       decoration: KHelper.of(context).titledContainer.copyWith(
           border: Border.all(color: KColors.blackColor.withOpacity(.1))),
-      child:  Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const TextRichWithIcon(keyText: 'تاريخ:',valueText: '7 فبراير 2024', imagePath: 'assets/images/calender_icon.png',),
+          const TextRichWithIcon(
+            keyText: 'تاريخ:',
+            valueText: '7 فبراير 2024',
+            imagePath: 'assets/images/calender_icon.png',
+          ),
           14.h,
-          const TextRichWithIcon(keyText: 'مسار:',valueText: 'بغداد الى كربلاء المقدسة', imagePath: 'assets/images/bus-ticket-icon 1.png',),
+          const TextRichWithIcon(
+            keyText: 'مسار:',
+            valueText: 'بغداد الى كربلاء المقدسة',
+            imagePath: 'assets/images/bus-ticket-icon 1.png',
+          ),
           14.h,
-          
-           const Row(
+          const Row(
             children: [
-              Expanded(flex: 2,child: TextRichWithIcon(keyText: 'عدد:',valueText: '4 ركاب', imagePath: 'assets/images/two_persons.png',)),
+              Expanded(
+                  flex: 2,
+                  child: TextRichWithIcon(
+                    keyText: 'عدد:',
+                    valueText: '4 ركاب',
+                    imagePath: 'assets/images/two_persons.png',
+                  )),
               Spacer(flex: 1),
-              Expanded(flex: 2,child: TextRichWithIcon(keyText: 'السعر:',valueText: '40الفIQD ', imagePath: 'assets/images/money_bag.png',)),
-
+              Expanded(
+                  flex: 2,
+                  child: TextRichWithIcon(
+                    keyText: 'السعر:',
+                    valueText: '40الفIQD ',
+                    imagePath: 'assets/images/money_bag.png',
+                  )),
             ],
           )
-
-
         ],
       ),
     );
@@ -73,8 +88,14 @@ class AccountsHistoryCard extends StatelessWidget {
 }
 
 class TextRichWithIcon extends StatelessWidget {
-  const TextRichWithIcon({super.key, required this.keyText, required this.valueText, required this.imagePath});
-final String keyText,valueText,imagePath;
+  const TextRichWithIcon(
+      {super.key,
+      required this.keyText,
+      required this.valueText,
+      required this.imagePath});
+
+  final String keyText, valueText, imagePath;
+
   @override
   Widget build(BuildContext context) {
     return Row(

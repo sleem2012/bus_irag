@@ -82,7 +82,9 @@ class HomeView extends StatelessWidget {
                 10.h,
                 KButton(
                   title: "المحفظة",
-                  onPressed: () {},
+                  onPressed: () {
+                    NavHelper.of(context).navigateToWallet;
+                  },
                   kFillColor: KColors.lightGreen,
                   iconPath: "assets/images/wallet.png",
                   textColor: KColors.greenColor,

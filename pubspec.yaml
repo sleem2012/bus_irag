@@ -49,6 +49,7 @@ dependencies:
   pinput:
   awesome_dialog: ^3.2.0
   carousel_slider:
+  firebase_core:
 
 dependency_overrides:
   modal_bottom_sheet: ^3.0.0-pre
