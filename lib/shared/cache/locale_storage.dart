@@ -17,6 +17,7 @@ class KStorageKeys {
   static const String isSplashSeen = 'isSplashSeen';
   static const String settings = 'settings';
   static const String location = 'location';
+  static const String role = 'role';
 
 
 
@@ -83,4 +84,8 @@ class KStorage {
     }
     return null;
   }
+
+  String get getRole=>_storage.read(KStorageKeys.role);
+  setRole(String role) => _storage.write(KStorageKeys.role, role);
+
 }

@@ -11,14 +11,19 @@ class DioClientImpl implements ApiClientAbs {
   final List<Interceptor> otherInterceptors;
   final BaseOptions? baseOptions;
 
-  DioClientImpl({required this.apiClientBloc, this.otherInterceptors = const [], this.baseOptions}) {
+  DioClientImpl(
+      {required this.apiClientBloc,
+      this.otherInterceptors = const [],
+      this.baseOptions}) {
     _dio.interceptors
-      ..add(UserInterceptor(
-        onRequestCallback: apiClientBloc.onRequestCallBack,
-        onResponseCallback: apiClientBloc.onResponseCallBack,
-        onErrorCallback: apiClientBloc.onErrorCallBack,
-        onRetry: apiClientBloc.scheduleRetry,
-      ),)
+      ..add(
+        UserInterceptor(
+          onRequestCallback: apiClientBloc.onRequestCallBack,
+          onResponseCallback: apiClientBloc.onResponseCallBack,
+          onErrorCallback: apiClientBloc.onErrorCallBack,
+          onRetry: apiClientBloc.scheduleRetry,
+        ),
+      )
       ..addAll(otherInterceptors);
 
     if (kDebugMode) {
@@ -32,7 +37,6 @@ class DioClientImpl implements ApiClientAbs {
   static BaseOptions options = BaseOptions(
     baseUrl: KEndPoints.baseUrl,
     contentType: 'application/json',
-
     connectTimeout: const Duration(seconds: 40),
     receiveTimeout: const Duration(seconds: 60),
     sendTimeout: const Duration(seconds: 60),
@@ -43,22 +47,28 @@ class DioClientImpl implements ApiClientAbs {
   final _dioStatusCodeCheck = Dio(options);
 
   @override
-  Future<Response> statusCodeCheck(String path, {Map<String, dynamic>? params, Options? options}) {
-    return _dioStatusCodeCheck.get(path, queryParameters: params, options: options);
+  Future<Response> statusCodeCheck(String path,
+      {Map<String, dynamic>? params, Options? options}) {
+    return _dioStatusCodeCheck.get(path,
+        queryParameters: params, options: options);
   }
 
   @override
-  Future<Response> get(String path, {Map<String, dynamic>? params, Options? options}) {
+  Future<Response> get(String path,
+      {Map<String, dynamic>? params, Options? options}) {
     return _dio.get(path, queryParameters: params, options: options);
   }
 
   @override
-  Future<Response> post(String path, {Map<String, dynamic>? params, Options? options, data}) {
-    return _dio.post(path, data: data, queryParameters: params, options: options);
+  Future<Response> post(String path,
+      {Map<String, dynamic>? params, Options? options, data}) {
+    return _dio.post(path,
+        data: data, queryParameters: params, options: options);
   }
 
   @override
-  Future<Response> postWithFiles(String path, {Map<String, dynamic>? params, Options? options, data}) {
+  Future<Response> postWithFiles(String path,
+      {Map<String, dynamic>? params, Options? options, data}) {
     return _dio.post(
       path,
       data: FormData.fromMap(data),
@@ -74,18 +84,24 @@ class DioClientImpl implements ApiClientAbs {
   }
 
   @override
-  Future<Response> patch(String path, {Map<String, dynamic>? params, Options? options, data}) {
-    return _dio.patch(path, data: data, queryParameters: params, options: options);
+  Future<Response> patch(String path,
+      {Map<String, dynamic>? params, Options? options, data}) {
+    return _dio.patch(path,
+        data: data, queryParameters: params, options: options);
   }
 
   @override
-  Future<Response> put(String path, {Map<String, dynamic>? params, Options? options, data}) {
-    return _dio.put(path, data: data, queryParameters: params, options: options);
+  Future<Response> put(String path,
+      {Map<String, dynamic>? params, Options? options, data}) {
+    return _dio.put(path,
+        data: data, queryParameters: params, options: options);
   }
 
   @override
-  Future<Response> delete(String path, {Map<String, dynamic>? params, Options? options, data}) {
-    return _dio.delete(path, data: data, queryParameters: params, options: options);
+  Future<Response> delete(String path,
+      {Map<String, dynamic>? params, Options? options, data}) {
+    return _dio.delete(path,
+        data: data, queryParameters: params, options: options);
   }
 
   @override

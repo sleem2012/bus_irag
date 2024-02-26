@@ -3,7 +3,6 @@ import 'package:bus_iraq2/shared/route/nav_helper.dart';
 import 'package:bus_iraq2/shared/theme/helper.dart';
 import 'package:bus_iraq2/shared/theme/text_theme.dart';
 import 'package:bus_iraq2/shared/widgets/custom_button.dart';
-import 'package:bus_iraq2/shared/widgets/drop_down.dart';
 import 'package:bus_iraq2/shared/widgets/text_field.dart';
 import 'package:bus_iraq2/views/auth/widget/phone_form.dart';
 import 'package:bus_iraq2/views/reservation/widget/passenger_info_card.dart';
@@ -75,7 +74,7 @@ class CustomTripForm extends StatelessWidget {
                           .copyWith(color: KColors.mainColor),
                     ),
                     18.h,
-                    const PassengerInfoCard(),
+                    // const PassengerInfoCard(list: seat,),
                     20.h,
                     Center(
                       child: KButton(

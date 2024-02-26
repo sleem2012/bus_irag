@@ -1,18 +1,17 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'package:bus_iraq2/shared/cache/locale_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'app.dart';
 import 'di.dart';
-import 'firebase_options.dart';
 
-const bool test = false;
 void main() async {
 
   await Di.init();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
+  // KStorage.i.erase;
 
   runApp(const RestartWidget(child: MyApp()));
 }

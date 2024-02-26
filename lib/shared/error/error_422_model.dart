@@ -9,7 +9,7 @@ class Error422Model {
 
   factory Error422Model.fromJson(Map<String, dynamic> map) {
     return Error422Model(
-      // message: map['error_message'] ?? "",
+      message: map['message'] ?? "",
       errors: Map<String, List>.from(map['errors'] ?? {}),
     );
   }

@@ -1,3 +1,5 @@
+import 'package:bus_iraq2/data/repository/direct_trip/direct_trip_repo.dart';
+import 'package:bus_iraq2/logic/choose_seet/choose_seet_bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,12 +42,15 @@ abstract class Di {
     _i.registerLazySingleton(() => ThemeBloc());
     _i.registerLazySingleton(() => ApiClientBloc());
     _i.registerLazySingleton(() => ImagePicker());
+    _i.registerLazySingleton(() => AuthRepoImpl());
+    _i.registerLazySingleton(() => DirectTripRepoImp());
 
 
     ///bloc
 
     _i.registerFactory(() => LoginBloc(authRepoImpl: _i()));
     _i.registerFactory(() => LogoutBloc(authRepoImpl: _i()));
+    _i.registerFactory(() => ChooseSeetBloc(chooseSeetRepoImp: _i()));
 
   }
 
@@ -77,5 +82,6 @@ abstract class Di {
   static LoginBloc get loginBloc => _i.get<LoginBloc>();
 
   static LogoutBloc get logOut => _i.get<LogoutBloc>();
+  static ChooseSeetBloc get chooseSeat => _i.get<ChooseSeetBloc>();
 
 }

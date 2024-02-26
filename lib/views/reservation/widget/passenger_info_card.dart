@@ -9,7 +9,9 @@ import '../../../shared/widgets/selectable_container.dart';
 import '../../../shared/widgets/text_field.dart';
 
 class PassengerInfoCard extends StatelessWidget {
-  const PassengerInfoCard({super.key});
+  const PassengerInfoCard({super.key, required this.seatName});
+
+  final String seatName;
 
   @override
   Widget build(BuildContext context) {
@@ -64,10 +66,10 @@ class PassengerInfoCard extends StatelessWidget {
           left: -Get.width * .04,
           top: Get.height * .1,
           // bottom:Get.height * .4 ,
-          child: const SelectableContainer(
+          child: SelectableContainer(
             width: 38,
             isSelected: true,
-            text: "A1",
+            text: seatName,
           ),
         )
       ],

@@ -19,13 +19,13 @@ class LoginBloc extends Cubit<LoginState> {
   UserModel? userModel;
 
   bool isVisible = true;
-  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
   final TextEditingController passController = TextEditingController();
 
   login() async {
     emit(const LoginState.loading());
     try {
-      final result = await authRepoImpl.login(userName: userNameController.text, password: passController.text);
+      final result = await authRepoImpl.login(userName: phoneController.text, password: passController.text);
       result.fold(
         (l) {
           emit(LoginState.error(failure: l));
@@ -34,7 +34,7 @@ class LoginBloc extends Cubit<LoginState> {
         },
         (r) {
           userModel = r;
-          KStorage.i.setToken(userModel?.value?.token ?? '');
+          KStorage.i.setToken(userModel?.data?.token ?? '');
           KStorage.i.setUserInfo(userModel);
           emit(LoginState.success(loginModel: userModel!));
           debugPrint('================= Login (Bloc): Success => $r ');

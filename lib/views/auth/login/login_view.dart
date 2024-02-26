@@ -1,9 +1,13 @@
+import 'package:bus_iraq2/di.dart';
 import 'package:bus_iraq2/shared/theme/text_theme.dart';
 import 'package:bus_iraq2/shared/widgets/flux_image.dart';
 import 'package:bus_iraq2/views/main_screen/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
+import '../../../logic/login/login_bloc.dart';
+import '../../../logic/login/login_state.dart';
 import '../../../shared/constants.dart';
 import '../../../shared/extensions.dart';
 import '../../../shared/localization/trans.dart';
@@ -24,120 +28,138 @@ class LoginView extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: KColors.whiteColor,
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Form(
-            key: formKey,
-            child: Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: Get.height * .15,
-                ),
-                Text(
-                  "تسجيل الدخول",
-                  style: KTextStyle.of(context)
-                      .twenty
-                      .copyWith(color: KColors.blackColor),
-                ),
+        body: BlocProvider(
+          create: (context) => Di.loginBloc,
+          child: BlocConsumer<LoginBloc, LoginState>(
+            listener: (context, state) {
+              state.whenOrNull(
+                success: (loginModel) {
+                  Get.offAll(() => const MainNavPages());
+                },
+              );
+            },
+            builder: (context, state) {
+              final login = LoginBloc.of(context);
 
-                41.h,
-                const FluxImage(
-                  imageUrl: Constant.loginLogo,
-                  useExtendedImage: true,
-                  // fit: BoxFit.fitHeight,
-                ),
-                // 15.h,
+              return SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: Get.height * .15,
+                      ),
+                      Text(
+                        "تسجيل الدخول",
+                        style: KTextStyle.of(context)
+                            .twenty
+                            .copyWith(color: KColors.blackColor),
+                      ),
 
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Text(
-                    "مرحبا بك",
-                    style: KTextStyle.of(context).twenty.copyWith(
-                        color: KColors.blackColor, fontWeight: FontWeight.w400),
-                  ),
-                ),
-                11.h,
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Text(
-                    "الرجاء ادخال البيانات المطلوبة",
-                    style: KTextStyle.of(context)
-                        .ten
-                        .copyWith(color: KColors.mainColor.withOpacity(.5)),
-                  ),
-                ),
-                11.h,
-                const PhoneFormField(),
-                SizedBox(height: KHelper.listPadding),
-                KTextFormField(
-                  // controller: login.passController,
-                  labelText: "ادخل الرمز الخاص بتسجيل  الدخول",
+                      41.h,
+                      const FluxImage(
+                        imageUrl: Constant.loginLogo,
+                        useExtendedImage: true,
+                        // fit: BoxFit.fitHeight,
+                      ),
+                      // 15.h,
 
-                  upperTitle: "الرقم السري",
-                  // obscureText: login.isVisible,
-                  validator: (p0) {
-                    if (p0!.isEmpty) {
-                      return Tr.get.pass_validation;
-                    }
-                    return null;
-                  },
-                  keyboardType: TextInputType.visiblePassword,
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Text(
+                          "مرحبا بك",
+                          style: KTextStyle.of(context).twenty.copyWith(
+                              color: KColors.blackColor,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ),
+                      11.h,
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Text(
+                          "الرجاء ادخال البيانات المطلوبة",
+                          style: KTextStyle.of(context).ten.copyWith(
+                              color: KColors.mainColor.withOpacity(.5)),
+                        ),
+                      ),
+                      11.h,
+                      PhoneFormField(controller: login.phoneController),
+                      SizedBox(height: KHelper.listPadding),
+                      KTextFormField(
+                        controller: login.passController,
 
-                  suffixIcon: IconButton(
-                    // icon: login.isVisible
-                    //     ? const Icon(Icons.visibility_off)
-                    //     : const Icon(Icons.visibility),
-                    icon: Icon(Icons.visibility_outlined,
-                        color: KColors.blackColor.withOpacity(.4)),
-                    onPressed: () {
-                      // login.togglePassV();
-                    },
-                  ),
-                ),
-                11.h,
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: InkWell(
-                    onTap: () {
-                      Get.to(() => const ForgetPassView());
-                    },
-                    child: Text(
-                      Tr.get.forget_password,
-                      style: KTextStyle.of(context).ten.copyWith(
-                            color: KColors.mainColor,
+                        labelText: "ادخل الرمز الخاص بتسجيل  الدخول",
+
+                        upperTitle: "الرقم السري",
+                        // obscureText: login.isVisible,
+                        validator: (p0) {
+                          if (p0!.isEmpty) {
+                            return Tr.get.pass_validation;
+                          }
+                          return null;
+                        },
+                        keyboardType: TextInputType.visiblePassword,
+
+                        suffixIcon: IconButton(
+                          icon: login.isVisible
+                              ? Icon(Icons.visibility_off_outlined,
+                                  color: KColors.blackColor.withOpacity(.4))
+                              : Icon(Icons.visibility_outlined,
+                                  color: KColors.blackColor.withOpacity(.4)),
+                          // icon: Icon(Icons.visibility_outlined,
+
+                          onPressed: () {
+                            login.togglePassV();
+                          },
+                        ),
+                      ),
+                      11.h,
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: InkWell(
+                          onTap: () {
+                            Get.to(() => const ForgetPassView());
+                          },
+                          child: Text(
+                            Tr.get.forget_password,
+                            style: KTextStyle.of(context).ten.copyWith(
+                                  color: KColors.mainColor,
+                                ),
                           ),
-                    ),
-                  ),
-                ),
-                38.h,
+                        ),
+                      ),
+                      38.h,
 
-                KButton(
-                  isLoading: false,
-                  title: Tr.get.login,
-                  onPressed: () {
-                    Get.offAll(() => const MainNavPages());
-                    if (formKey.currentState!.validate()) {
-                      FocusManager.instance.primaryFocus?.unfocus();
-                      // login.login();
-                    }
-                  },
-                ),
-                20.h,
-                InkWell(
-                  onTap: () {
-                    Get.to(() => const RegisterView());
-                  },
-                  child: Text(
-                    "انشاء حساب جديد",
-                    style: KTextStyle.of(context)
-                        .ten
-                        .copyWith(color: KColors.mainColor),
+                      KButton(
+                        isLoading: state is LoginStateLoading,
+                        title: Tr.get.login,
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            FocusManager.instance.primaryFocus?.unfocus();
+                            login.login();
+                          }
+                        },
+                      ),
+                      20.h,
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => const RegisterView());
+                        },
+                        child: Text(
+                          "انشاء حساب جديد",
+                          style: KTextStyle.of(context)
+                              .ten
+                              .copyWith(color: KColors.mainColor),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              );
+            },
           ),
         ));
   }

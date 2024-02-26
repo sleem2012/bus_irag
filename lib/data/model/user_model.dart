@@ -1,119 +1,100 @@
 class UserModel {
-  Value? value;
+  Data? data;
+  String? status;
+  String? message;
 
-  UserModel({this.value});
+  UserModel({this.data, this.status, this.message});
 
   UserModel.fromJson(Map<String, dynamic> json) {
-    value = json['Value'] != null ? Value.fromJson(json['Value']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    status = json['status'];
+    message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if (value != null) {
-      data['Value'] = value!.toJson();
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
     }
+    data['status'] = status;
+    data['message'] = message;
     return data;
   }
 }
 
-class Value {
-  String? token;
+class Data {
+  int? id;
+  String? username;
+  String? mobile;
+  String? countryCode;
+  Address? address;
   int? status;
-  Context? context;
+  int? type;
+  String? token;
 
-  Value({this.token, this.status, this.context});
+  Data(
+      {this.id,
+        this.username,
+        this.mobile,
+        this.countryCode,
+        this.address,
+        this.status,
+        this.type,
+        this.token});
 
-  Value.fromJson(Map<String, dynamic> json) {
-    token = json['Token'];
-    status = json['Status'];
-    context =
-    json['Context'] != null ? Context.fromJson(json['Context']) : null;
+  Data.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    username = json['username '];
+    mobile = json['mobile'];
+    countryCode = json['country_code'];
+    address =
+    json['address'] != null ? Address.fromJson(json['address']) : null;
+    status = json['status'];
+    type = json['type'];
+    token = json['token'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['Token'] = token;
-    data['Status'] = status;
-    if (context != null) {
-      data['Context'] = context!.toJson();
+    data['id'] = id;
+    data['username '] = username;
+    data['mobile'] = mobile;
+    data['country_code'] = countryCode;
+    if (address != null) {
+      data['address'] = address!.toJson();
     }
+    data['status'] = status;
+    data['type'] = type;
+    data['token'] = token;
     return data;
   }
 }
 
-class Context {
-  MobileAccount? mobileAccount;
+class Address {
+  String? address;
+  String? state;
+  String? zip;
+  String? country;
+  String? city;
 
-  Context({this.mobileAccount});
+  Address({this.address, this.state, this.zip, this.country, this.city});
 
-  Context.fromJson(Map<String, dynamic> json) {
-    mobileAccount = json['MobileAccount'] != null
-        ? MobileAccount.fromJson(json['MobileAccount'])
-        : null;
+  Address.fromJson(Map<String, dynamic> json) {
+    address = json['address'];
+    state = json['state'];
+    zip = json['zip'];
+    country = json['country'];
+    city = json['city'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if (mobileAccount != null) {
-      data['MobileAccount'] = mobileAccount!.toJson();
-    }
+    data['address'] = address;
+    data['state'] = state;
+    data['zip'] = zip;
+    data['country'] = country;
+    data['city'] = city;
     return data;
   }
 }
 
-class MobileAccount {
-  String? name;
-  String? operatorId;
-  int? subId;
-  String? id;
-  bool? isConsumer;
-  int? parentId;
-  int? staffId;
-  String? image;
-  String? cISDivision;
-  bool? checkPassword;
-  bool? resetPassword;
-
-  MobileAccount(
-      {this.name,
-        this.operatorId,
-        this.subId,
-        this.id,
-        this.isConsumer,
-        this.parentId,
-        this.staffId,
-        this.image,
-        this.cISDivision,
-        this.checkPassword,
-        this.resetPassword});
-
-  MobileAccount.fromJson(Map<String, dynamic> json) {
-    name = json['Name'];
-    operatorId = json['OperatorId'];
-    subId = json['SubId'];
-    id = json['Id'];
-    isConsumer = json['IsConsumer'];
-    parentId = json['ParentId'];
-    staffId = json['StaffId'];
-    image = json['Image'];
-    cISDivision = json['CISDivision'];
-    checkPassword = json['CheckPassword'];
-    resetPassword = json['resetPassword'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['Name'] = name;
-    data['OperatorId'] = operatorId;
-    data['SubId'] = subId;
-    data['Id'] = id;
-    data['IsConsumer'] = isConsumer;
-    data['ParentId'] = parentId;
-    data['StaffId'] = staffId;
-    data['Image'] = image;
-    data['CISDivision'] = cISDivision;
-    data['CheckPassword'] = checkPassword;
-    data['resetPassword'] = resetPassword;
-    return data;
-  }
-}

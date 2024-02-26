@@ -1,16 +1,10 @@
+import 'package:bus_iraq2/shared/cache/locale_storage.dart';
 
+String role = KStorage.i.getRole;
 
 abstract class KEndPoints {
-  static String baseUrl =  'http://192.168.1.118:99/api/';
+  static String baseUrl = 'https://www.bus-iraq.com/api/v1/$role/';
 
-  static String login = '${baseUrl}User/AuthenticateUser';
-  static String logout = '${baseUrl}User/LogOut';
-  static String order = '${baseUrl}Driver/GetWorkOrders';
-  static String reject_reasons = '${baseUrl}Lookup/GetFailToDeliverReasons';
-  static String update_order = '${baseUrl}Driver/ChangeWorkOrderStatus';
-  static String order_by_id = '${baseUrl}Driver/GetOrderBasicDetails';
-
-
-
-
+  static String login = '${baseUrl}login';
+  static String getSeats = '${baseUrl}direct-bookings/seats/7';
 }

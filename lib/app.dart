@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'shared/cache/locale_storage.dart';
 import 'shared/widgets/no_conniction_view.dart';
+import 'views/auth/auth_type/auth_type_view.dart';
 import 'views/auth/login/login_view.dart';
 import 'shared/api_middleware_bloc/api_client_bloc.dart';
 import 'shared/api_middleware_bloc/api_client_state.dart';
@@ -114,7 +115,7 @@ class _WrapperState extends State<Wrapper> {
     if (KStorage.i.getToken != null) {
       Get.offAll(() => const MainNavPages());
     } else {
-      Get.offAll(() => const LoginView());
+      Get.offAll(() => const AuthTypeView());
     }
   }
 
