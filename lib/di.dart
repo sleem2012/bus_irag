@@ -7,8 +7,10 @@ import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'data/repository/auth/auth_repo.dart';
+import 'logic/get_locations/get_locations_bloc.dart';
 import 'logic/login/login_bloc.dart';
 import 'logic/logout/logout_bloc.dart';
+import 'logic/trip_search/trip_search_bloc.dart';
 import 'shared/api_client/api_client_impl.dart';
 import 'shared/api_middleware_bloc/api_client_bloc.dart';
 import 'shared/observer.dart';
@@ -45,13 +47,13 @@ abstract class Di {
     _i.registerLazySingleton(() => AuthRepoImpl());
     _i.registerLazySingleton(() => DirectTripRepoImp());
 
-
     ///bloc
 
     _i.registerFactory(() => LoginBloc(authRepoImpl: _i()));
     _i.registerFactory(() => LogoutBloc(authRepoImpl: _i()));
     _i.registerFactory(() => ChooseSeetBloc(chooseSeetRepoImp: _i()));
-
+    _i.registerFactory(() => GetLocationsBloc(getLocationsRepoImp: _i()));
+    _i.registerFactory(() => TripSearchBloc(tripSearchRepoImp: _i()));
   }
 
   static _unReg() async {
@@ -65,7 +67,6 @@ abstract class Di {
     await _i.unregister<AuthRepoImpl>();
     await _i.unregister<LoginBloc>();
     await _i.unregister<LogoutBloc>();
-
   }
 
   // getters
@@ -82,6 +83,10 @@ abstract class Di {
   static LoginBloc get loginBloc => _i.get<LoginBloc>();
 
   static LogoutBloc get logOut => _i.get<LogoutBloc>();
+
   static ChooseSeetBloc get chooseSeat => _i.get<ChooseSeetBloc>();
 
+  static GetLocationsBloc get getLocations => _i.get<GetLocationsBloc>();
+
+  static TripSearchBloc get searchTrip => _i.get<TripSearchBloc>();
 }

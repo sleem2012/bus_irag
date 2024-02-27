@@ -1,9 +1,11 @@
+import 'package:bus_iraq2/shared/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../shared/localization/trans.dart';
 import '../../../shared/theme/colors.dart';
 import '../../../shared/theme/helper.dart';
+import '../../../shared/theme/text_theme.dart';
 import '../../../shared/widgets/drop_down.dart';
 import '../../../shared/widgets/selectable_container.dart';
 import '../../../shared/widgets/text_field.dart';
@@ -24,10 +26,12 @@ class PassengerInfoCard extends StatelessWidget {
           padding: const EdgeInsets.all(15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                width: Get.width * .5,
+                width: Get.width * .38,
                 child: KDropdownBtn(
+                    minHeight: Get.height * .038,
                     hintColor: KColors.mainColor,
                     btnDecoration: KHelper.of(context)
                         .textFieldDecoration
@@ -38,9 +42,26 @@ class PassengerInfoCard extends StatelessWidget {
                     onChanged: (p0) {},
                     items: []),
               ),
+              10.h,
               KTextFormField(
-                labelText: "اسم المسافر",
-                width: Get.width * .73,
+                width: Get.width * .75,
+                textFiledHieght: Get.height * .045,
+                decoration: InputDecoration(
+                  hintStyle: KTextStyle.of(context)
+                      .ten
+                      .copyWith(color: KColors.mainColor.withOpacity(.5)),
+                  contentPadding: EdgeInsets.only(right: 15),
+                  hintText: 'اسم المسافر',
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(18),
+                    borderSide: BorderSide(color: Colors.grey.withOpacity(.5)),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      borderSide:
+                          BorderSide(color: KColors.mainColor.withOpacity(.5))),
+                ),
+                keyboardType: TextInputType.phone,
                 validator: (p0) {
                   if (p0!.isEmpty) {
                     return Tr.get.field_required;
@@ -48,9 +69,26 @@ class PassengerInfoCard extends StatelessWidget {
                   return null;
                 },
               ),
+              10.h,
               KTextFormField(
-                labelText: "رقم الهاتف المحمول",
-                width: Get.width * .73,
+                textFiledHieght: Get.height * .045,
+
+                width: Get.width * .75,
+                decoration: InputDecoration(
+                  hintStyle: KTextStyle.of(context)
+                      .ten
+                      .copyWith(color: KColors.mainColor.withOpacity(.5)),
+                  contentPadding: EdgeInsets.only(right: 15),
+                  hintText: 'رقم الهاتف المحمول',
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(18),
+                    borderSide: BorderSide(color: Colors.grey.withOpacity(.5)),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      borderSide:
+                          BorderSide(color: KColors.mainColor.withOpacity(.5))),
+                ),
                 keyboardType: TextInputType.phone,
                 validator: (p0) {
                   if (p0!.isEmpty) {
@@ -64,7 +102,7 @@ class PassengerInfoCard extends StatelessWidget {
         ),
         Positioned(
           left: -Get.width * .04,
-          top: Get.height * .1,
+          top: Get.height * .07,
           // bottom:Get.height * .4 ,
           child: SelectableContainer(
             width: 38,

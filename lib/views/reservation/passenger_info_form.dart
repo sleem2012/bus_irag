@@ -7,6 +7,7 @@ import 'package:bus_iraq2/shared/route/nav_helper.dart';
 import 'package:bus_iraq2/shared/theme/helper.dart';
 import 'package:bus_iraq2/shared/theme/text_theme.dart';
 import 'package:bus_iraq2/shared/widgets/custom_button.dart';
+import 'package:bus_iraq2/shared/widgets/loading/loading_overlay.dart';
 import 'package:bus_iraq2/views/reservation/widget/passenger_info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,47 +41,48 @@ class PassengerInfoForm extends StatelessWidget {
                   110.h,
                   Expanded(
                     child: Container(
-                        color: KColors.backgroundD,
-                        width: double.infinity,
-                        child: SingleChildScrollView(
-                          padding: const EdgeInsets.symmetric(horizontal: 26),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              100.h,
-                             if(seatBloc.seats.isNotEmpty) Text(
+                      color: KColors.backgroundD,
+                      width: double.infinity,
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.symmetric(horizontal: 26),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            100.h,
+                            if (seatBloc.seats.isNotEmpty)
+                              Text(
                                 "معلومات الراكب",
                                 style: KTextStyle.of(context)
                                     .ten
                                     .copyWith(color: KColors.mainColor),
                               ),
-                              18.h,
-                              ...List.generate(
-                                  seatBloc.seats.length,
-                                  (index) => Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 8.0),
-                                        child: PassengerInfoCard(
-                                          seatName:
-                                              seatBloc.seats[index].name ?? '',
-                                        ),
-                                      )),
-                              30.h,
-                              Center(
-                                child: KButton(
-                                  width: Get.width * .4,
-                                  hieght: Get.height * .05,
-                                  title: "احجز الأن",
-                                  onPressed: () {
-                                    NavHelper.of(context)
-                                        .navToReservationHistory;
-                                  },
+                            18.h,
+                            ...List.generate(
+                              seatBloc.seats.length,
+                              (index) => Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: PassengerInfoCard(
+                                  seatName: seatBloc.seats[index].name ?? '',
                                 ),
                               ),
-                              100.h,
-                            ],
-                          ),
-                        )),
+                            ),
+                            30.h,
+                            Center(
+                              child: KButton(
+                                width: Get.width * .4,
+                                hieght: Get.height * .05,
+                                title: "احجز الأن",
+                                onPressed: () {
+                                  NavHelper.of(context).navToReservationHistory;
+                                },
+                              ),
+                            ),
+                            100.h,
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -128,28 +130,31 @@ class _ChooseSeatContainerState extends State<ChooseSeatContainer> {
                       color: KColors.whiteColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                child: Center(
-                  child: Wrap(
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: List.generate(
-                      seatData?.seats?.length ?? 0,
-                      (index) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SelectableContainer(
-                          text: seatData?.seats?[index].name,
-                          isSelected:
-                              selectedSeats.contains(seatData!.seats![index]),
-                          onSelected: (value) {
-                            setState(() {
-                              if (selectedSeats
-                                  .contains(seatData.seats![index])) {
-                                selectedSeats.remove(seatData.seats![index]);
-                              } else {
-                                selectedSeats.add(seatData.seats![index]);
-                              }
-                            });
-                            widget.onSelected(selectedSeats);
-                          },
+                child: KRequestOverlay(
+                  isLoading: state is ChooseSeetStateLoading,
+                  child: Center(
+                    child: Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: List.generate(
+                        seatData?.seats?.length ?? 0,
+                        (index) => Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SelectableContainer(
+                            text: seatData?.seats?[index].name,
+                            isSelected:
+                                selectedSeats.contains(seatData!.seats![index]),
+                            onSelected: (value) {
+                              setState(() {
+                                if (selectedSeats
+                                    .contains(seatData.seats![index])) {
+                                  selectedSeats.remove(seatData.seats![index]);
+                                } else {
+                                  selectedSeats.add(seatData.seats![index]);
+                                }
+                              });
+                              widget.onSelected(selectedSeats);
+                            },
+                          ),
                         ),
                       ),
                     ),

@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => Di.themeBloc..loadTheme()),
         BlocProvider(create: (context) => Di.apiClientBloc),
+        BlocProvider(create: (context) => Di.getLocations..get()),
         // BlocProvider(create: (context) => GetLocationCubit()..initLocation()),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
@@ -57,7 +58,6 @@ class MyApp extends StatelessWidget {
             },
             child: GetMaterialApp(
               navigatorKey: Nav.navigator,
-
               debugShowCheckedModeBanner: false,
               localizationsDelegates: Tr.delegates,
               supportedLocales: Tr.supportedLocales,
@@ -67,13 +67,12 @@ class MyApp extends StatelessWidget {
                 return ThemeBloc.of(context).locale;
               },
               theme: KThemeData.light,
-              // darkTheme: KThemeData.dark,
               themeMode: ThemeBloc.of(context).themeMode,
               home: Builder(
                 builder: (context) {
                   return AnnotatedRegion<SystemUiOverlayStyle>(
                     value: KThemeData.of(context).overlayStyle,
-                    child:  const SplashScreen(),
+                    child: const SplashScreen(),
                   );
                 },
               ),

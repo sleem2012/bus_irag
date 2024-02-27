@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
@@ -9,7 +11,7 @@ import '../../model/user_model.dart';
 
 abstract class _AuthRepo {
   Future<Either<KFailure, UserModel>> login(
-      {required String userName, required String password});
+      {required String phone, required String password});
 
 // Future<Either<KFailure, Unit>> logout();
 }
@@ -19,15 +21,15 @@ class AuthRepoImpl implements _AuthRepo {
 
   @override
   Future<Either<KFailure, UserModel>> login(
-      {required String userName, required String password}) async {
-    Future<Response<dynamic>> func = Di.dioClient.post(
+      {required String phone, required String password}) async {
+    Future<Response<dynamic>> func = Di.dioClient.postWithFiles(
       KEndPoints.login,
       data: {
         "mobile_code": "93",
-        "mobile": "0155577888",
-        "password": "Aa123456@",
+        "mobile": phone,
+        "password": password,
         "device_token": "561505158465",
-        "device_type": "ios"
+        "device_type": Platform.isIOS ? "ios" : "android"
       },
     );
 

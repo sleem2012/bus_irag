@@ -15,6 +15,7 @@ class KSingleSelector<T> extends StatefulWidget {
   final bool? showArrow;
   final bool? showAz;
   final Widget? suffixIcon;
+  final double? minHeight;
 
   final TextStyle? titleStyle, hintStyle;
   final InputDecoration? textFieldDecoration;
@@ -35,7 +36,7 @@ class KSingleSelector<T> extends StatefulWidget {
     this.textFieldDecoration,
     this.type = SelectorViewType.sheet,
     this.popupDecoration,
-    this.hintStyle, this.suffixIcon,
+    this.hintStyle, this.suffixIcon, this.minHeight,
   }) : super(key: key);
 
   @override
@@ -119,6 +120,8 @@ class _KSingleSelectorState<T> extends State<KSingleSelector<T>> {
       decoration: widget.popupDecoration ?? VM.of(context).elevatedBox,
       constraints: BoxConstraints(maxHeight: mh),
       width: width,
+
+
       child: StatefulBuilder(
         builder: (context, setSt) {
           return Column(
@@ -218,6 +221,8 @@ class _KSingleSelectorState<T> extends State<KSingleSelector<T>> {
                 errorDecoration: widget.errorDecoration,
                 hasError: formState.hasError,
                 titleStyle: widget.hintStyle,
+                 minHeight: widget.minHeight,
+
                 suffixIcon:widget.suffixIcon ,
                 showArrow: widget.showArrow ?? true,
                 child: Row(

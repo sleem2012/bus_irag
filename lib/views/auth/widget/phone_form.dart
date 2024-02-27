@@ -13,8 +13,8 @@ class PhoneFormField extends StatelessWidget {
   final Function(String)? onChanged;
   final TextInputType? keyboardType;
   final Widget? suffixIcon, prefixIcon;
-  final String? hintText, errorText, labelText,upperTitle;
-  final bool autofocus, enabled, expanded,showUpperTitle;
+  final String? hintText, errorText, labelText, upperTitle;
+  final bool autofocus, enabled, expanded, showUpperTitle;
   final double? kWidth, height;
   final int? maxLines;
   final bool obscureText;
@@ -46,7 +46,9 @@ class PhoneFormField extends StatelessWidget {
     this.initVal,
     this.style,
     this.kFillColor,
-    this.labelText, this.upperTitle,  this.showUpperTitle=true,
+    this.labelText,
+    this.upperTitle,
+    this.showUpperTitle = true,
   });
 
   @override
@@ -57,8 +59,15 @@ class PhoneFormField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-        if(showUpperTitle) ...[ Text("ادخل رقم الهاتف",style: KTextStyle.of(context).ten.copyWith(color: KColors.blackColor),),
-          11.h,],
+          if (showUpperTitle) ...[
+            Text(
+              "ادخل رقم الهاتف",
+              style: KTextStyle.of(context)
+                  .ten
+                  .copyWith(color: KColors.blackColor),
+            ),
+            11.h,
+          ],
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -67,9 +76,8 @@ class PhoneFormField extends StatelessWidget {
                 child: TextFormField(
                   inputFormatters: formatter,
                   keyboardAppearance: Theme.of(context).brightness,
-                  keyboardType: keyboardType,
+                  keyboardType: TextInputType.phone,
                   controller: controller,
-
                   autofocus: autofocus,
                   enabled: enabled,
                   onTap: onTap,
@@ -81,9 +89,13 @@ class PhoneFormField extends StatelessWidget {
                       return Tr.get.phone_number_validation;
                     }
                     return null;
-                  },                  onChanged: onChanged,
+                  },
+                  onChanged: onChanged,
                   obscureText: obscureText,
-                  style: style ?? KTextStyle.of(context).fifteen.copyWith(color:Colors.black),
+                  style: style ??
+                      KTextStyle.of(context)
+                          .fifteen
+                          .copyWith(color: Colors.black),
                   maxLines: maxLines ?? (obscureText ? 1 : null),
                   decoration: InputDecoration(
                     // hintText: hintText,
@@ -93,21 +105,24 @@ class PhoneFormField extends StatelessWidget {
                     hintText: "",
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
                     errorStyle: KTextStyle.of(context).error,
                     labelStyle: KTextStyle.of(context).hint,
                     errorText: errorText,
                     suffixIcon: suffixIcon,
                     prefixIcon: prefixIcon,
                     isDense: false,
-                    labelText: labelText??"ادخل رقم هاتفك المحمول",
-
+                    labelText: labelText ?? "ادخل رقم هاتفك المحمول",
                   ),
                 ),
               ),
               11.w,
-              Expanded(child: KDropdownBtn(title: "خيارات", onChanged: (p0) {}, items: [],))
-
+              Expanded(
+                  child: KDropdownBtn(
+                title: "خيارات",
+                onChanged: (p0) {},
+                items: [],
+              ))
             ],
           ),
         ],

@@ -11,7 +11,7 @@ class KTextFormField extends StatelessWidget {
   final Function(String)? onChanged;
   final TextInputType? keyboardType;
   final Widget? suffixIcon, prefixIcon;
-  final String? hintText, errorText, labelText,upperTitle;
+  final String? hintText, errorText, labelText, upperTitle;
   final bool autofocus, enabled, expanded;
   final double? width, height;
   final int? maxLines;
@@ -21,6 +21,8 @@ class KTextFormField extends StatelessWidget {
   final List<TextInputFormatter>? formatter;
   final void Function()? onTap;
   final Color? kFillColor;
+  final InputDecoration? decoration;
+  final double? textFiledHieght;
 
   const KTextFormField({
     super.key,
@@ -44,7 +46,8 @@ class KTextFormField extends StatelessWidget {
     this.initVal,
     this.style,
     this.kFillColor,
-    this.labelText, this.upperTitle,
+    this.labelText,
+    this.upperTitle, this.decoration, this.textFiledHieght,
   });
 
   @override
@@ -55,41 +58,52 @@ class KTextFormField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(upperTitle??'',style: KTextStyle.of(context).ten.copyWith(color: KColors.blackColor),),
-          11.h,
-          TextFormField(
-            inputFormatters: formatter,
-            keyboardAppearance: Theme.of(context).brightness,
-            keyboardType: keyboardType,
-            controller: controller,
-            autofocus: autofocus,
-            enabled: enabled,
-            onTap: onTap,
-            expands: expanded,
-            initialValue: controller == null ? initVal : null,
-            cursorColor: KColors.cursorD,
-            validator: validator,
-            onChanged: onChanged,
-            obscureText: obscureText,
-            style: style ?? KTextStyle.of(context).fifteen.copyWith(color:Colors.black),
-            maxLines: maxLines ?? (obscureText ? 1 : null),
-            decoration: InputDecoration(
-              // hintText: hintText,
-              filled: kFillColor!=null,
-              fillColor: kFillColor ?? KColors.textFieldD,
-              hintStyle: KTextStyle.of(context).hint,
-              hintText: "",
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-              errorStyle: KTextStyle.of(context).error,
-              labelStyle: KTextStyle.of(context).hint,
-              errorText: errorText,
-              suffixIcon: suffixIcon,
-              prefixIcon: prefixIcon,
-              isDense: false,
-              labelText: labelText,
+          if (upperTitle != null) ...[
+            Text(
+              upperTitle ?? '',
+              style: KTextStyle.of(context)
+                  .ten
+                  .copyWith(color: KColors.blackColor),
+            ),
+            11.h,
+          ],
+          SizedBox(
+            height: textFiledHieght,
+            child: TextFormField(
+              inputFormatters: formatter,
+              keyboardAppearance: Theme.of(context).brightness,
+              keyboardType: keyboardType,
+              controller: controller,
+              autofocus: autofocus,
+              enabled: enabled,
+              onTap: onTap,
+              expands: expanded,
+              initialValue: controller == null ? initVal : null,
+              cursorColor: KColors.cursorD,
+              validator: validator,
+              onChanged: onChanged,
+              obscureText: obscureText,
 
+              style: style ??
+                  KTextStyle.of(context).fifteen.copyWith(color: Colors.black),
+              maxLines: maxLines ?? (obscureText ? 1 : null),
+              decoration: decoration??InputDecoration(
+                // hintText: hintText,
+                filled: kFillColor != null,
+                fillColor: kFillColor ?? KColors.textFieldD,
+                hintStyle: KTextStyle.of(context).hint,
+                hintText: "",
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                errorStyle: KTextStyle.of(context).error,
+                labelStyle: KTextStyle.of(context).hint,
+                errorText: errorText,
+                suffixIcon: suffixIcon,
+                prefixIcon: prefixIcon,
+                isDense: false,
+                labelText: labelText,
+              ),
             ),
           ),
         ],

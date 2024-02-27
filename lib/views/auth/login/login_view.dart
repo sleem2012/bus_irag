@@ -91,6 +91,7 @@ class LoginView extends StatelessWidget {
                       KTextFormField(
                         controller: login.passController,
 
+
                         labelText: "ادخل الرمز الخاص بتسجيل  الدخول",
 
                         upperTitle: "الرقم السري",

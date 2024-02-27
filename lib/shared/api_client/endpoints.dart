@@ -7,4 +7,6 @@ abstract class KEndPoints {
 
   static String login = '${baseUrl}login';
   static String getSeats = '${baseUrl}direct-bookings/seats/7';
+  static String getLocations = '${baseUrl}booking-locations';
+  static String directSearch = '${baseUrl}direct-bookings/search';
 }

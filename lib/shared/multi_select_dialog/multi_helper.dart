@@ -177,7 +177,7 @@ class HintContainer extends StatelessWidget {
     required this.hasError,
 
     // ignore: unused_element
-    this.selectedValues, this.suffixIcon,
+    this.selectedValues, this.suffixIcon, this.minHeight,
   })  : assert(child != null || title != null),
         super(key: key);
 
@@ -190,6 +190,7 @@ class HintContainer extends StatelessWidget {
   final bool hasError;
   final bool showArrow;
   final Widget? suffixIcon;
+  final double? minHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -201,7 +202,7 @@ class HintContainer extends StatelessWidget {
         border: hasError ? Border.all(color: Theme.of(context).colorScheme.error) : null,
       ),
       padding: const EdgeInsets.symmetric(horizontal: 12),
-      constraints: const BoxConstraints(minHeight: 48),
+      constraints:  BoxConstraints(minHeight:minHeight?? 48),
       width: width,
       // height: 1,
       alignment: Alignment.center,

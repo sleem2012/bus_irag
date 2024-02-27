@@ -18,6 +18,7 @@ class KDropdownBtn<T> extends StatelessWidget {
   final bool isLoading;
   final Color? hintColor;
   final Widget? suffixIcon;
+  final double? minHeight;
 
   const KDropdownBtn({
     Key? key,
@@ -31,7 +32,7 @@ class KDropdownBtn<T> extends StatelessWidget {
     this.showArrow,
     this.btnDecoration,
     this.showAz,
-    this.isLoading = false,  this.hintColor, this.suffixIcon,
+    this.isLoading = false,  this.hintColor, this.suffixIcon, this.minHeight,
   }) : super(key: key);
 
   @override
@@ -39,6 +40,7 @@ class KDropdownBtn<T> extends StatelessWidget {
     return MultiSelector.single<T>(
       items: items,
       title: title,
+      minHeight: minHeight,
       onChanged: onChanged,
       validator: validator,
       type: SelectorViewType.sheet,

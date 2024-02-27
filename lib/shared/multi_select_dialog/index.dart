@@ -27,6 +27,7 @@ abstract class MultiSelector {
     TextStyle? titleStyle,
     TextStyle? hintStyle,
     T? value,
+    double? minHeight,
     InputDecoration? textFieldDecoration,
     Widget? suffixIcon,
   }) {
@@ -35,6 +36,7 @@ abstract class MultiSelector {
       btnDecoration: btnDecoration,
       items: items,
       type: type,
+      minHeight: minHeight,
       onChanged: onChanged,
       validator: validator,
       error: error,

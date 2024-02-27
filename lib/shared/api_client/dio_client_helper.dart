@@ -42,17 +42,6 @@ abstract class ApiClientHelper {
   static Either<KFailure, dynamic> statusCodeChecker(Response<dynamic>? response) {
     if (response?.statusCode == 200) {
 
-      final isError = response?.data["IsErrorState"] == true;
-      if (isError) {
-        KHelper.showSnackBar(
-
-          Tr.get2(key: response?.data["ErrorDescription"].toString() ?? '', value: []),
-          isTop: true,
-          // title: Tr.get2(key: response?.data["status"].toString() ?? '', value: []),
-
-        );
-        return left(const KFailure.error("ErrorDescription"));
-      }
       return right(response?.data);
     } else {
       final fail = statusCodeToFailureMap(response) ?? const KFailure.someThingWrongPleaseTryAgain();
@@ -80,10 +69,11 @@ abstract class ApiClientHelper {
       401: const KFailure.error401(),
       403: const KFailure.error403(),
       404: const KFailure.error404(),
+      302: const KFailure.error404(),
       405: KFailure.error("Method Not Allowed , you are using ( $method ) method "),
       409: const KFailure.error409(),
       500: const KFailure.server(),
-      400: response?.data['errors'] is Map<String, dynamic>
+      422: response?.data['errors'] is Map<String, dynamic>
           ? KFailure.error422(Error422Model.fromJson(response?.data))
           : KFailure.error(response?.statusMessage ?? ""),
     };

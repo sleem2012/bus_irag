@@ -25,7 +25,7 @@ class LoginBloc extends Cubit<LoginState> {
   login() async {
     emit(const LoginState.loading());
     try {
-      final result = await authRepoImpl.login(userName: phoneController.text, password: passController.text);
+      final result = await authRepoImpl.login(phone: phoneController.text, password: passController.text);
       result.fold(
         (l) {
           emit(LoginState.error(failure: l));
