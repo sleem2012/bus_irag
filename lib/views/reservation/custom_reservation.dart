@@ -28,8 +28,8 @@ class CustomReservation extends StatelessWidget {
             child: Column(
               children: [
                 30.h,
-                const TravelCheckList(
-                  backgroundColor: KColors.whiteColor,
+                 TravelCheckList(
+                  backgroundColor: KColors.whiteColor, onChange: (String value) {  },
                 ),
                 30.h,
                 KDropdownBtn(
@@ -64,19 +64,19 @@ class CustomReservation extends StatelessWidget {
                   ),
                 ),
                 50.h,
-                const Row(
+                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     DateContainer(
                       title: "تاريخ الذهاب",
                       firstContainerColor: KColors.accentColor,
-                      secondTextColor: KColors.accentColor,
+                      secondTextColor: KColors.accentColor, onPressed: (String value) {  },
                     ),
                     DateContainer(
                       firstTextColor: KColors.greenColor,
                       secondTextColor: KColors.greenColor,
                       firstContainerColor: KColors.lightGreen,
-                      title: 'تاريخ العودة',
+                      title: 'تاريخ العودة', onPressed: (String value) {  },
                     ),
                   ],
                 ),

@@ -28,7 +28,7 @@ class SentTripSearchModel {
     data['destination'] = destination;
     data['type'] = type;
     data['go_date'] = goDate;
-    data['back_date'] = backDate;
+    if(backDate!=null)  data['back_date'] = backDate;
     return data;
   }
 

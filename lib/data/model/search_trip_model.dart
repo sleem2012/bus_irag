@@ -23,15 +23,15 @@ class TripSearchModel {
 }
 
 class SearchData {
-  List<InnerData>? innerData;
+  List<InnerSearchData>? innerData;
 
   SearchData({this.innerData});
 
   SearchData.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      innerData = <InnerData>[];
+      innerData = <InnerSearchData>[];
       json['data'].forEach((v) {
-        innerData!.add(InnerData.fromJson(v));
+        innerData!.add(InnerSearchData.fromJson(v));
       });
     }
   }
@@ -45,7 +45,7 @@ class SearchData {
   }
 }
 
-class InnerData {
+class InnerSearchData {
   int? id;
   String? title;
   String? seatLayout;
@@ -58,7 +58,7 @@ class InnerData {
   List<String>? facilities;
   String? createdAt;
 
-  InnerData(
+  InnerSearchData(
       {this.id,
         this.title,
         this.seatLayout,
@@ -71,7 +71,7 @@ class InnerData {
         this.facilities,
         this.createdAt});
 
-  InnerData.fromJson(Map<String, dynamic> json) {
+  InnerSearchData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title '];
     seatLayout = json['seat_layout'];

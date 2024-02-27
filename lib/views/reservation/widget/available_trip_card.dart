@@ -1,3 +1,4 @@
+import 'package:bus_iraq2/data/model/search_trip_model.dart';
 import 'package:bus_iraq2/shared/extensions.dart';
 import 'package:bus_iraq2/shared/route/nav_helper.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,8 @@ import '../../../shared/widgets/flux_image.dart';
 import '../available_trips.dart';
 
 class AvailableTripCard extends StatelessWidget {
-  const AvailableTripCard({super.key});
+  const AvailableTripCard({super.key, required this.data});
+  final InnerSearchData data;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +75,7 @@ class AvailableTripCard extends StatelessWidget {
                             .seven
                             .copyWith(color: KColors.accentColor)),
                     9.h,
-                    Text("3:00 عصرا",
+                    Text(data.startDate??'',
                         style: KTextStyle.of(context)
                             .ten
                             .copyWith(color: KColors.mainColor)),
@@ -137,7 +139,7 @@ class AvailableTripCard extends StatelessWidget {
                             .seven
                             .copyWith(color: KColors.accentColor)),
                     9.h,
-                    Text("4:00 عصرا",
+                    Text(data.endDate??'',
                         style: KTextStyle.of(context)
                             .ten
                             .copyWith(color: KColors.mainColor)),

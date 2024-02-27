@@ -10,11 +10,12 @@ class DateContainer extends StatefulWidget {
     this.firstTextColor,
     this.secondTextColor,
     this.firstContainerColor,
-    required this.title,
+    required this.title, required this.onPressed,
   });
 
   final Color? firstTextColor, secondTextColor, firstContainerColor;
   final String title;
+  final ValueChanged<String> onPressed;
 
   @override
   State<DateContainer> createState() => _DateContainerState();
@@ -38,6 +39,7 @@ class _DateContainerState extends State<DateContainer> {
         dateController.text = date;
         setState(() {});
         selectedDate = date;
+        widget.onPressed(date);
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

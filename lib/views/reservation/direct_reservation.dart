@@ -8,6 +8,7 @@ import 'package:bus_iraq2/shared/widgets/custom_button.dart';
 import 'package:bus_iraq2/shared/widgets/drop_down.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 import '../../data/model/booking_locations.dart';
 import '../../logic/get_locations/get_locations_bloc.dart';
@@ -28,20 +29,21 @@ class DirectReservation extends StatelessWidget {
       "assets/images/slider.png",
       "assets/images/slider.png",
     ];
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-    return BlocProvider(
-      create: (context) => Di.searchTrip,
-      child: BlocConsumer<TripSearchBloc, TripSearchState>(
-        listener: (context, state) {
-          state.whenOrNull(
-            success: (model) {
-              NavHelper.of(context).navigateToAvailableTrips;
-            },
-          );
-        },
-        builder: (context, state) {
-          final searchBloc = TripSearchBloc.of(context);
-          return Column(
+    return BlocConsumer<TripSearchBloc, TripSearchState>(
+      listener: (context, state) {
+        state.whenOrNull(
+          success: (model) {
+            NavHelper.of(context).navigateToAvailableTrips;
+          },
+        );
+      },
+      builder: (context, state) {
+        final searchBloc = TripSearchBloc.of(context);
+        return Form(
+          key: formKey,
+          child: Column(
             children: [
               20.h,
               Expanded(
@@ -57,7 +59,11 @@ class DirectReservation extends StatelessWidget {
                         bannerImages: bannerImages,
                       ),
                       10.h,
-                      const TravelCheckList(),
+                      TravelCheckList(
+                        onChange: (String value) {
+                          searchBloc.setTripType(value);
+                        },
+                      ),
                       30.h,
                       BlocBuilder<GetLocationsBloc, GetLocationsState>(
                         builder: (context, state) {
@@ -67,6 +73,13 @@ class DirectReservation extends StatelessWidget {
                           return Column(
                             children: [
                               KDropdownBtn<LocationInnerData>(
+                                validator: (values) {
+                                  if (values == null) {
+                                    return "الحقل مطلوب";
+                                  } else {
+                                    return null;
+                                  }
+                                },
                                 title: "نقطة انطلاق",
                                 onChanged: (p0) {
                                   searchBloc.setPickupDirection(
@@ -84,6 +97,13 @@ class DirectReservation extends StatelessWidget {
                               12.h,
                               KDropdownBtn<LocationInnerData>(
                                 title: "نقطة وصول",
+                                validator: (values) {
+                                  if (values == null) {
+                                    return "الحقل مطلوب";
+                                  } else {
+                                    return null;
+                                  }
+                                },
                                 onChanged: (p0) {
                                   searchBloc.setDestinationDirection(
                                       p0?.id.toString() ?? '');
@@ -113,40 +133,44 @@ class DirectReservation extends StatelessWidget {
                             title: "تاريخ الذهاب",
                             onPressed: (String value) {
                               searchBloc.setGoDate(value);
-
                             },
                           ),
-                          DateContainer(
-                            firstTextColor: KColors.boldGreenColor,
-                            secondTextColor: KColors.boldGreenColor,
-                            firstContainerColor: KColors.lightBlueColor,
-                            title: 'تاريخ العودة',
-                            onPressed: (String value) {
-                              searchBloc.setReturnDate(value);
-
-                            },
-                          ),
+                          if (searchBloc.travelType == 'back')
+                            DateContainer(
+                              firstTextColor: KColors.boldGreenColor,
+                              secondTextColor: KColors.boldGreenColor,
+                              firstContainerColor: KColors.lightBlueColor,
+                              title: 'تاريخ العودة',
+                              onPressed: (String value) {
+                                searchBloc.setReturnDate(value);
+                              },
+                            ),
                         ],
                       ),
                       60.h,
-                      Center(
-                        child: KButton(
-                          isLoading: state is TripSearchStateLoading,
-                          title: "أبحث الأن",
-                          onPressed: () {
-                            searchBloc.post();
-                          },
+                      Padding(
+                        padding:  EdgeInsets.only(bottom: Get.height*.15),
+                        child: Center(
+                          child: KButton(
+                            isLoading: state is TripSearchStateLoading,
+                            title: "أبحث الأن",
+                            onPressed: () {
+                              if(formKey.currentState!.validate()) {
+                                searchBloc.post();
+                              }
+                            },
+                          ),
                         ),
                       ),
-                      20.h,
+
                     ],
                   ),
                 ),
               ))
             ],
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

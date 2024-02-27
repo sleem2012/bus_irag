@@ -5,18 +5,20 @@ import '../theme/colors.dart';
 import '../theme/text_theme.dart';
 
 class TravelCheckList extends StatefulWidget {
-  const TravelCheckList({super.key, this.backgroundColor});
+  const TravelCheckList(
+      {super.key, this.backgroundColor, required this.onChange});
 
   final Color? backgroundColor;
+  final ValueChanged<String> onChange;
 
   @override
   State<TravelCheckList> createState() => _TravelCheckListState();
 }
 
 class _TravelCheckListState extends State<TravelCheckList> {
-  final List<String> travelType = [
-    "ذهاب فقط",
-    "ذهاب وعودة",
+  final List<TravelType> travelTypeList = [
+    TravelType("ذهاب فقط", "go"),
+    TravelType("ذهاب وعودة", "back"),
   ];
   int selected = 0;
 
@@ -45,13 +47,15 @@ class _TravelCheckListState extends State<TravelCheckList> {
 
                     value: selected == index,
                     onChanged: (value) {
+                      widget.onChange(travelTypeList[index].translate);
+
                       setState(() {
                         selected = index;
                       });
                     },
                   ),
                   Text(
-                    travelType[index],
+                    travelTypeList[index].name,
                     style: KTextStyle.of(context)
                         .ten
                         .copyWith(color: KColors.mainColor),
@@ -65,4 +69,11 @@ class _TravelCheckListState extends State<TravelCheckList> {
       ),
     );
   }
+}
+
+class TravelType {
+  String name;
+  String translate;
+
+  TravelType(this.name, this.translate);
 }
