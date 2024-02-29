@@ -35,7 +35,7 @@ class HomeView extends StatelessWidget {
               children: [
                 10.h,
                 HomeSlider(
-                  bannerImages: bannerImages,
+                  // bannerImages: bannerImages,
                 ),
                 15.h,
                 Text(
@@ -77,7 +77,7 @@ class HomeView extends StatelessWidget {
                 ),
                 15.h,
                 HomeSlider(
-                  bannerImages: bannerImages,
+                  // bannerImages: bannerImages,
                 ),
                 10.h,
                 KButton(

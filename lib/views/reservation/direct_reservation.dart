@@ -56,7 +56,7 @@ class DirectReservation extends StatelessWidget {
                     children: [
                       10.h,
                       HomeSlider(
-                        bannerImages: bannerImages,
+                        // bannerImages: [],
                       ),
                       10.h,
                       TravelCheckList(

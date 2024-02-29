@@ -1,11 +1,13 @@
 import 'package:bus_iraq2/shared/extensions.dart';
+import 'package:bus_iraq2/shared/theme/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/route_manager.dart';
 
 import '../../../shared/localization/trans.dart';
 import '../../../shared/theme/colors.dart';
 import '../../../shared/theme/text_theme.dart';
-import '../../../shared/widgets/drop_down.dart';
+import '../../../shared/widgets/country_code_plugin.dart';
 
 class PhoneFormField extends StatelessWidget {
   final TextEditingController? controller;
@@ -118,11 +120,40 @@ class PhoneFormField extends StatelessWidget {
               ),
               11.w,
               Expanded(
-                  child: KDropdownBtn(
-                title: "خيارات",
-                onChanged: (p0) {},
-                items: [],
-              ))
+                flex: 1,
+                child: Container(
+                  height: Get.height*.057,
+                    decoration: KHelper.of(context).textFieldDecoration,
+                    child: const CountryCodeWidget()),
+              )
+              // BlocBuilder<CountryCodesBloc, CountryCodesState>(
+              //   builder: (context, state) {
+              //     final model =
+              //         state.whenOrNull(success: (model) => model.data);
+              //     return Expanded(
+              //       child: KDropdownBtn(
+              //         title: state is CountryCodesStateLoading
+              //             ? 'تحميل'
+              //             : "خيارات",
+              //         onChanged: (p0) {
+              //
+              //         },
+              //         // value: model.m,
+              //         type: SelectorViewType.dialog,
+              //         items: model?.entries.map((entry) {
+              //               String key =
+              //                   entry.key; // This will be your short code
+              //               CountryModel value = entry
+              //                   .value; // This will be your CountryModel object
+              //               return KHelper.of(context).itemView(
+              //                   itemText: "${value.country}",
+              //                   value: value.dialCode);
+              //             }).toList() ??
+              //             [],
+              //       ),
+              //     );
+              //   },
+              // )
             ],
           ),
         ],

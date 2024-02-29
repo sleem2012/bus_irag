@@ -1,4 +1,5 @@
 import 'package:bus_iraq2/data/repository/direct_trip/direct_trip_repo.dart';
+import 'package:bus_iraq2/data/repository/general/general_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/model/booking_locations.dart';
@@ -12,7 +13,7 @@ class GetLocationsBloc extends Cubit<GetLocationsState> {
   static GetLocationsBloc of(BuildContext context) =>
       BlocProvider.of<GetLocationsBloc>(context);
 
-  final DirectTripRepoImp getLocationsRepoImp;
+  final GeneralRepoImp getLocationsRepoImp;
   LocationsData? locationsData;
 
   get() async {

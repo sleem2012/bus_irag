@@ -1,6 +1,5 @@
 import 'package:bus_iraq2/data/model/search_trip_model.dart';
 import 'package:bus_iraq2/logic/trip_search/trip_search_bloc.dart';
-import 'package:bus_iraq2/logic/trip_search/trip_search_bloc.dart';
 import 'package:bus_iraq2/shared/extensions.dart';
 import 'package:bus_iraq2/shared/theme/text_theme.dart';
 import 'package:bus_iraq2/shared/widgets/loading/loading_overlay.dart';

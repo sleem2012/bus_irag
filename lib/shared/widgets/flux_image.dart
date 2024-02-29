@@ -5,6 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 // import 'package:image_fade/image_fade.dart';
 import 'package:lottie/lottie.dart';
 
+import 'shimmer_box.dart';
+
 
 class FluxImage extends StatelessWidget {
   final String imageUrl;
@@ -149,6 +151,7 @@ class FluxImage extends StatelessWidget {
             case LoadState.failed:
               return errorWidget ?? const SizedBox();
             case LoadState.loading:
+              return const ShimmerBox(height: 140, width: double.infinity);
             default:
               return const SizedBox();
           }

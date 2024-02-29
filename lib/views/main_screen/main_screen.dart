@@ -5,6 +5,7 @@ import 'package:bus_iraq2/views/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../di.dart';
 import '../../logic/main_view/main_view_bloc.dart';
 import '../../shared/theme/colors.dart';
 import '../accounts_history/accounts_history_view.dart';
@@ -22,8 +23,18 @@ class MainNavPages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MainViewBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => MainViewBloc()),
+        BlocProvider(
+          create: (context) => Di.getLocations..get(),
+          lazy: false,
+        ),
+        BlocProvider(
+          create: (context) => Di.getBanner..get(),
+          lazy: false,
+        ),
+      ],
       child: BlocBuilder<MainViewBloc, MainViewState>(
         builder: (context, state) {
           final mainBloc = MainViewBloc.of(context);

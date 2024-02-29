@@ -85,7 +85,7 @@ class KStorage {
     return null;
   }
 
-  String get getRole=>_storage.read(KStorageKeys.role);
+  String? get getRole=>_storage.read(KStorageKeys.role);
   setRole(String role) => _storage.write(KStorageKeys.role, role);
 
 }

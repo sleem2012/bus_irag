@@ -1,5 +1,4 @@
 import 'package:bus_iraq2/data/model/seats_model.dart';
-import 'package:bus_iraq2/data/repository/auth/auth_repo.dart';
 import 'package:bus_iraq2/data/repository/direct_trip/direct_trip_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
