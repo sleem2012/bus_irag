@@ -5,7 +5,6 @@ import 'package:bus_iraq2/shared/theme/text_theme.dart';
 import 'package:bus_iraq2/shared/widgets/custom_button.dart';
 import 'package:bus_iraq2/shared/widgets/text_field.dart';
 import 'package:bus_iraq2/views/auth/widget/phone_form.dart';
-import 'package:bus_iraq2/views/reservation/widget/passenger_info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -37,7 +36,7 @@ class CustomTripForm extends StatelessWidget {
                     16.h,
                     KTextFormField(
                       labelText: "زعيم الرحلة",
-                      suffixIcon: Icon(
+                      suffixIcon: const Icon(
                         Icons.person_2_outlined
                       ),
                       validator: (value) {
@@ -55,7 +54,7 @@ class CustomTripForm extends StatelessWidget {
                       labelText: "عدد الركاب",
                       keyboardType: TextInputType.number,
                       width: Get.width*.5,
-                      suffixIcon: Icon(
+                      suffixIcon: const Icon(
                           FontAwesomeIcons.personWalking
                       ),
                       validator: (value) {

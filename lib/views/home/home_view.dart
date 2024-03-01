@@ -15,10 +15,6 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> bannerImages = [
-      "assets/images/slider.png",
-      "assets/images/slider.png",
-    ];
 
     return Column(
       children: [
@@ -34,7 +30,7 @@ class HomeView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 10.h,
-                HomeSlider(
+                const HomeSlider(
                   // bannerImages: bannerImages,
                 ),
                 15.h,
@@ -76,7 +72,7 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
                 15.h,
-                HomeSlider(
+                const HomeSlider(
                   // bannerImages: bannerImages,
                 ),
                 10.h,

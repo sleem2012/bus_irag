@@ -30,7 +30,7 @@ class WalletView extends StatelessWidget {
                     color: KColors.mainColor,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 24),
+                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 24),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

@@ -1,9 +1,12 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:bus_iraq2/shared/theme/text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 
+import '../widgets/custom_button.dart';
 import '../widgets/nav.dart';
 import '../localization/trans.dart';
 import '../multi_select_dialog/multi_helper.dart';
@@ -91,6 +94,34 @@ abstract class KHelper {
         );
       },
     );
+  }
+
+  static Future customAwosmeDialog<T>({required String title,required Function() onApproveClick}){
+    return AwesomeDialog(
+      context: Nav.navigator.currentContext!,
+      animType: AnimType.scale,
+      dialogType: DialogType.success,
+      body: Text(
+        title,
+        style: KTextStyle.of(Nav.navigator.currentContext!)
+            .fifteen
+            .copyWith(color: Colors.black),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      btnOk: Padding(
+        padding: const EdgeInsets.only(top: 16.0),
+        child: KButton(
+          hieght: 42,
+          title: "متابعه",
+          onPressed: () {
+
+            Get.back();
+            onApproveClick();
+          },
+        ),
+      ),
+      btnOkOnPress: () {},
+    ).show();
   }
 
   static Future<T?> showCustomBottomSheet<T>(Widget child,

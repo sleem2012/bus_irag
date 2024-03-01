@@ -13,7 +13,7 @@ import '../reservation/available_trips.dart';
 import '../reservation/custom_reservation.dart';
 import '../reservation/custom_trip_form.dart';
 import '../reservation/direct_reservation.dart';
-import '../reservation/passenger_info_form.dart';
+import '../reservation/book_direct_trip.dart';
 import '../reservation/reservation_history.dart';
 import '../wallet/add_money.dart';
 import '../wallet/wallet_view.dart';
@@ -57,7 +57,7 @@ class MainNavPages extends StatelessWidget {
                 Container(),
                 const DirectReservation(), //direct reserve
                 const AvailableTrips(),
-                const PassengerInfoForm(),
+                const BookDirectTripView(),
                 const CustomReservation(),
                 const CustomTripForm(),
                 const WalletView(),

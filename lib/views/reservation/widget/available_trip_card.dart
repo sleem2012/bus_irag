@@ -1,4 +1,5 @@
 import 'package:bus_iraq2/data/model/search_trip_model.dart';
+import 'package:bus_iraq2/logic/trip_search/trip_search_bloc.dart';
 import 'package:bus_iraq2/shared/extensions.dart';
 import 'package:bus_iraq2/shared/route/nav_helper.dart';
 import 'package:flutter/material.dart';
@@ -163,6 +164,7 @@ class AvailableTripCard extends StatelessWidget {
             child: KButton(
               title: "احجز الأن",
               onPressed: () {
+                TripSearchBloc.of(context).selectedTripId=data.id;
                 NavHelper.of(context).navigateToPassengerInfo;
               },
               width: Get.width * .4,

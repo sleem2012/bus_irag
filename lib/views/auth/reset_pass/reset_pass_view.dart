@@ -99,29 +99,7 @@ class ResetPassView extends StatelessWidget {
                         KButton(
                           title: "تغيير كلمة المرور",
                           onPressed: () {
-                            AwesomeDialog(
-                              context: context,
-                              animType: AnimType.scale,
-                              dialogType: DialogType.success,
-                              body: Text(
-                                "تم تغيير كلمة المرور بنجاح",
-                                style: KTextStyle.of(context)
-                                    .fifteen
-                                    .copyWith(color: Colors.black),
-                              ),
-                              padding: const EdgeInsets.symmetric(horizontal: 10),
-                              btnOk: Padding(
-                                padding: const EdgeInsets.only(top: 16.0),
-                                child: KButton(
-                                  hieght: 42,
-                                  title: "متابعه",
-                                  onPressed: () {
-                                    Get.back();
-                                  },
-                                ),
-                              ),
-                              btnOkOnPress: () {},
-                            ).show();
+
                           },
                         )
                       ],

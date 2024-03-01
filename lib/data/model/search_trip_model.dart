@@ -60,16 +60,16 @@ class InnerSearchData {
 
   InnerSearchData(
       {this.id,
-        this.title,
-        this.seatLayout,
-        this.fleetType,
-        this.startDate,
-        this.endDate,
-        this.pickup,
-        this.destination,
-        this.amount,
-        this.facilities,
-        this.createdAt});
+      this.title,
+      this.seatLayout,
+      this.fleetType,
+      this.startDate,
+      this.endDate,
+      this.pickup,
+      this.destination,
+      this.amount,
+      this.facilities,
+      this.createdAt});
 
   InnerSearchData.fromJson(Map<String, dynamic> json) {
     id = json['id'];

@@ -11,12 +11,25 @@ import '../../../shared/widgets/selectable_container.dart';
 import '../../../shared/widgets/text_field.dart';
 
 class PassengerInfoCard extends StatelessWidget {
-  const PassengerInfoCard({super.key, required this.seatName});
+  const PassengerInfoCard({
+    super.key,
+    required this.seatName,
+    required this.nameController,
+    required this.phoneController, required this.genderChanged,
+  });
 
   final String seatName;
+  final TextEditingController nameController;
+  final TextEditingController phoneController;
+  final ValueChanged<String> genderChanged;
 
   @override
   Widget build(BuildContext context) {
+    List<GenderModel> genderList = [
+      GenderModel(name: "ذكر", id: "1"),
+      GenderModel(name: "أنثي", id: "2"),
+    ];
+
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -39,18 +52,25 @@ class PassengerInfoCard extends StatelessWidget {
                             border: Border.all(
                                 color: KColors.vDividerColor, width: 2)),
                     title: "اختيار الجنس",
-                    onChanged: (p0) {},
-                    items: []),
+                    onChanged: (p0) {
+                      genderChanged(p0?.id??"-1");
+                      debugPrint(p0?.id);
+                    },
+                    items: genderList
+                        .map((e) => KHelper.of(context)
+                            .itemView(itemText: e.name, value: e))
+                        .toList()),
               ),
               10.h,
               KTextFormField(
                 width: Get.width * .75,
                 textFiledHieght: Get.height * .045,
+                controller: nameController,
                 decoration: InputDecoration(
                   hintStyle: KTextStyle.of(context)
                       .ten
                       .copyWith(color: KColors.mainColor.withOpacity(.5)),
-                  contentPadding: EdgeInsets.only(right: 15),
+                  contentPadding: const EdgeInsets.only(right: 15),
                   hintText: 'اسم المسافر',
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(18),
@@ -61,7 +81,7 @@ class PassengerInfoCard extends StatelessWidget {
                       borderSide:
                           BorderSide(color: KColors.mainColor.withOpacity(.5))),
                 ),
-                keyboardType: TextInputType.phone,
+                keyboardType: TextInputType.name,
                 validator: (p0) {
                   if (p0!.isEmpty) {
                     return Tr.get.field_required;
@@ -72,13 +92,13 @@ class PassengerInfoCard extends StatelessWidget {
               10.h,
               KTextFormField(
                 textFiledHieght: Get.height * .045,
-
                 width: Get.width * .75,
+                controller: phoneController,
                 decoration: InputDecoration(
                   hintStyle: KTextStyle.of(context)
                       .ten
                       .copyWith(color: KColors.mainColor.withOpacity(.5)),
-                  contentPadding: EdgeInsets.only(right: 15),
+                  contentPadding: const EdgeInsets.only(right: 15),
                   hintText: 'رقم الهاتف المحمول',
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(18),
@@ -113,4 +133,11 @@ class PassengerInfoCard extends StatelessWidget {
       ],
     );
   }
+}
+
+class GenderModel {
+  final String name;
+  final String id;
+
+  GenderModel({required this.name, required this.id});
 }

@@ -11,4 +11,5 @@ abstract class KEndPoints {
   static String getCountryCode = '${baseUrl}countries';
   static String getBanners = '${baseUrl}banners';
   static String directSearch = '${baseUrl}direct-bookings/search';
+  static String bookDirectTrip = '${baseUrl}direct-bookings/book';
 }

@@ -45,6 +45,8 @@ class TripSearchBloc extends Cubit<TripSearchState> {
     }
   }
 
+  int? selectedTripId;
+
   void setPickupDirection(String pickId) {
     sentModel = sentModel.copyWith(pickup: pickId);
   }

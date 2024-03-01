@@ -39,7 +39,6 @@ class ChooseSeetBloc extends Cubit<ChooseSeetState> {
   }
 
   List<Seats> seats = [];
-  List<int> activeSeats = [];
 
   void updateListLength(List<Seats> selected) {
     seats = selected;

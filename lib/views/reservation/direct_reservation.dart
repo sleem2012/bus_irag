@@ -1,6 +1,4 @@
-import 'package:bus_iraq2/di.dart';
 import 'package:bus_iraq2/logic/get_locations/get_locations_state.dart';
-import 'package:bus_iraq2/logic/main_view/main_view_bloc.dart';
 import 'package:bus_iraq2/logic/trip_search/trip_search_state.dart';
 import 'package:bus_iraq2/shared/extensions.dart';
 import 'package:bus_iraq2/shared/route/nav_helper.dart';
@@ -14,7 +12,6 @@ import '../../data/model/booking_locations.dart';
 import '../../logic/get_locations/get_locations_bloc.dart';
 import '../../logic/trip_search/trip_search_bloc.dart';
 import '../../shared/date_container.dart';
-import '../../shared/error/failures.dart';
 import '../../shared/theme/colors.dart';
 import '../../shared/theme/helper.dart';
 import '../../shared/widgets/travel_check_list.dart';
@@ -25,10 +22,6 @@ class DirectReservation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> bannerImages = [
-      "assets/images/slider.png",
-      "assets/images/slider.png",
-    ];
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
     return BlocConsumer<TripSearchBloc, TripSearchState>(
@@ -55,9 +48,9 @@ class DirectReservation extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       10.h,
-                      HomeSlider(
-                        // bannerImages: [],
-                      ),
+                      const HomeSlider(
+                          // bannerImages: [],
+                          ),
                       10.h,
                       TravelCheckList(
                         onChange: (String value) {
@@ -149,20 +142,19 @@ class DirectReservation extends StatelessWidget {
                       ),
                       60.h,
                       Padding(
-                        padding:  EdgeInsets.only(bottom: Get.height*.15),
+                        padding: EdgeInsets.only(bottom: Get.height * .15),
                         child: Center(
                           child: KButton(
                             isLoading: state is TripSearchStateLoading,
                             title: "أبحث الأن",
                             onPressed: () {
-                              if(formKey.currentState!.validate()) {
+                              if (formKey.currentState!.validate()) {
                                 searchBloc.post();
                               }
                             },
                           ),
                         ),
                       ),
-
                     ],
                   ),
                 ),
