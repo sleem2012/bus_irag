@@ -5,6 +5,7 @@ import 'package:bus_iraq2/shared/theme/text_theme.dart';
 import 'package:bus_iraq2/shared/widgets/custom_button.dart';
 import 'package:bus_iraq2/shared/widgets/text_field.dart';
 import 'package:bus_iraq2/views/auth/widget/phone_form.dart';
+import 'package:bus_iraq2/views/reservation/widget/passenger_info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -14,9 +15,16 @@ import '../../shared/theme/colors.dart';
 import '../../shared/widgets/selectable_container.dart';
 import '../../shared/widgets/titled_container.dart';
 
-class CustomTripForm extends StatelessWidget {
+class CustomTripForm extends StatefulWidget {
   const CustomTripForm({super.key});
 
+  @override
+  State<CustomTripForm> createState() => _CustomTripFormState();
+}
+
+int length = 1;
+
+class _CustomTripFormState extends State<CustomTripForm> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -36,9 +44,7 @@ class CustomTripForm extends StatelessWidget {
                     16.h,
                     KTextFormField(
                       labelText: "زعيم الرحلة",
-                      suffixIcon: const Icon(
-                        Icons.person_2_outlined
-                      ),
+                      suffixIcon: const Icon(Icons.person_2_outlined),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return Tr.get.field_required;
@@ -53,10 +59,14 @@ class CustomTripForm extends StatelessWidget {
                     KTextFormField(
                       labelText: "عدد الركاب",
                       keyboardType: TextInputType.number,
-                      width: Get.width*.5,
-                      suffixIcon: const Icon(
-                          FontAwesomeIcons.personWalking
-                      ),
+                      width: Get.width * .5,
+                      onChanged: (String p0) {
+                        setState(() {
+
+                        });
+                        length = int.tryParse(p0)??0;
+                      },
+                      suffixIcon: const Icon(FontAwesomeIcons.personWalking),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return Tr.get.field_required;
@@ -65,7 +75,6 @@ class CustomTripForm extends StatelessWidget {
                       },
                     ),
                     16.h,
-
                     Text(
                       "معلومات الراكب",
                       style: KTextStyle.of(context)
@@ -73,7 +82,15 @@ class CustomTripForm extends StatelessWidget {
                           .copyWith(color: KColors.mainColor),
                     ),
                     18.h,
-                    // const PassengerInfoCard(list: seat,),
+                    ...List.generate(
+                      length,
+                      (index) => PassengerInfoCard(
+                        phoneController: TextEditingController(),
+                        seatName: '',
+                        nameController: TextEditingController(),
+                        genderChanged: (String value) {},
+                      ),
+                    ),
                     20.h,
                     Center(
                       child: KButton(
@@ -86,7 +103,6 @@ class CustomTripForm extends StatelessWidget {
                       ),
                     ),
                     100.h,
-
                   ],
                 ),
               )),

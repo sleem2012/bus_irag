@@ -96,7 +96,8 @@ abstract class KHelper {
     );
   }
 
-  static Future customAwosmeDialog<T>({required String title,required Function() onApproveClick}){
+  static Future customAwosmeDialog<T>(
+      {required String title, required Function() onApproveClick}) {
     return AwesomeDialog(
       context: Nav.navigator.currentContext!,
       animType: AnimType.scale,
@@ -114,7 +115,6 @@ abstract class KHelper {
           hieght: 42,
           title: "متابعه",
           onPressed: () {
-
             Get.back();
             onApproveClick();
           },
@@ -390,3 +390,14 @@ class KHelperGetters {
     );
   }
 }
+
+enum RoleType { client, agent }
+class RoleTypeModel{
+  String name;
+  String id;
+  RoleTypeModel({required this.name, required this.id});
+}
+List<RoleTypeModel>roleTypeList=[
+  RoleTypeModel(name: 'client', id: '1'),
+  RoleTypeModel(name: 'agent', id: '2'),
+];

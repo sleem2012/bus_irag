@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 
 import '../../../logic/login/login_bloc.dart';
 import '../../../logic/login/login_state.dart';
+import '../../../shared/api_client/endpoints.dart';
 import '../../../shared/constants.dart';
 import '../../../shared/extensions.dart';
 import '../../../shared/localization/trans.dart';
@@ -91,7 +92,6 @@ class LoginView extends StatelessWidget {
                       KTextFormField(
                         controller: login.passController,
 
-
                         labelText: "ادخل الرمز الخاص بتسجيل  الدخول",
 
                         upperTitle: "الرقم السري",
@@ -145,17 +145,18 @@ class LoginView extends StatelessWidget {
                         },
                       ),
                       20.h,
-                      InkWell(
-                        onTap: () {
-                          Get.to(() => const RegisterView());
-                        },
-                        child: Text(
-                          "انشاء حساب جديد",
-                          style: KTextStyle.of(context)
-                              .ten
-                              .copyWith(color: KColors.mainColor),
+                      if (isClient)
+                        InkWell(
+                          onTap: () {
+                            Get.to(() => const RegisterView());
+                          },
+                          child: Text(
+                            "انشاء حساب جديد",
+                            style: KTextStyle.of(context)
+                                .ten
+                                .copyWith(color: KColors.mainColor),
+                          ),
                         ),
-                      ),
                     ],
                   ),
                 ),

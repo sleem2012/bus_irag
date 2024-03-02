@@ -94,4 +94,5 @@ class KTextStyle {
         fontFamily: fontFamily,
         fontWeight: FontWeight.bold);
   }
+
 }

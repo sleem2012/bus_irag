@@ -1,3 +1,4 @@
+import 'package:bus_iraq2/shared/cache/locale_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'app.dart';
@@ -20,13 +21,13 @@ class RestartWidget extends StatefulWidget {
   final Widget child;
 
   static void restartApp(BuildContext context) =>
-      context.findAncestorStateOfType<_RestartWidgetState>()?.restartApp();
+      context.findAncestorStateOfType<RestartWidgetState>()?.restartApp();
 
   @override
-  _RestartWidgetState createState() => _RestartWidgetState();
+  RestartWidgetState createState() => RestartWidgetState();
 }
 
-class _RestartWidgetState extends State<RestartWidget> {
+class RestartWidgetState extends State<RestartWidget> {
   Key key = UniqueKey();
 
   void restartApp() => setState(() => key = UniqueKey());

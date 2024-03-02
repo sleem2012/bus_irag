@@ -1,3 +1,4 @@
+import 'package:bus_iraq2/shared/cache/locale_storage.dart';
 import 'package:bus_iraq2/shared/extensions.dart';
 import 'package:bus_iraq2/shared/route/nav_helper.dart';
 import 'package:bus_iraq2/shared/theme/colors.dart';
@@ -13,8 +14,8 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     this.showNotification = false,
     this.showClientName = false,
-     this.showClientImage= false,
-     this.showTitle= false,
+    this.showClientImage = false,
+    this.showTitle = false,
   });
 
   final bool showClientName, showClientImage, showTitle, showNotification;
@@ -41,7 +42,7 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
                     8.w,
                     if (showClientName)
                       Text(
-                        "محمد احمد",
+                        KStorage.i.getUserInfo?.data?.username ?? '',
                         style: KTextStyle.of(context).ten,
                       )
                   ],
@@ -84,6 +85,5 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => Size(0, Get.height * .08);
 }

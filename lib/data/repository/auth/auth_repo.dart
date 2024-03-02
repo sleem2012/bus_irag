@@ -29,7 +29,8 @@ class AuthRepoImpl implements _AuthRepo {
         "mobile": phone,
         "password": password,
         "device_token": "561505158465",
-        "device_type": Platform.isIOS ? "ios" : "android"
+        "device_type": Platform.isIOS ? "ios" : "android",
+        "type": isClient ? "1" : "2"
       },
     );
 
@@ -40,14 +41,5 @@ class AuthRepoImpl implements _AuthRepo {
     );
   }
 
-// @override
-// Future<Either<KFailure, Unit>> logout() async {
-//   Future<Response<dynamic>> func = Di.dioClient
-//       .post(KEndPoints.logout, data: {"TOKEN": KStorage.i.getToken});
-//   final result = await ApiClientHelper.responseOrFailure(func: func);
-//   return result.fold(
-//     (l) => left(l),
-//     (r) => right(unit),
-//   );
-// }
+
 }

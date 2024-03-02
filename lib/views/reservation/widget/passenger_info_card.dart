@@ -120,7 +120,7 @@ class PassengerInfoCard extends StatelessWidget {
             ],
           ),
         ),
-        Positioned(
+      if(seatName.isNotEmpty)  Positioned(
           left: -Get.width * .04,
           top: Get.height * .07,
           // bottom:Get.height * .4 ,
