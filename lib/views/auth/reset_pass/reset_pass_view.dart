@@ -1,4 +1,3 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bus_iraq2/shared/extensions.dart';
 import 'package:bus_iraq2/shared/widgets/custom_button.dart';
 import 'package:flutter/material.dart';

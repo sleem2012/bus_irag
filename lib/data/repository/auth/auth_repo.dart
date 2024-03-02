@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
@@ -11,7 +12,16 @@ import '../../model/user_model.dart';
 
 abstract class _AuthRepo {
   Future<Either<KFailure, UserModel>> login(
-      {required String phone, required String password});
+      {required String phone,
+      required String password,
+      required String countryCode});
+
+  Future<Either<KFailure, UserModel>> register(
+      {required String username,
+      required String phone,
+      required String password,
+      required String address,
+      required CountryCode countryCode});
 
 // Future<Either<KFailure, Unit>> logout();
 }
@@ -21,11 +31,13 @@ class AuthRepoImpl implements _AuthRepo {
 
   @override
   Future<Either<KFailure, UserModel>> login(
-      {required String phone, required String password}) async {
+      {required String phone,
+      required String password,
+      required String countryCode}) async {
     Future<Response<dynamic>> func = Di.dioClient.postWithFiles(
       KEndPoints.login,
       data: {
-        "mobile_code": "93",
+        "mobile_code": countryCode,
         "mobile": phone,
         "password": password,
         "device_token": "561505158465",
@@ -41,5 +53,30 @@ class AuthRepoImpl implements _AuthRepo {
     );
   }
 
+  @override
+  Future<Either<KFailure, UserModel>> register(
+      {required String username,
+      required String phone,
+      required String password,
+      required String address,
+      required CountryCode countryCode}) async {
+    Future<Response<dynamic>> func = Di.dioClient.postWithFiles(
+      KEndPoints.register,
+      data: {
+        "username": username,
+        "country_code": countryCode.code,
+        "mobile_code": countryCode.dialCode,
+        "mobile": phone,
+        "country": address,
+        "password": password,
+        "password_confirmation": password,
+      },
+    );
 
+    final result = await ApiClientHelper.responseOrFailure(func: func);
+    return result.fold(
+      (l) => left(l),
+      (r) => right(UserModel.fromJson(r)),
+    );
+  }
 }

@@ -61,6 +61,7 @@ abstract class ApiClientHelper {
       405: KFailure.error(
           "Method Not Allowed , you are using ( $method ) method "),
       409: const KFailure.error409(),
+      400:  KFailure.error(response?.data['message']),
       500: const KFailure.server(),
       422: response?.data['errors'] is Map<String, dynamic>
           ? KFailure.error422(Error422Model.fromJson(response?.data))

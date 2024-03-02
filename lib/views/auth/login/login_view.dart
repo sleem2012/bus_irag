@@ -87,7 +87,12 @@ class LoginView extends StatelessWidget {
                         ),
                       ),
                       11.h,
-                      PhoneFormField(controller: login.phoneController),
+                      PhoneFormField(
+                        controller: login.phoneController,
+                        onDialChanged: ( code) {
+                          login.countryCode = code?.dialCode ?? '';
+                        },
+                      ),
                       SizedBox(height: KHelper.listPadding),
                       KTextFormField(
                         controller: login.passController,
@@ -95,7 +100,7 @@ class LoginView extends StatelessWidget {
                         labelText: "ادخل الرمز الخاص بتسجيل  الدخول",
 
                         upperTitle: "الرقم السري",
-                        // obscureText: login.isVisible,
+                        obscureText: login.isVisible,
                         validator: (p0) {
                           if (p0!.isEmpty) {
                             return Tr.get.pass_validation;

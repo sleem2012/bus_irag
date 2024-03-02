@@ -3,6 +3,7 @@ import 'package:bus_iraq2/data/repository/general/general_repo.dart';
 import 'package:bus_iraq2/logic/banner/banner_bloc.dart';
 import 'package:bus_iraq2/logic/book_direct_trip/book_direct_trip_bloc.dart';
 import 'package:bus_iraq2/logic/choose_seet/choose_seet_bloc.dart';
+import 'package:bus_iraq2/logic/register/register_bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,17 +52,19 @@ abstract class Di {
     _i.registerLazySingleton(() => AuthRepoImpl());
     _i.registerLazySingleton(() => DirectTripRepoImp());
     _i.registerLazySingleton(() => GeneralRepoImp());
-    _i.registerLazySingleton(() => BannerBloc(bannerRepoImp: _i()));
 
     ///bloc
 
     _i.registerFactory(() => LoginBloc(authRepoImpl: _i()));
+    _i.registerFactory(() => RegisterBloc(registerRepoImp: _i()));
     _i.registerFactory(() => LogoutBloc(authRepoImpl: _i()));
     _i.registerFactory(() => ChooseSeetBloc(chooseSeetRepoImp: _i()));
     _i.registerFactory(() => GetLocationsBloc(getLocationsRepoImp: _i()));
     _i.registerFactory(() => TripSearchBloc(tripSearchRepoImp: _i()));
     _i.registerFactory(() => CountryCodesBloc(countryCodesRepoImp: _i()));
     _i.registerFactory(() => BookDirectTripBloc(bookDirectTripRepoImp: _i()));
+    _i.registerFactory(() => BannerBloc(bannerRepoImp: _i()));
+
   }
 
   static _unReg() async {
@@ -101,4 +104,5 @@ abstract class Di {
   static CountryCodesBloc get countryCode => _i.get<CountryCodesBloc>();
   static BannerBloc get getBanner => _i.get<BannerBloc>();
   static BookDirectTripBloc get bookDirectTrip => _i.get<BookDirectTripBloc>();
+  static RegisterBloc get register => _i.get<RegisterBloc>();
 }

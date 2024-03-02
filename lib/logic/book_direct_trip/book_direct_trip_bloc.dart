@@ -3,7 +3,6 @@ import 'package:bus_iraq2/data/model/sent_trip_search_model.dart';
 import 'package:bus_iraq2/data/repository/direct_trip/direct_trip_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../data/model/search_trip_model.dart';
 import '../../shared/error/failures.dart';
 import 'book_direct_trip_state.dart';
 

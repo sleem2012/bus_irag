@@ -21,11 +21,12 @@ class LoginBloc extends Cubit<LoginState> {
   bool isVisible = true;
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passController = TextEditingController();
+   String countryCode = '+964';
 
   login() async {
     emit(const LoginState.loading());
     try {
-      final result = await authRepoImpl.login(phone: phoneController.text, password: passController.text);
+      final result = await authRepoImpl.login(phone: phoneController.text, password: passController.text, countryCode: countryCode);
       result.fold(
         (l) {
           emit(LoginState.error(failure: l));

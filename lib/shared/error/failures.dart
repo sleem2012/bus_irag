@@ -74,6 +74,7 @@ class KFailure with _$KFailure {
       googleAuthFailure: () => 'Sign in with Google failed',
       facebookAuthFailure: () => 'Sign in with Facebook failed',
       facebookAuthCancelled: () => 'Sign in with Facebook cancelled',
+
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:bus_iraq2/shared/extensions.dart';
 import 'package:bus_iraq2/shared/theme/helper.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
@@ -13,6 +14,7 @@ class PhoneFormField extends StatelessWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
+  final Function(CountryCode?) onDialChanged;
   final TextInputType? keyboardType;
   final Widget? suffixIcon, prefixIcon;
   final String? hintText, errorText, labelText, upperTitle;
@@ -50,7 +52,7 @@ class PhoneFormField extends StatelessWidget {
     this.kFillColor,
     this.labelText,
     this.upperTitle,
-    this.showUpperTitle = true,
+    this.showUpperTitle = true, required this.onDialChanged,
   });
 
   @override
@@ -124,7 +126,7 @@ class PhoneFormField extends StatelessWidget {
                 child: Container(
                   height: Get.height*.057,
                     decoration: KHelper.of(context).textFieldDecoration,
-                    child: const CountryCodeWidget()),
+                    child:  CountryCodeWidget(onChanged:(p0) =>  onDialChanged,)),
               )
               // BlocBuilder<CountryCodesBloc, CountryCodesState>(
               //   builder: (context, state) {
