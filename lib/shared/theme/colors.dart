@@ -33,6 +33,7 @@ abstract class KColors {
   static const Color lightBlueColor = Color(0xffE0EEFF);
   static const Color backgroundD = Color(0xffF9F9F9);
   static const Color lightBlack = Color(0xff808080);
+  static const Color purple = Color(0xff9F5050);
 
 
 }
