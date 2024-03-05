@@ -22,6 +22,9 @@ class CountryCodeWidget extends StatelessWidget {
       // alignLeft: true,
       dialogTextStyle: KTextStyle.of(context).hint,
       initialSelection: 'IQ',
+      favorite: const [
+        'IQ'
+      ],
       backgroundColor: KColors.blackColor,
       showFlagDialog: true,
       showCountryOnly: true,

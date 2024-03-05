@@ -1,6 +1,7 @@
 import 'package:bus_iraq2/data/repository/direct_trip/direct_trip_repo.dart';
 import 'package:bus_iraq2/data/repository/general/general_repo.dart';
 import 'package:bus_iraq2/logic/banner/banner_bloc.dart';
+import 'package:bus_iraq2/logic/book_custom_trip/book_custom_trip_bloc.dart';
 import 'package:bus_iraq2/logic/book_direct_trip/book_direct_trip_bloc.dart';
 import 'package:bus_iraq2/logic/choose_seet/choose_seet_bloc.dart';
 import 'package:bus_iraq2/logic/register/register_bloc.dart';
@@ -12,6 +13,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'data/repository/auth/auth_repo.dart';
 import 'logic/country_codes/country_codes_bloc.dart';
+import 'logic/fleet_type/fleet_type_bloc.dart';
 import 'logic/get_locations/get_locations_bloc.dart';
 import 'logic/login/login_bloc.dart';
 import 'logic/logout/logout_bloc.dart';
@@ -63,8 +65,9 @@ abstract class Di {
     _i.registerFactory(() => TripSearchBloc(tripSearchRepoImp: _i()));
     _i.registerFactory(() => CountryCodesBloc(countryCodesRepoImp: _i()));
     _i.registerFactory(() => BookDirectTripBloc(bookDirectTripRepoImp: _i()));
+    _i.registerFactory(() => BookCustomTripBloc(bookCustomTripRepoImp: _i()));
     _i.registerFactory(() => BannerBloc(bannerRepoImp: _i()));
-
+    _i.registerFactory(() => FleetTypeBloc(fleetTypeRepoImp: _i()));
   }
 
   static _unReg() async {
@@ -102,7 +105,14 @@ abstract class Di {
   static TripSearchBloc get searchTrip => _i.get<TripSearchBloc>();
 
   static CountryCodesBloc get countryCode => _i.get<CountryCodesBloc>();
+
   static BannerBloc get getBanner => _i.get<BannerBloc>();
+
   static BookDirectTripBloc get bookDirectTrip => _i.get<BookDirectTripBloc>();
+
   static RegisterBloc get register => _i.get<RegisterBloc>();
+
+  static FleetTypeBloc get getFleets => _i.get<FleetTypeBloc>();
+
+  static BookCustomTripBloc get bookCustomTrip => _i.get<BookCustomTripBloc>();
 }

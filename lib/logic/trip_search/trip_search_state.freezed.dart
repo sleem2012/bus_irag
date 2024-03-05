@@ -20,6 +20,7 @@ mixin _$TripSearchState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function() selected,
     required TResult Function(SearchData model) success,
     required TResult Function(KFailure error) error,
   }) =>
@@ -28,6 +29,7 @@ mixin _$TripSearchState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function()? selected,
     TResult? Function(SearchData model)? success,
     TResult? Function(KFailure error)? error,
   }) =>
@@ -36,6 +38,7 @@ mixin _$TripSearchState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function()? selected,
     TResult Function(SearchData model)? success,
     TResult Function(KFailure error)? error,
     required TResult orElse(),
@@ -45,6 +48,7 @@ mixin _$TripSearchState {
   TResult map<TResult extends Object?>({
     required TResult Function(TripSearchStateInitial value) initial,
     required TResult Function(TripSearchStateLoading value) loading,
+    required TResult Function(TripSearchStateselected value) selected,
     required TResult Function(TripSearchStateSuccess value) success,
     required TResult Function(TripSearchStateError value) error,
   }) =>
@@ -53,6 +57,7 @@ mixin _$TripSearchState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(TripSearchStateInitial value)? initial,
     TResult? Function(TripSearchStateLoading value)? loading,
+    TResult? Function(TripSearchStateselected value)? selected,
     TResult? Function(TripSearchStateSuccess value)? success,
     TResult? Function(TripSearchStateError value)? error,
   }) =>
@@ -61,6 +66,7 @@ mixin _$TripSearchState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TripSearchStateInitial value)? initial,
     TResult Function(TripSearchStateLoading value)? loading,
+    TResult Function(TripSearchStateselected value)? selected,
     TResult Function(TripSearchStateSuccess value)? success,
     TResult Function(TripSearchStateError value)? error,
     required TResult orElse(),
@@ -126,6 +132,7 @@ class _$TripSearchStateInitial implements TripSearchStateInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function() selected,
     required TResult Function(SearchData model) success,
     required TResult Function(KFailure error) error,
   }) {
@@ -137,6 +144,7 @@ class _$TripSearchStateInitial implements TripSearchStateInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function()? selected,
     TResult? Function(SearchData model)? success,
     TResult? Function(KFailure error)? error,
   }) {
@@ -148,6 +156,7 @@ class _$TripSearchStateInitial implements TripSearchStateInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function()? selected,
     TResult Function(SearchData model)? success,
     TResult Function(KFailure error)? error,
     required TResult orElse(),
@@ -163,6 +172,7 @@ class _$TripSearchStateInitial implements TripSearchStateInitial {
   TResult map<TResult extends Object?>({
     required TResult Function(TripSearchStateInitial value) initial,
     required TResult Function(TripSearchStateLoading value) loading,
+    required TResult Function(TripSearchStateselected value) selected,
     required TResult Function(TripSearchStateSuccess value) success,
     required TResult Function(TripSearchStateError value) error,
   }) {
@@ -174,6 +184,7 @@ class _$TripSearchStateInitial implements TripSearchStateInitial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(TripSearchStateInitial value)? initial,
     TResult? Function(TripSearchStateLoading value)? loading,
+    TResult? Function(TripSearchStateselected value)? selected,
     TResult? Function(TripSearchStateSuccess value)? success,
     TResult? Function(TripSearchStateError value)? error,
   }) {
@@ -185,6 +196,7 @@ class _$TripSearchStateInitial implements TripSearchStateInitial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TripSearchStateInitial value)? initial,
     TResult Function(TripSearchStateLoading value)? loading,
+    TResult Function(TripSearchStateselected value)? selected,
     TResult Function(TripSearchStateSuccess value)? success,
     TResult Function(TripSearchStateError value)? error,
     required TResult orElse(),
@@ -240,6 +252,7 @@ class _$TripSearchStateLoading implements TripSearchStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function() selected,
     required TResult Function(SearchData model) success,
     required TResult Function(KFailure error) error,
   }) {
@@ -251,6 +264,7 @@ class _$TripSearchStateLoading implements TripSearchStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function()? selected,
     TResult? Function(SearchData model)? success,
     TResult? Function(KFailure error)? error,
   }) {
@@ -262,6 +276,7 @@ class _$TripSearchStateLoading implements TripSearchStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function()? selected,
     TResult Function(SearchData model)? success,
     TResult Function(KFailure error)? error,
     required TResult orElse(),
@@ -277,6 +292,7 @@ class _$TripSearchStateLoading implements TripSearchStateLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(TripSearchStateInitial value) initial,
     required TResult Function(TripSearchStateLoading value) loading,
+    required TResult Function(TripSearchStateselected value) selected,
     required TResult Function(TripSearchStateSuccess value) success,
     required TResult Function(TripSearchStateError value) error,
   }) {
@@ -288,6 +304,7 @@ class _$TripSearchStateLoading implements TripSearchStateLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(TripSearchStateInitial value)? initial,
     TResult? Function(TripSearchStateLoading value)? loading,
+    TResult? Function(TripSearchStateselected value)? selected,
     TResult? Function(TripSearchStateSuccess value)? success,
     TResult? Function(TripSearchStateError value)? error,
   }) {
@@ -299,6 +316,7 @@ class _$TripSearchStateLoading implements TripSearchStateLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TripSearchStateInitial value)? initial,
     TResult Function(TripSearchStateLoading value)? loading,
+    TResult Function(TripSearchStateselected value)? selected,
     TResult Function(TripSearchStateSuccess value)? success,
     TResult Function(TripSearchStateError value)? error,
     required TResult orElse(),
@@ -312,6 +330,127 @@ class _$TripSearchStateLoading implements TripSearchStateLoading {
 
 abstract class TripSearchStateLoading implements TripSearchState {
   const factory TripSearchStateLoading() = _$TripSearchStateLoading;
+}
+
+/// @nodoc
+abstract class _$$TripSearchStateselectedCopyWith<$Res> {
+  factory _$$TripSearchStateselectedCopyWith(_$TripSearchStateselected value,
+          $Res Function(_$TripSearchStateselected) then) =
+      __$$TripSearchStateselectedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$TripSearchStateselectedCopyWithImpl<$Res>
+    extends _$TripSearchStateCopyWithImpl<$Res, _$TripSearchStateselected>
+    implements _$$TripSearchStateselectedCopyWith<$Res> {
+  __$$TripSearchStateselectedCopyWithImpl(_$TripSearchStateselected _value,
+      $Res Function(_$TripSearchStateselected) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$TripSearchStateselected implements TripSearchStateselected {
+  const _$TripSearchStateselected();
+
+  @override
+  String toString() {
+    return 'TripSearchState.selected()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TripSearchStateselected);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() selected,
+    required TResult Function(SearchData model) success,
+    required TResult Function(KFailure error) error,
+  }) {
+    return selected();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? selected,
+    TResult? Function(SearchData model)? success,
+    TResult? Function(KFailure error)? error,
+  }) {
+    return selected?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? selected,
+    TResult Function(SearchData model)? success,
+    TResult Function(KFailure error)? error,
+    required TResult orElse(),
+  }) {
+    if (selected != null) {
+      return selected();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TripSearchStateInitial value) initial,
+    required TResult Function(TripSearchStateLoading value) loading,
+    required TResult Function(TripSearchStateselected value) selected,
+    required TResult Function(TripSearchStateSuccess value) success,
+    required TResult Function(TripSearchStateError value) error,
+  }) {
+    return selected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TripSearchStateInitial value)? initial,
+    TResult? Function(TripSearchStateLoading value)? loading,
+    TResult? Function(TripSearchStateselected value)? selected,
+    TResult? Function(TripSearchStateSuccess value)? success,
+    TResult? Function(TripSearchStateError value)? error,
+  }) {
+    return selected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TripSearchStateInitial value)? initial,
+    TResult Function(TripSearchStateLoading value)? loading,
+    TResult Function(TripSearchStateselected value)? selected,
+    TResult Function(TripSearchStateSuccess value)? success,
+    TResult Function(TripSearchStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (selected != null) {
+      return selected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TripSearchStateselected implements TripSearchState {
+  const factory TripSearchStateselected() = _$TripSearchStateselected;
 }
 
 /// @nodoc
@@ -381,6 +520,7 @@ class _$TripSearchStateSuccess implements TripSearchStateSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function() selected,
     required TResult Function(SearchData model) success,
     required TResult Function(KFailure error) error,
   }) {
@@ -392,6 +532,7 @@ class _$TripSearchStateSuccess implements TripSearchStateSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function()? selected,
     TResult? Function(SearchData model)? success,
     TResult? Function(KFailure error)? error,
   }) {
@@ -403,6 +544,7 @@ class _$TripSearchStateSuccess implements TripSearchStateSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function()? selected,
     TResult Function(SearchData model)? success,
     TResult Function(KFailure error)? error,
     required TResult orElse(),
@@ -418,6 +560,7 @@ class _$TripSearchStateSuccess implements TripSearchStateSuccess {
   TResult map<TResult extends Object?>({
     required TResult Function(TripSearchStateInitial value) initial,
     required TResult Function(TripSearchStateLoading value) loading,
+    required TResult Function(TripSearchStateselected value) selected,
     required TResult Function(TripSearchStateSuccess value) success,
     required TResult Function(TripSearchStateError value) error,
   }) {
@@ -429,6 +572,7 @@ class _$TripSearchStateSuccess implements TripSearchStateSuccess {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(TripSearchStateInitial value)? initial,
     TResult? Function(TripSearchStateLoading value)? loading,
+    TResult? Function(TripSearchStateselected value)? selected,
     TResult? Function(TripSearchStateSuccess value)? success,
     TResult? Function(TripSearchStateError value)? error,
   }) {
@@ -440,6 +584,7 @@ class _$TripSearchStateSuccess implements TripSearchStateSuccess {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TripSearchStateInitial value)? initial,
     TResult Function(TripSearchStateLoading value)? loading,
+    TResult Function(TripSearchStateselected value)? selected,
     TResult Function(TripSearchStateSuccess value)? success,
     TResult Function(TripSearchStateError value)? error,
     required TResult orElse(),
@@ -538,6 +683,7 @@ class _$TripSearchStateError implements TripSearchStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function() selected,
     required TResult Function(SearchData model) success,
     required TResult Function(KFailure error) error,
   }) {
@@ -549,6 +695,7 @@ class _$TripSearchStateError implements TripSearchStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function()? selected,
     TResult? Function(SearchData model)? success,
     TResult? Function(KFailure error)? error,
   }) {
@@ -560,6 +707,7 @@ class _$TripSearchStateError implements TripSearchStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function()? selected,
     TResult Function(SearchData model)? success,
     TResult Function(KFailure error)? error,
     required TResult orElse(),
@@ -575,6 +723,7 @@ class _$TripSearchStateError implements TripSearchStateError {
   TResult map<TResult extends Object?>({
     required TResult Function(TripSearchStateInitial value) initial,
     required TResult Function(TripSearchStateLoading value) loading,
+    required TResult Function(TripSearchStateselected value) selected,
     required TResult Function(TripSearchStateSuccess value) success,
     required TResult Function(TripSearchStateError value) error,
   }) {
@@ -586,6 +735,7 @@ class _$TripSearchStateError implements TripSearchStateError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(TripSearchStateInitial value)? initial,
     TResult? Function(TripSearchStateLoading value)? loading,
+    TResult? Function(TripSearchStateselected value)? selected,
     TResult? Function(TripSearchStateSuccess value)? success,
     TResult? Function(TripSearchStateError value)? error,
   }) {
@@ -597,6 +747,7 @@ class _$TripSearchStateError implements TripSearchStateError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TripSearchStateInitial value)? initial,
     TResult Function(TripSearchStateLoading value)? loading,
+    TResult Function(TripSearchStateselected value)? selected,
     TResult Function(TripSearchStateSuccess value)? success,
     TResult Function(TripSearchStateError value)? error,
     required TResult orElse(),

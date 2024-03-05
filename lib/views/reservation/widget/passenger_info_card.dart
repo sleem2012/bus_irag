@@ -25,6 +25,7 @@ class PassengerInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     List<GenderModel> genderList = [
       GenderModel(name: "ذكر", id: "1"),
       GenderModel(name: "أنثي", id: "2"),

@@ -17,10 +17,10 @@ class ChooseSeetBloc extends Cubit<ChooseSeetState> {
 
 
   SeatsData? seatsData;
-  getSeats() async {
+  getSeats({required String? tripId}) async {
     try {
       emit(const ChooseSeetState.loading());
-      final result = await chooseSeetRepoImp.get_seats();
+      final result = await chooseSeetRepoImp.get_seats(tripId: tripId??'7');
       result.fold(
         (l) {
           debugPrint('================= ChooseSeet Bloc : ${KFailure.toError(l)}');

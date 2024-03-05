@@ -53,6 +53,10 @@ class TripSearchBloc extends Cubit<TripSearchState> {
 
   void setDestinationDirection(String destinationId) {
     sentModel = sentModel.copyWith(destination: destinationId);
+    emit(const TripSearchState.loading());
+    emit(const TripSearchState.initial());
+    emit(const TripSearchState.selected());
+
   }
 
   String? travelType;
@@ -70,5 +74,9 @@ class TripSearchBloc extends Cubit<TripSearchState> {
 
   void setReturnDate(String date) {
     sentModel = sentModel.copyWith(backDate: date);
+  }
+
+  void setFleetType(String type) {
+    sentModel = sentModel.copyWith(fleetType: type);
   }
 }

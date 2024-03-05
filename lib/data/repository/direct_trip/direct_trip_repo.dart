@@ -10,20 +10,24 @@ import '../../model/search_trip_model.dart';
 import '../../model/seats_model.dart';
 
 abstract class DirectTripRepoAbs {
-  Future<Either<KFailure, SeatsData>> get_seats();
+  Future<Either<KFailure, SeatsData>> get_seats({required String tripId});
 
   Future<Either<KFailure, SearchData>> search_trip(
       {required SentTripSearchModel model});
 
-  Future<Either<KFailure, Unit>> book_trip(
+  Future<Either<KFailure, Unit>> book_direct_trip(
+      {required Map<String, dynamic> json});
+
+  Future<Either<KFailure, Unit>> book_custom_trip(
       {required Map<String, dynamic> json});
 }
 
 class DirectTripRepoImp implements DirectTripRepoAbs {
   @override
-  Future<Either<KFailure, SeatsData>> get_seats() async {
+  Future<Either<KFailure, SeatsData>> get_seats(
+      {required String tripId}) async {
     Future<Response<dynamic>> func = Di.dioClient.get(
-      KEndPoints.getSeats,
+      "${KEndPoints.getSeats}$tripId",
     );
 
     final result = await ApiClientHelper.responseOrFailure(func: func);
@@ -47,10 +51,21 @@ class DirectTripRepoImp implements DirectTripRepoAbs {
   }
 
   @override
-  Future<Either<KFailure, Unit>> book_trip(
+  Future<Either<KFailure, Unit>> book_direct_trip(
       {required Map<String, dynamic> json}) async {
     Future<Response<dynamic>> func =
         Di.dioClient.postWithFiles(KEndPoints.bookDirectTrip, data: json);
+
+    final result = await ApiClientHelper.responseOrFailure(func: func);
+    return result.fold(
+      (l) => left(l),
+      (r) => right(unit),
+    );
+  } @override
+  Future<Either<KFailure, Unit>> book_custom_trip(
+      {required Map<String, dynamic> json}) async {
+    Future<Response<dynamic>> func =
+        Di.dioClient.postWithFiles(KEndPoints.bookCustomTrip, data: json);
 
     final result = await ApiClientHelper.responseOrFailure(func: func);
     return result.fold(

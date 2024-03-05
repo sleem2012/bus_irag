@@ -18,7 +18,7 @@ class BookDirectTripBloc extends Cubit<BookDirectTripState> {
   book() async {
     try {
       emit(const BookDirectTripState.loading());
-      final result = await bookDirectTripRepoImp.book_trip(json: jsonValues);
+      final result = await bookDirectTripRepoImp.book_direct_trip(json: jsonValues);
       result.fold(
         (l) {
           debugPrint(

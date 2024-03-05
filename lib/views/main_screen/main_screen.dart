@@ -34,6 +34,7 @@ class MainNavPages extends StatelessWidget {
           create: (context) => Di.getBanner..get(),
           lazy: false,
         ),
+
       ],
       child: BlocBuilder<MainViewBloc, MainViewState>(
         builder: (context, state) {
