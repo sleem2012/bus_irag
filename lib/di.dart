@@ -1,9 +1,12 @@
 import 'package:bus_iraq2/data/repository/direct_trip/direct_trip_repo.dart';
 import 'package:bus_iraq2/data/repository/general/general_repo.dart';
+import 'package:bus_iraq2/data/repository/wallet/wallet_repo.dart';
 import 'package:bus_iraq2/logic/banner/banner_bloc.dart';
 import 'package:bus_iraq2/logic/book_custom_trip/book_custom_trip_bloc.dart';
 import 'package:bus_iraq2/logic/book_direct_trip/book_direct_trip_bloc.dart';
 import 'package:bus_iraq2/logic/choose_seet/choose_seet_bloc.dart';
+import 'package:bus_iraq2/logic/get_ticket/get_ticket_bloc.dart';
+import 'package:bus_iraq2/logic/get_wallet_amount/get_wallet_amount_bloc.dart';
 import 'package:bus_iraq2/logic/register/register_bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +15,8 @@ import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'data/repository/auth/auth_repo.dart';
+import 'data/repository/ticket/ticket_repo.dart';
+import 'logic/account_history/account_history_bloc.dart';
 import 'logic/country_codes/country_codes_bloc.dart';
 import 'logic/fleet_type/fleet_type_bloc.dart';
 import 'logic/get_locations/get_locations_bloc.dart';
@@ -54,6 +59,8 @@ abstract class Di {
     _i.registerLazySingleton(() => AuthRepoImpl());
     _i.registerLazySingleton(() => DirectTripRepoImp());
     _i.registerLazySingleton(() => GeneralRepoImp());
+    _i.registerLazySingleton(() => WalletRepoImp());
+    _i.registerLazySingleton(() => TicketRepoImp());
 
     ///bloc
 
@@ -68,6 +75,9 @@ abstract class Di {
     _i.registerFactory(() => BookCustomTripBloc(bookCustomTripRepoImp: _i()));
     _i.registerFactory(() => BannerBloc(bannerRepoImp: _i()));
     _i.registerFactory(() => FleetTypeBloc(fleetTypeRepoImp: _i()));
+    _i.registerFactory(() => GetWalletAmountBloc(walletRepoImp: _i()));
+    _i.registerFactory(() => GetTicketBloc(getTicketRepoImp: _i()));
+    _i.registerFactory(() => AccountHistoryBloc(accountHistoryRepoImp: _i()));
   }
 
   static _unReg() async {
@@ -115,4 +125,7 @@ abstract class Di {
   static FleetTypeBloc get getFleets => _i.get<FleetTypeBloc>();
 
   static BookCustomTripBloc get bookCustomTrip => _i.get<BookCustomTripBloc>();
+  static GetWalletAmountBloc get getWalletAmount => _i.get<GetWalletAmountBloc>();
+  static GetTicketBloc get getTicket => _i.get<GetTicketBloc>();
+  static AccountHistoryBloc get getAccountHistory => _i.get<AccountHistoryBloc>();
 }

@@ -1,9 +1,17 @@
+import 'package:bus_iraq2/logic/get_ticket/get_ticket_bloc.dart';
+import 'package:bus_iraq2/logic/get_ticket/get_ticket_bloc.dart';
 import 'package:bus_iraq2/shared/extensions.dart';
 import 'package:bus_iraq2/shared/theme/text_theme.dart';
 import 'package:bus_iraq2/shared/widgets/flux_image.dart';
+import 'package:bus_iraq2/shared/widgets/loading/loading_overlay.dart';
+import 'package:bus_iraq2/shared/widgets/shimmer_box.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
+import '../../data/model/get_ticket_model.dart';
+import '../../logic/get_ticket/get_ticket_state.dart';
+import '../../shared/api_client/endpoints.dart';
 import '../../shared/small_button.dart';
 import '../../shared/theme/colors.dart';
 import '../../shared/theme/helper.dart';
@@ -23,16 +31,37 @@ class ReservationHistory extends StatelessWidget {
             child: Container(
           color: KColors.backgroundD,
           width: double.infinity,
-          child: ListView.separated(
-              padding: EdgeInsets.only(
-                  top: 20, left: 20, right: 20, bottom: Get.height * .2),
-              itemBuilder: (context, index) => const ReservationHistoryCard(),
-              separatorBuilder: (context, index) {
-                return const SizedBox(
-                  height: 20,
-                );
-              },
-              itemCount: 4),
+          child: BlocBuilder<GetTicketBloc, GetTicketState>(
+            builder: (context, state) {
+              final tickets = state.whenOrNull(
+                success: (model) => model.innerData,
+              );
+              return KRequestOverlay(
+                isLoading: state is GetTicketStateLoading,
+                loadingWidget: const ShimmerList(),
+                child: RefreshIndicator(
+                  onRefresh: () async {
+                    GetTicketBloc.of(context).get();
+                  },
+                  child: ListView.separated(
+                      padding: EdgeInsets.only(
+                          top: 20,
+                          left: 20,
+                          right: 20,
+                          bottom: Get.height * .2),
+                      itemBuilder: (context, index) => ReservationHistoryCard(
+                            ticket: tickets?[index] ?? TicketInnerData(),
+                          ),
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(
+                          height: 20,
+                        );
+                      },
+                      itemCount: tickets?.length ?? 0),
+                ),
+              );
+            },
+          ),
         ))
       ],
     );
@@ -40,7 +69,9 @@ class ReservationHistory extends StatelessWidget {
 }
 
 class ReservationHistoryCard extends StatelessWidget {
-  const ReservationHistoryCard({super.key});
+  const ReservationHistoryCard({super.key, required this.ticket});
+
+  final TicketInnerData ticket;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +94,7 @@ class ReservationHistoryCard extends StatelessWidget {
                             .ten
                             .copyWith(color: KColors.blackColor)),
                     TextSpan(
-                      text: "1045",
+                      text: ticket.pnrNumber,
                       style: KTextStyle.of(context)
                           .ten
                           .copyWith(color: KColors.mainColor),
@@ -79,7 +110,6 @@ class ReservationHistoryCard extends StatelessWidget {
                 width: Get.width * .25,
                 iconPath: "assets/images/ticket.png",
                 onPressed: () {},
-
               )
             ],
           ),
@@ -96,7 +126,7 @@ class ReservationHistoryCard extends StatelessWidget {
                             .ten
                             .copyWith(color: KColors.blackColor)),
                     TextSpan(
-                      text: "سراج الدين محمد",
+                      text: ticket.user,
                       style: KTextStyle.of(context)
                           .ten
                           .copyWith(color: KColors.mainColor),
@@ -119,24 +149,27 @@ class ReservationHistoryCard extends StatelessWidget {
           Divider(
             color: KColors.blackColor.withOpacity(.1),
           ),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               NameWithIcon(
                 iconPath: "assets/images/money_bag.png",
                 keyText: "مبلغ الحجز",
-                valueText: "200 دينار",
+                valueText: "${double.parse(ticket.subTotal ?? '0')} دينار",
               ),
-              NameWithIcon(
-                iconPath: "assets/images/money_bag.png",
-                keyText: "مبلغ التسديد",
-                valueText: "200 دينار",
-              ),
-              NameWithIcon(
-                iconPath: "assets/images/commision.png",
-                keyText: "عمولة الوكيل",
-                valueText: "50 دينار",
-              ),
+              (!isClient)
+                  ? const NameWithIcon(
+                      iconPath: "assets/images/money_bag.png",
+                      keyText: "مبلغ التسديد",
+                      valueText: "200 دينار",
+                    )
+                  : const Spacer(),
+              if (!isClient)
+                const NameWithIcon(
+                  iconPath: "assets/images/commision.png",
+                  keyText: "عمولة الوكيل",
+                  valueText: "50 دينار",
+                ),
             ],
           )
         ],

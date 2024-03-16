@@ -1,3 +1,5 @@
+import 'package:bus_iraq2/shared/theme/colors.dart';
+import 'package:bus_iraq2/shared/theme/helper.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +33,7 @@ class HomeSlider extends StatelessWidget {
                   options: CarouselOptions(
                     autoPlay: kDebugMode ? false : true,
                     pauseAutoPlayOnTouch: true,
-                    viewportFraction: .8,
+                    viewportFraction: .9,
                     enlargeStrategy: CenterPageEnlargeStrategy.scale,
                     enlargeCenterPage: false,
                     autoPlayInterval: const Duration(seconds: 5),

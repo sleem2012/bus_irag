@@ -75,9 +75,9 @@ class BookCustomTripBloc extends Cubit<BookCustomTripState> {
         "passenger_numbers": passNumberController.text,
         "responsible_name": responsibleNameController.text,
         "responsible_phone": responsiblePhoneController.text,
-        "address": "ttwdfdg",
-        "government_id": "1",
-        "city_id": "1",
+        // "address": "ttwdfdg",
+        // "government_id": "1",
+        // "city_id": "1",
       },
     );
     for (var i = 0; i < length; i++) {

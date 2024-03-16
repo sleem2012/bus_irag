@@ -224,6 +224,10 @@ abstract class KHelper {
     );
   }
 
+  static String convertDateTimeToDate(BuildContext context, DateTime dateTime) {
+    final locale = Localizations.localeOf(context).languageCode;
+    return DateFormat.yMMMEd(locale).format(dateTime);
+  }
   static String apiDateFormatter(DateTime date) {
     return DateFormat('yyyy-MM-dd').format(date);
   }

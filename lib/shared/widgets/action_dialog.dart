@@ -25,7 +25,7 @@ class ActionDialog extends StatelessWidget {
   }) : super(key: key);
 
   void show<T>(BuildContext context) => showModalBottomSheet<T>(
-        backgroundColor: KColors.backgroundD,
+        backgroundColor: Colors.transparent,
         shape: shape ?? const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         context: context,
         builder: (_) => SizedBox(child: Wrap(children: [this])),
@@ -41,15 +41,16 @@ class ActionDialog extends StatelessWidget {
           ? Text(
               title!,
               textAlign: TextAlign.center,
-              style: KTextStyle.of(context).body2,
+              style: KTextStyle.of(context).ten.copyWith(color: KColors.mainColor),
             )
           : null,
       shape: shape ?? RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-      backgroundColor: KColors.backgroundD,
+      backgroundColor: KColors.whiteColor,
       actionsAlignment: MainAxisAlignment.center,
       icon: const Icon(
         Icons.warning_amber_outlined,
         size: 50,
+        color: KColors.mainColor,
       ),
       actions: [
         Column(

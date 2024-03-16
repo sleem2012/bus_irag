@@ -1,3 +1,4 @@
+import 'package:bus_iraq2/shared/cache/locale_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'app.dart';

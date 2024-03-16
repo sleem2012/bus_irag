@@ -33,10 +33,10 @@ class ShimmerList extends StatelessWidget {
               width: Get.width,
               height: Get.height * .2,
             ),
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 80),
+        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 30),
         separatorBuilder: (context, index) => const SizedBox(
               height: 8,
             ),
-        itemCount: 6);
+        itemCount: 3);
   }
 }

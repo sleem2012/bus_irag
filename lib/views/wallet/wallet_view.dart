@@ -1,8 +1,13 @@
+import 'package:bus_iraq2/logic/get_wallet_amount/get_wallet_amount_bloc.dart';
+import 'package:bus_iraq2/logic/get_wallet_amount/get_wallet_amount_bloc.dart';
 import 'package:bus_iraq2/shared/extensions.dart';
 import 'package:bus_iraq2/shared/theme/text_theme.dart';
 import 'package:bus_iraq2/shared/widgets/flux_image.dart';
+import 'package:bus_iraq2/shared/widgets/loading/loading_overlay.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import '../../logic/get_wallet_amount/get_wallet_amount_state.dart';
 import '../../shared/api_client/endpoints.dart';
 import '../../shared/route/nav_helper.dart';
 import '../../shared/theme/colors.dart';
@@ -23,63 +28,69 @@ class WalletView extends StatelessWidget {
             child: Container(
           color: KColors.backgroundD,
           width: double.infinity,
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              children: [
-                isClient ? 130.h : 20.h,
-                isClient
-                    ? const ClientWalletCard()
-                    : Column(
-                        children: [
-                          const CustomWalletCard(
-                              mainColor: KColors.purple,
-                              keyText: 'الدائن',
-                              valueText: 'IQD 2000',
-                              image: 'assets/images/money_man.svg'),
-                          10.h,
-                          const CustomWalletCard(
-                              mainColor: KColors.boldGreenColor,
-                              keyText: 'المدين',
-                              valueText: 'IQD 2000',
-                              image: 'assets/images/money_bag.svg'),
-                          10.h,
-                          const CustomWalletCard(
-                              mainColor: KColors.mainColor,
-                              keyText: 'رصيد الديون',
-                              valueText: 'IQD 2000',
-                              image: 'assets/images/money_bag.svg'),
-                          10.h,
-                          const CustomWalletCard(
-                              mainColor: Color(0xffAA59B1),
-                              keyText: 'حد الأتمان',
-                              valueText: 'IQD 2000',
-                              image: 'assets/images/money_man.svg'),
-                          10.h,
-                          const CustomWalletCard(
-                              mainColor: Color(0xffAFB159),
-                              keyText: 'الدائن',
-                              valueText: 'IQD 2000',
-                              image: 'assets/images/svg_balance.svg'),
-                        ],
-                      ),
-                20.h,
-                Padding(
-                  padding: EdgeInsets.only(bottom: Get.height * .2),
-                  child: KButton(
-                    title: "اضافة رصيد",
-                    onPressed: () {
-                      NavHelper.of(context).navigateAddMoney;
-                    },
-                    kFillColor: KColors.lightGreen,
-                    iconPath: "assets/images/wallet.png",
-                    textColor: KColors.greenColor,
-                    borderColor: KColors.greenColor,
-                    hieght: 74,
-                    width: double.infinity,
+          child: RefreshIndicator(
+            onRefresh: () async {
+              GetWalletAmountBloc.of(context).get();
+            },
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  isClient ? 130.h : 20.h,
+                  isClient
+                      ? const ClientWalletCard()
+                      : Column(
+                          children: [
+                            const CustomWalletCard(
+                                mainColor: KColors.purple,
+                                keyText: 'الدائن',
+                                valueText: 'IQD 2000',
+                                image: 'assets/images/money_man.svg'),
+                            10.h,
+                            const CustomWalletCard(
+                                mainColor: KColors.boldGreenColor,
+                                keyText: 'المدين',
+                                valueText: 'IQD 2000',
+                                image: 'assets/images/money_bag.svg'),
+                            10.h,
+                            const CustomWalletCard(
+                                mainColor: KColors.mainColor,
+                                keyText: 'رصيد الديون',
+                                valueText: 'IQD 2000',
+                                image: 'assets/images/money_bag.svg'),
+                            10.h,
+                            const CustomWalletCard(
+                                mainColor: Color(0xffAA59B1),
+                                keyText: 'حد الأتمان',
+                                valueText: 'IQD 2000',
+                                image: 'assets/images/money_man.svg'),
+                            10.h,
+                            const CustomWalletCard(
+                                mainColor: Color(0xffAFB159),
+                                keyText: 'الدائن',
+                                valueText: 'IQD 2000',
+                                image: 'assets/images/svg_balance.svg'),
+                          ],
+                        ),
+                  20.h,
+                  Padding(
+                    padding: EdgeInsets.only(bottom: Get.height * .2),
+                    child: KButton(
+                      title: "اضافة رصيد",
+                      onPressed: () {
+                        NavHelper.of(context).navigateAddMoney;
+                      },
+                      kFillColor: KColors.lightGreen,
+                      iconPath: "assets/images/wallet.png",
+                      textColor: KColors.greenColor,
+                      borderColor: KColors.greenColor,
+                      hieght: 74,
+                      width: double.infinity,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ))
@@ -106,9 +117,19 @@ class ClientWalletCard extends StatelessWidget {
             "الرصيد المتاح",
             style: KTextStyle.of(context).fifteen,
           ),
-          Text(
-            "IQD 2000",
-            style: KTextStyle.of(context).fifteen,
+          BlocBuilder<GetWalletAmountBloc, GetWalletAmountState>(
+            builder: (context, state) {
+              final amount = state.whenOrNull(
+                success: (model) => model,
+              );
+              return KRequestOverlay(
+                isLoading: state is GetWalletAmountStateLoading,
+                child: Text(
+                  "IQD $amount",
+                  style: KTextStyle.of(context).fifteen,
+                ),
+              );
+            },
           ),
         ],
       ),

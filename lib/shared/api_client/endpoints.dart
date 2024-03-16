@@ -16,4 +16,7 @@ abstract class KEndPoints {
   static String bookDirectTrip = '${baseUrl}direct-bookings/book';
   static String bookCustomTrip = '${baseUrl}special-bookings/book';
   static String register = '${baseUrl}register';
+  static String getWalletAmount = '${baseUrl}pocket/get-amount';
+  static String getTicketHistory = '${baseUrl}tickets';
+  static String getAccountHistory = '${baseUrl}history';
 }
