@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../di.dart';
+import '../../dynamic_ui/view/manual_payment_view.dart';
 import '../../logic/main_view/main_view_bloc.dart';
 import '../../shared/localization/trans.dart';
 import '../../shared/theme/colors.dart';
@@ -91,6 +92,7 @@ class MainNavPages extends StatelessWidget {
                   const CustomTripForm(),
                   const WalletView(),
                   const AddMoneyView(),
+                  const ManualPaymentView()
                 ],
               ),
               bottomNavigationBar: AnimatedBottomNavigationBar.builder(

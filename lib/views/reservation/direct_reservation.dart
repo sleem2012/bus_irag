@@ -150,6 +150,8 @@ class DirectReservation extends StatelessWidget {
                             onPressed: () {
                               if (formKey.currentState!.validate()) {
                                 searchBloc.post();
+                                // searchBloc.travelType==null;
+
                               }
                             },
                           ),

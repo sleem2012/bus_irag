@@ -69,6 +69,7 @@ class KTextFormField extends StatelessWidget {
           ],
           SizedBox(
             height: textFiledHieght,
+
             child: TextFormField(
               inputFormatters: formatter,
               keyboardAppearance: Theme.of(context).brightness,
@@ -84,10 +85,13 @@ class KTextFormField extends StatelessWidget {
               onChanged: onChanged,
               obscureText: obscureText,
 
+
+
               style: style ??
                   KTextStyle.of(context).fifteen.copyWith(color: Colors.black),
               maxLines: maxLines ?? (obscureText ? 1 : null),
               decoration: decoration??InputDecoration(
+
                 // hintText: hintText,
                 filled: kFillColor != null,
                 fillColor: kFillColor ?? KColors.textFieldD,

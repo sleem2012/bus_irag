@@ -25,6 +25,8 @@ class CustomReservation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
     return BlocProvider(
       create: (context) => Di.getFleets,
       child: Column(
@@ -54,145 +56,159 @@ class CustomReservation extends StatelessWidget {
                 },
                 builder: (context, state) {
                   final searchBloc = TripSearchBloc.of(context);
-                  return Column(
-                    children: [
-                      30.h,
-                      TravelCheckList(
-                        backgroundColor: KColors.whiteColor,
-                        onChange: (String value) {
-                          searchBloc.setTripType(value);
-                        },
-                      ),
-                      30.h,
-                      BlocBuilder<GetLocationsBloc, GetLocationsState>(
-                        builder: (context, state) {
-                          final location =
-                              GetLocationsBloc.of(context).locationsData;
-
-                          return Column(
-                            children: [
-                              KDropdownBtn<LocationInnerData>(
-                                validator: (values) {
-                                  if (values == null) {
-                                    return "الحقل مطلوب";
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                                title: "نقطة انطلاق",
-                                onChanged: (p0) {
-                                  searchBloc.setPickupDirection(
-                                      p0?.id.toString() ?? '');
-                                },
-                                items: location?.data
-                                        ?.map((e) => KHelper.of(context)
-                                            .itemView(
-                                                itemText: e.name ?? '',
-                                                value: e))
-                                        .toList() ??
-                                    [],
-                                hintColor: KColors.redColor,
-                              ),
-                              12.h,
-                              KDropdownBtn<LocationInnerData>(
-                                title: "نقطة وصول",
-                                validator: (values) {
-                                  if (values == null) {
-                                    return "الحقل مطلوب";
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                                onChanged: (p0) {
-                                  searchBloc.setDestinationDirection(
-                                      p0?.id.toString() ?? '');
-                                },
-                                items: location?.data
-                                        ?.map((e) => KHelper.of(context)
-                                            .itemView(
-                                                itemText: e.name ?? '',
-                                                value: e))
-                                        .toList() ??
-                                    [],
-                                hintColor: KColors.greenColor,
-                                suffixIcon: const Icon(
-                                  Icons.location_on,
-                                  color: KColors.greenColor,
-                                ),
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                      50.h,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          DateContainer(
-                            title: "تاريخ الذهاب",
-                            firstContainerColor: KColors.accentColor,
-                            secondTextColor: KColors.accentColor,
-                            onPressed: (String value) {
-                              searchBloc.setGoDate(value);
-                            },
-                          ),
-                          DateContainer(
-                            firstTextColor: KColors.greenColor,
-                            secondTextColor: KColors.greenColor,
-                            firstContainerColor: KColors.lightGreen,
-                            title: 'تاريخ العودة',
-                            onPressed: (String value) {
-                              searchBloc.setReturnDate(value);
-                            },
-                          ),
-                        ],
-                      ),
-                      29.h,
-                      if (searchBloc.sentModel.pickup != null)
-                        BlocBuilder<FleetTypeBloc, FleetTypeState>(
-                          builder: (context, state) {
-                            final fleet = state.whenOrNull(
-                              success: (model) => model.data,
-                            );
-                            return fleet?.isNotEmpty == true
-                                ? KDropdownBtn<FleetTypeData>(
-                                    title: state is FleetTypeStateLoading
-                                        ? "تحميل"
-                                        : "نوع المركبة",
-                                    onChanged: (p0) {
-                                      searchBloc.setFleetType(
-                                          p0?.id.toString() ?? '');
-                                    },
-                                    items: fleet
-                                            ?.map((e) => KHelper.of(context)
-                                                .itemView(
-                                                    itemText: e.name ?? '',
-                                                    value: e))
-                                            .toList() ??
-                                        [],
-                                    hintColor: KColors.mainColor,
-                                    btnDecoration:
-                                        KHelper.of(context).circledTopContainer,
-                                  )
-                                : const SizedBox();
+                  return Form(
+                    key: formKey,
+                    child: Column(
+                      children: [
+                        30.h,
+                        TravelCheckList(
+                          backgroundColor: KColors.whiteColor,
+                          onChange: (String value) {
+                            searchBloc.setTripType(value);
                           },
                         ),
-                      60.h,
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 50),
-                        child: Center(
-                          child: KButton(
-                            title: "ادخل بياناتك الأن",
-                            onPressed: () {
-                              if (kDebugMode) {
-                                print(searchBloc.sentModel.toJson());
-                              }
-                              NavHelper.of(context).navigateToCustomTripForm;
+                        30.h,
+                        BlocBuilder<GetLocationsBloc, GetLocationsState>(
+                          builder: (context, state) {
+                            final location =
+                                GetLocationsBloc.of(context).locationsData;
+
+                            return Column(
+                              children: [
+                                KDropdownBtn<LocationInnerData>(
+                                  validator: (values) {
+                                    if (values == null) {
+                                      return "الحقل مطلوب";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                  title: "نقطة انطلاق",
+                                  onChanged: (p0) {
+                                    searchBloc.setPickupDirection(
+                                        p0?.id.toString() ?? '');
+                                  },
+                                  items: location?.data
+                                          ?.map((e) => KHelper.of(context)
+                                              .itemView(
+                                                  itemText: e.name ?? '',
+                                                  value: e))
+                                          .toList() ??
+                                      [],
+                                  hintColor: KColors.redColor,
+                                ),
+                                12.h,
+                                KDropdownBtn<LocationInnerData>(
+                                  title: "نقطة وصول",
+                                  validator: (values) {
+                                    if (values == null) {
+                                      return "الحقل مطلوب";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                  onChanged: (p0) {
+                                    searchBloc.setDestinationDirection(
+                                        p0?.id.toString() ?? '');
+                                  },
+                                  items: location?.data
+                                          ?.map((e) => KHelper.of(context)
+                                              .itemView(
+                                                  itemText: e.name ?? '',
+                                                  value: e))
+                                          .toList() ??
+                                      [],
+                                  hintColor: KColors.greenColor,
+                                  suffixIcon: const Icon(
+                                    Icons.location_on,
+                                    color: KColors.greenColor,
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                        50.h,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            DateContainer(
+                              title: "تاريخ الذهاب",
+                              firstContainerColor: KColors.accentColor,
+                              secondTextColor: KColors.accentColor,
+                              onPressed: (String value) {
+                                searchBloc.setGoDate(value);
+                              },
+                            ),
+                            if (searchBloc.travelType == 'back')
+                            DateContainer(
+                              firstTextColor: KColors.greenColor,
+                              secondTextColor: KColors.greenColor,
+                              firstContainerColor: KColors.lightGreen,
+                              title: 'تاريخ العودة',
+                              onPressed: (String value) {
+                                searchBloc.setReturnDate(value);
+                              },
+                            ),
+                          ],
+                        ),
+                        29.h,
+                        if (searchBloc.sentModel.pickup != null)
+                          BlocBuilder<FleetTypeBloc, FleetTypeState>(
+                            builder: (context, state) {
+                              final fleet = state.whenOrNull(
+                                success: (model) => model.data,
+                              );
+                              return fleet?.isNotEmpty == true
+                                  ? KDropdownBtn<FleetTypeData>(
+                                      validator: (values) {
+                                        if (values == null) {
+                                          return "الحقل مطلوب";
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                      title: state is FleetTypeStateLoading
+                                          ? "تحميل"
+                                          : "نوع المركبة",
+                                      onChanged: (p0) {
+                                        searchBloc.setFleetType(
+                                            p0?.id.toString() ?? '');
+                                      },
+                                      items: fleet
+                                              ?.map((e) => KHelper.of(context)
+                                                  .itemView(
+                                                      itemText: e.name ?? '',
+                                                      value: e))
+                                              .toList() ??
+                                          [],
+                                      hintColor: KColors.mainColor,
+                                      btnDecoration: KHelper.of(context)
+                                          .circledTopContainer,
+                                    )
+                                  : const SizedBox();
                             },
                           ),
+                        60.h,
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 50),
+                          child: Center(
+                            child: KButton(
+                              title: "ادخل بياناتك الأن",
+                              onPressed: () {
+                                if (kDebugMode) {
+                                  print(searchBloc.sentModel.toJson());
+                                }
+                                if (formKey.currentState!.validate()) {
+                                  NavHelper.of(context)
+                                      .navigateToCustomTripForm;
+                                }
+                              },
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   );
                 },
               ),

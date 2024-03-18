@@ -62,8 +62,8 @@ class AvailableTrips extends StatelessWidget {
 }
 
 class AdvantagesContainer extends StatelessWidget {
-  const AdvantagesContainer({super.key});
-
+  const AdvantagesContainer({super.key, required this.facility});
+final String facility;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -73,18 +73,10 @@ class AdvantagesContainer extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       child: FittedBox(
-        child: Row(
-          children: [
-            Text(
-              "ماء",
-              style:
-                  KTextStyle.of(context).ten.copyWith(color: KColors.mainColor),
-            ),
-            5.w,
-            const Icon(
-              Icons.wifi,
-            ),
-          ],
+        child: Text(
+          facility,
+          style:
+              KTextStyle.of(context).ten.copyWith(color: KColors.mainColor),
         ),
       ),
     );

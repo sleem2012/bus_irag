@@ -45,4 +45,6 @@ class ChooseSeetBloc extends Cubit<ChooseSeetState> {
     emit(const ChooseSeetState.initial());
     emit(const ChooseSeetState.updateList());
   }
+
+
 }

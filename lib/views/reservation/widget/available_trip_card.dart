@@ -41,7 +41,7 @@ class AvailableTripCard extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                        "باصات العراق",
+                        data.fleetType??'',
                         style: KTextStyle.of(context)
                             .ten
                             .copyWith(color: KColors.mainColor),
@@ -86,7 +86,7 @@ class AvailableTripCard extends StatelessWidget {
                             .ten
                             .copyWith(color: KColors.accentColor)),
                     9.h,
-                    Text("بغداد",
+                    Text(data.pickup??'',
                         style: KTextStyle.of(context)
                             .ten
                             .copyWith(color: KColors.mainColor)),
@@ -104,11 +104,11 @@ class AvailableTripCard extends StatelessWidget {
                       Wrap(
                         alignment: WrapAlignment.center,
                         children: List.generate(
-                          2,
-                          (index) => const Padding(
-                            padding: EdgeInsets.symmetric(
+                          data.facilities?.length??0,
+                          (index) =>  Padding(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 4.0, vertical: 3),
-                            child: AdvantagesContainer(),
+                            child: AdvantagesContainer(facility:data.facilities?[index]??''),
                           ),
                         ),
                       ),
@@ -122,7 +122,7 @@ class AvailableTripCard extends StatelessWidget {
                                     .ten
                                     .copyWith(color: KColors.blackColor)),
                             TextSpan(
-                              text: "300 دينار",
+                              text: "${data.amount.toString()} دينار",
                               style: KTextStyle.of(context)
                                   .ten
                                   .copyWith(color: KColors.greenColor),
@@ -150,7 +150,7 @@ class AvailableTripCard extends StatelessWidget {
                             .ten
                             .copyWith(color: KColors.accentColor)),
                     9.h,
-                    Text("بغداد",
+                    Text(data.destination??'',
                         style: KTextStyle.of(context)
                             .ten
                             .copyWith(color: KColors.mainColor)),

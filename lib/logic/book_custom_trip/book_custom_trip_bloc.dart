@@ -70,11 +70,11 @@ class BookCustomTripBloc extends Cubit<BookCustomTripState> {
         "type": sentSearchModel.type,
         "go_date": sentSearchModel.goDate,
         "fleet_type": sentSearchModel.fleetType,
-        if (sentSearchModel.backDate != null)
+        if (sentSearchModel.backDate != null&&sentSearchModel.type=='back')
           "back_date": sentSearchModel.backDate,
         "passenger_numbers": passNumberController.text,
         "responsible_name": responsibleNameController.text,
-        "responsible_phone": responsiblePhoneController.text,
+        "responsible_phone": dialCode+responsiblePhoneController.text,
         // "address": "ttwdfdg",
         // "government_id": "1",
         // "city_id": "1",

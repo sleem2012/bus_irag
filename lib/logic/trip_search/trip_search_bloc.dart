@@ -35,6 +35,7 @@ class TripSearchBloc extends Cubit<TripSearchState> {
         (r) {
           responseData = r;
           debugPrint('================= TripSearch Bloc : ${r.toString()}  ');
+
           emit(TripSearchState.success(model: r));
         },
       );
@@ -79,4 +80,11 @@ class TripSearchBloc extends Cubit<TripSearchState> {
   void setFleetType(String type) {
     sentModel = sentModel.copyWith(fleetType: type);
   }
+
+
+  int selected = 0;
+
+  // clear(){
+  //   travelType=='go';
+  // }
 }

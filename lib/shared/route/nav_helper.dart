@@ -35,4 +35,5 @@ class NavHelper {
 
   void get navigateToWallet => MainViewBloc.of(_context!).navTaped(9);
   void get navigateAddMoney => MainViewBloc.of(_context!).navTaped(10);
+  void get navigateToManualPayment => MainViewBloc.of(_context!).navTaped(11);
 }

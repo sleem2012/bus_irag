@@ -27,7 +27,7 @@ class ClientAccountsList extends StatelessWidget {
           isLoading: state is AccountHistoryStateLoading,
           loadingWidget: const ShimmerList(),
           child: RefreshIndicator(
-            onRefresh: ()async {
+            onRefresh: () async {
               await AccountHistoryBloc.of(context).get();
             },
             child: ListView.separated(
@@ -63,25 +63,26 @@ class ClientAccountsHistoryCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           TextRichWithIcon(
+          TextRichWithIcon(
             keyText: 'تاريخ:',
-            valueText: KHelper.convertDateTimeToDate(context, DateTime.parse(history.createdAt??'')),
+            valueText: KHelper.convertDateTimeToDate(
+                context, DateTime.parse(history.createdAt ?? '')),
             imagePath: 'assets/images/calender_icon.png',
           ),
           14.h,
-           TextRichWithIcon(
+          TextRichWithIcon(
             keyText: 'مسار:',
-            valueText: history.route??'',
+            valueText: history.route ?? '',
             imagePath: 'assets/images/bus-ticket-icon 1.png',
           ),
           14.h,
-           Row(
+          Row(
             children: [
               Expanded(
                   flex: 2,
                   child: TextRichWithIcon(
                     keyText: 'عدد:',
-                    valueText: '${history.passengerNumbers??''} ركاب',
+                    valueText: '${history.passengerNumbers ?? ''} ركاب',
                     imagePath: 'assets/images/two_persons.png',
                   )),
               Spacer(flex: 1),
@@ -89,7 +90,7 @@ class ClientAccountsHistoryCard extends StatelessWidget {
                 flex: 2,
                 child: TextRichWithIcon(
                   keyText: 'السعر:',
-                  valueText: '${history.amount??''} IQD ',
+                  valueText: '${history.amount ?? ''} IQD ',
                   imagePath: 'assets/images/money_bag.png',
                 ),
               ),

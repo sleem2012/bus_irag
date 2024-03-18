@@ -10,22 +10,30 @@ import '../../../shared/widgets/drop_down.dart';
 import '../../../shared/widgets/selectable_container.dart';
 import '../../../shared/widgets/text_field.dart';
 
-class PassengerInfoCard extends StatelessWidget {
+class PassengerInfoCard extends StatefulWidget {
   const PassengerInfoCard({
     super.key,
     required this.seatName,
     required this.nameController,
-    required this.phoneController, required this.genderChanged,
+    required this.phoneController,
+    required this.genderChanged,
   });
 
   final String seatName;
+
   final TextEditingController nameController;
   final TextEditingController phoneController;
   final ValueChanged<String> genderChanged;
 
   @override
-  Widget build(BuildContext context) {
+  State<PassengerInfoCard> createState() => _PassengerInfoCardState();
+}
 
+class _PassengerInfoCardState extends State<PassengerInfoCard> {
+  bool isError=false;
+
+  @override
+  Widget build(BuildContext context) {
     List<GenderModel> genderList = [
       GenderModel(name: "ذكر", id: "1"),
       GenderModel(name: "أنثي", id: "2"),
@@ -35,7 +43,7 @@ class PassengerInfoCard extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         Container(
-          decoration: KHelper.of(context).shadowContainer,
+          decoration: KHelper.of(context).shadowContainer.copyWith(border:Border.all(color: isError?KColors.redColor:Colors.transparent)),
           width: double.infinity,
           padding: const EdgeInsets.all(15),
           child: Column(
@@ -45,6 +53,12 @@ class PassengerInfoCard extends StatelessWidget {
               SizedBox(
                 width: Get.width * .38,
                 child: KDropdownBtn(
+                    validator: (p0) {
+                      if (p0==null) {
+                        return "";
+                      }
+                      return null;
+                    },
                     minHeight: Get.height * .038,
                     hintColor: KColors.mainColor,
                     btnDecoration: KHelper.of(context)
@@ -54,7 +68,7 @@ class PassengerInfoCard extends StatelessWidget {
                                 color: KColors.vDividerColor, width: 2)),
                     title: "اختيار الجنس",
                     onChanged: (p0) {
-                      genderChanged(p0?.id??"-1");
+                      widget.genderChanged(p0?.id ?? "-1");
                       debugPrint(p0?.id);
                     },
                     items: genderList
@@ -65,8 +79,10 @@ class PassengerInfoCard extends StatelessWidget {
               10.h,
               KTextFormField(
                 width: Get.width * .75,
+                height: Get.height * .045,
                 textFiledHieght: Get.height * .045,
-                controller: nameController,
+
+                controller: widget.nameController,
                 decoration: InputDecoration(
                   hintStyle: KTextStyle.of(context)
                       .ten
@@ -77,24 +93,29 @@ class PassengerInfoCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(18),
                     borderSide: BorderSide(color: Colors.grey.withOpacity(.5)),
                   ),
+                  errorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(18),
+                    borderSide: BorderSide(color: Colors.red.withOpacity(.5)),
+                  ),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(18),
                       borderSide:
                           BorderSide(color: KColors.mainColor.withOpacity(.5))),
                 ),
                 keyboardType: TextInputType.name,
-                validator: (p0) {
-                  if (p0!.isEmpty) {
-                    return Tr.get.field_required;
-                  }
-                  return null;
-                },
+                // validator: (p0) {
+                //   if (p0!.isEmpty) {
+                //     return "";
+                //   }
+                //   return null;
+                // },
               ),
               10.h,
               KTextFormField(
                 textFiledHieght: Get.height * .045,
                 width: Get.width * .75,
-                controller: phoneController,
+
+                controller: widget.phoneController,
                 decoration: InputDecoration(
                   hintStyle: KTextStyle.of(context)
                       .ten
@@ -111,26 +132,27 @@ class PassengerInfoCard extends StatelessWidget {
                           BorderSide(color: KColors.mainColor.withOpacity(.5))),
                 ),
                 keyboardType: TextInputType.phone,
-                validator: (p0) {
-                  if (p0!.isEmpty) {
-                    return Tr.get.field_required;
-                  }
-                  return null;
-                },
+                // validator: (p0) {
+                //   if (p0!.isEmpty) {
+                //     return "";
+                //   }
+                //   return null;
+                // },
               ),
             ],
           ),
         ),
-      if(seatName.isNotEmpty)  Positioned(
-          left: -Get.width * .04,
-          top: Get.height * .07,
-          // bottom:Get.height * .4 ,
-          child: SelectableContainer(
-            width: 38,
-            isSelected: true,
-            text: seatName,
-          ),
-        )
+        if (widget.seatName.isNotEmpty)
+          Positioned(
+            left: -Get.width * .04,
+            top: Get.height * .07,
+            // bottom:Get.height * .4 ,
+            child: SelectableContainer(
+              width: 38,
+              isSelected: true,
+              text: widget.seatName,
+            ),
+          )
       ],
     );
   }

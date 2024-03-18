@@ -18,7 +18,8 @@ class BookDirectTripBloc extends Cubit<BookDirectTripState> {
   book() async {
     try {
       emit(const BookDirectTripState.loading());
-      final result = await bookDirectTripRepoImp.book_direct_trip(json: jsonValues);
+      final result =
+          await bookDirectTripRepoImp.book_direct_trip(json: jsonValues);
       result.fold(
         (l) {
           debugPrint(
@@ -41,9 +42,9 @@ class BookDirectTripBloc extends Cubit<BookDirectTripState> {
 
   Map<String, dynamic> jsonValues = {};
 
-  List<TextEditingController> namesControllerList=[];
-  List<TextEditingController> phoneControllerList=[];
-  List<String> gender=[];
+  List<TextEditingController> namesControllerList = [];
+  List<TextEditingController> phoneControllerList = [];
+  List<String> gender = [];
 
   void addListValues(
       {required List<Seats> listed,
@@ -54,7 +55,7 @@ class BookDirectTripBloc extends Cubit<BookDirectTripState> {
       "trip_id": tripId,
       "type": sentSearchModel.type,
       "go_date": sentSearchModel.goDate,
-      if (sentSearchModel.backDate != null)
+      if (sentSearchModel.backDate != null && sentSearchModel.type == 'back')
         "back_date": sentSearchModel.backDate,
     });
     for (var i = 0; i < listed.length; i++) {

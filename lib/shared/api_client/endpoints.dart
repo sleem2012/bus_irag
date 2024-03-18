@@ -19,4 +19,5 @@ abstract class KEndPoints {
   static String getWalletAmount = '${baseUrl}pocket/get-amount';
   static String getTicketHistory = '${baseUrl}tickets';
   static String getAccountHistory = '${baseUrl}history';
+  static String getManualFields = '${baseUrl}pocket/manual-gateways';
 }

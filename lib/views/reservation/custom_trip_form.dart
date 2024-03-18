@@ -16,6 +16,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../../logic/book_custom_trip/book_custom_trip_state.dart';
+import '../../logic/get_ticket/get_ticket_bloc.dart';
 import '../../shared/localization/trans.dart';
 import '../../shared/theme/colors.dart';
 import '../../shared/widgets/selectable_container.dart';
@@ -45,8 +46,11 @@ class _CustomTripFormState extends State<CustomTripForm> {
                 success: () {
                   KHelper.customAwosmeDialog(
                     title: "تم الحجز بنجاح",
-                    onApproveClick: () =>
-                        NavHelper.of(context).navToReservationHistory,
+                    onApproveClick: () {
+                      GetTicketBloc.of(context).get();
+
+                      NavHelper.of(context).navToReservationHistory;
+                    },
                   );
                 },
               );

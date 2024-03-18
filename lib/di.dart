@@ -16,6 +16,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'data/repository/auth/auth_repo.dart';
 import 'data/repository/ticket/ticket_repo.dart';
+import 'dynamic_ui/data/repo/manual_payment_repo.dart';
+import 'dynamic_ui/logic/get_manual_fields/get_manual_fields_bloc.dart';
 import 'logic/account_history/account_history_bloc.dart';
 import 'logic/country_codes/country_codes_bloc.dart';
 import 'logic/fleet_type/fleet_type_bloc.dart';
@@ -61,6 +63,7 @@ abstract class Di {
     _i.registerLazySingleton(() => GeneralRepoImp());
     _i.registerLazySingleton(() => WalletRepoImp());
     _i.registerLazySingleton(() => TicketRepoImp());
+    _i.registerLazySingleton(() => ManualPaymentRepoImp());
 
     ///bloc
 
@@ -78,6 +81,7 @@ abstract class Di {
     _i.registerFactory(() => GetWalletAmountBloc(walletRepoImp: _i()));
     _i.registerFactory(() => GetTicketBloc(getTicketRepoImp: _i()));
     _i.registerFactory(() => AccountHistoryBloc(accountHistoryRepoImp: _i()));
+    _i.registerFactory(() => GetManualFieldsBloc(getManualFieldsRepoImp: _i()));
   }
 
   static _unReg() async {
@@ -128,4 +132,5 @@ abstract class Di {
   static GetWalletAmountBloc get getWalletAmount => _i.get<GetWalletAmountBloc>();
   static GetTicketBloc get getTicket => _i.get<GetTicketBloc>();
   static AccountHistoryBloc get getAccountHistory => _i.get<AccountHistoryBloc>();
+  static GetManualFieldsBloc get getManualFields=> _i.get<GetManualFieldsBloc>();
 }
