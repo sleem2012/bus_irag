@@ -1,6 +1,7 @@
 import 'package:bus_iraq2/data/repository/direct_trip/direct_trip_repo.dart';
 import 'package:bus_iraq2/data/repository/general/general_repo.dart';
 import 'package:bus_iraq2/data/repository/wallet/wallet_repo.dart';
+import 'package:bus_iraq2/dynamic_ui/logic/post_manual_filds/post_manual_filds_bloc.dart';
 import 'package:bus_iraq2/logic/banner/banner_bloc.dart';
 import 'package:bus_iraq2/logic/book_custom_trip/book_custom_trip_bloc.dart';
 import 'package:bus_iraq2/logic/book_direct_trip/book_direct_trip_bloc.dart';
@@ -82,6 +83,7 @@ abstract class Di {
     _i.registerFactory(() => GetTicketBloc(getTicketRepoImp: _i()));
     _i.registerFactory(() => AccountHistoryBloc(accountHistoryRepoImp: _i()));
     _i.registerFactory(() => GetManualFieldsBloc(getManualFieldsRepoImp: _i()));
+    _i.registerFactory(() => PostManualFildsBloc(postManualFildsRepoImp: _i()));
   }
 
   static _unReg() async {
@@ -133,4 +135,5 @@ abstract class Di {
   static GetTicketBloc get getTicket => _i.get<GetTicketBloc>();
   static AccountHistoryBloc get getAccountHistory => _i.get<AccountHistoryBloc>();
   static GetManualFieldsBloc get getManualFields=> _i.get<GetManualFieldsBloc>();
+  static PostManualFildsBloc get postManualFields=> _i.get<PostManualFildsBloc>();
 }

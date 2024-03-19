@@ -20,24 +20,27 @@ mixin _$GetManualFieldsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(DynamicFieldsModel model) success,
+    required TResult Function(DynamicFieldsModel? model) success,
     required TResult Function(KFailure error) error,
+    required TResult Function(UniqueKey key) update,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(DynamicFieldsModel model)? success,
+    TResult? Function(DynamicFieldsModel? model)? success,
     TResult? Function(KFailure error)? error,
+    TResult? Function(UniqueKey key)? update,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(DynamicFieldsModel model)? success,
+    TResult Function(DynamicFieldsModel? model)? success,
     TResult Function(KFailure error)? error,
+    TResult Function(UniqueKey key)? update,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$GetManualFieldsState {
     required TResult Function(GetManualFieldsStateLoading value) loading,
     required TResult Function(GetManualFieldsStateSuccess value) success,
     required TResult Function(GetManualFieldsStateError value) error,
+    required TResult Function(GetManualFieldsStateUpdate value) update,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$GetManualFieldsState {
     TResult? Function(GetManualFieldsStateLoading value)? loading,
     TResult? Function(GetManualFieldsStateSuccess value)? success,
     TResult? Function(GetManualFieldsStateError value)? error,
+    TResult? Function(GetManualFieldsStateUpdate value)? update,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$GetManualFieldsState {
     TResult Function(GetManualFieldsStateLoading value)? loading,
     TResult Function(GetManualFieldsStateSuccess value)? success,
     TResult Function(GetManualFieldsStateError value)? error,
+    TResult Function(GetManualFieldsStateUpdate value)? update,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -131,8 +137,9 @@ class _$GetManualFieldsStateInitial implements GetManualFieldsStateInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(DynamicFieldsModel model) success,
+    required TResult Function(DynamicFieldsModel? model) success,
     required TResult Function(KFailure error) error,
+    required TResult Function(UniqueKey key) update,
   }) {
     return initial();
   }
@@ -142,8 +149,9 @@ class _$GetManualFieldsStateInitial implements GetManualFieldsStateInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(DynamicFieldsModel model)? success,
+    TResult? Function(DynamicFieldsModel? model)? success,
     TResult? Function(KFailure error)? error,
+    TResult? Function(UniqueKey key)? update,
   }) {
     return initial?.call();
   }
@@ -153,8 +161,9 @@ class _$GetManualFieldsStateInitial implements GetManualFieldsStateInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(DynamicFieldsModel model)? success,
+    TResult Function(DynamicFieldsModel? model)? success,
     TResult Function(KFailure error)? error,
+    TResult Function(UniqueKey key)? update,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -170,6 +179,7 @@ class _$GetManualFieldsStateInitial implements GetManualFieldsStateInitial {
     required TResult Function(GetManualFieldsStateLoading value) loading,
     required TResult Function(GetManualFieldsStateSuccess value) success,
     required TResult Function(GetManualFieldsStateError value) error,
+    required TResult Function(GetManualFieldsStateUpdate value) update,
   }) {
     return initial(this);
   }
@@ -181,6 +191,7 @@ class _$GetManualFieldsStateInitial implements GetManualFieldsStateInitial {
     TResult? Function(GetManualFieldsStateLoading value)? loading,
     TResult? Function(GetManualFieldsStateSuccess value)? success,
     TResult? Function(GetManualFieldsStateError value)? error,
+    TResult? Function(GetManualFieldsStateUpdate value)? update,
   }) {
     return initial?.call(this);
   }
@@ -192,6 +203,7 @@ class _$GetManualFieldsStateInitial implements GetManualFieldsStateInitial {
     TResult Function(GetManualFieldsStateLoading value)? loading,
     TResult Function(GetManualFieldsStateSuccess value)? success,
     TResult Function(GetManualFieldsStateError value)? error,
+    TResult Function(GetManualFieldsStateUpdate value)? update,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -249,8 +261,9 @@ class _$GetManualFieldsStateLoading implements GetManualFieldsStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(DynamicFieldsModel model) success,
+    required TResult Function(DynamicFieldsModel? model) success,
     required TResult Function(KFailure error) error,
+    required TResult Function(UniqueKey key) update,
   }) {
     return loading();
   }
@@ -260,8 +273,9 @@ class _$GetManualFieldsStateLoading implements GetManualFieldsStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(DynamicFieldsModel model)? success,
+    TResult? Function(DynamicFieldsModel? model)? success,
     TResult? Function(KFailure error)? error,
+    TResult? Function(UniqueKey key)? update,
   }) {
     return loading?.call();
   }
@@ -271,8 +285,9 @@ class _$GetManualFieldsStateLoading implements GetManualFieldsStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(DynamicFieldsModel model)? success,
+    TResult Function(DynamicFieldsModel? model)? success,
     TResult Function(KFailure error)? error,
+    TResult Function(UniqueKey key)? update,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -288,6 +303,7 @@ class _$GetManualFieldsStateLoading implements GetManualFieldsStateLoading {
     required TResult Function(GetManualFieldsStateLoading value) loading,
     required TResult Function(GetManualFieldsStateSuccess value) success,
     required TResult Function(GetManualFieldsStateError value) error,
+    required TResult Function(GetManualFieldsStateUpdate value) update,
   }) {
     return loading(this);
   }
@@ -299,6 +315,7 @@ class _$GetManualFieldsStateLoading implements GetManualFieldsStateLoading {
     TResult? Function(GetManualFieldsStateLoading value)? loading,
     TResult? Function(GetManualFieldsStateSuccess value)? success,
     TResult? Function(GetManualFieldsStateError value)? error,
+    TResult? Function(GetManualFieldsStateUpdate value)? update,
   }) {
     return loading?.call(this);
   }
@@ -310,6 +327,7 @@ class _$GetManualFieldsStateLoading implements GetManualFieldsStateLoading {
     TResult Function(GetManualFieldsStateLoading value)? loading,
     TResult Function(GetManualFieldsStateSuccess value)? success,
     TResult Function(GetManualFieldsStateError value)? error,
+    TResult Function(GetManualFieldsStateUpdate value)? update,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -330,7 +348,7 @@ abstract class _$$GetManualFieldsStateSuccessCopyWith<$Res> {
           $Res Function(_$GetManualFieldsStateSuccess) then) =
       __$$GetManualFieldsStateSuccessCopyWithImpl<$Res>;
   @useResult
-  $Res call({DynamicFieldsModel model});
+  $Res call({DynamicFieldsModel? model});
 }
 
 /// @nodoc
@@ -346,13 +364,13 @@ class __$$GetManualFieldsStateSuccessCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? model = null,
+    Object? model = freezed,
   }) {
     return _then(_$GetManualFieldsStateSuccess(
-      model: null == model
+      model: freezed == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
-              as DynamicFieldsModel,
+              as DynamicFieldsModel?,
     ));
   }
 }
@@ -360,10 +378,10 @@ class __$$GetManualFieldsStateSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetManualFieldsStateSuccess implements GetManualFieldsStateSuccess {
-  const _$GetManualFieldsStateSuccess({required this.model});
+  const _$GetManualFieldsStateSuccess({this.model});
 
   @override
-  final DynamicFieldsModel model;
+  final DynamicFieldsModel? model;
 
   @override
   String toString() {
@@ -393,8 +411,9 @@ class _$GetManualFieldsStateSuccess implements GetManualFieldsStateSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(DynamicFieldsModel model) success,
+    required TResult Function(DynamicFieldsModel? model) success,
     required TResult Function(KFailure error) error,
+    required TResult Function(UniqueKey key) update,
   }) {
     return success(model);
   }
@@ -404,8 +423,9 @@ class _$GetManualFieldsStateSuccess implements GetManualFieldsStateSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(DynamicFieldsModel model)? success,
+    TResult? Function(DynamicFieldsModel? model)? success,
     TResult? Function(KFailure error)? error,
+    TResult? Function(UniqueKey key)? update,
   }) {
     return success?.call(model);
   }
@@ -415,8 +435,9 @@ class _$GetManualFieldsStateSuccess implements GetManualFieldsStateSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(DynamicFieldsModel model)? success,
+    TResult Function(DynamicFieldsModel? model)? success,
     TResult Function(KFailure error)? error,
+    TResult Function(UniqueKey key)? update,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -432,6 +453,7 @@ class _$GetManualFieldsStateSuccess implements GetManualFieldsStateSuccess {
     required TResult Function(GetManualFieldsStateLoading value) loading,
     required TResult Function(GetManualFieldsStateSuccess value) success,
     required TResult Function(GetManualFieldsStateError value) error,
+    required TResult Function(GetManualFieldsStateUpdate value) update,
   }) {
     return success(this);
   }
@@ -443,6 +465,7 @@ class _$GetManualFieldsStateSuccess implements GetManualFieldsStateSuccess {
     TResult? Function(GetManualFieldsStateLoading value)? loading,
     TResult? Function(GetManualFieldsStateSuccess value)? success,
     TResult? Function(GetManualFieldsStateError value)? error,
+    TResult? Function(GetManualFieldsStateUpdate value)? update,
   }) {
     return success?.call(this);
   }
@@ -454,6 +477,7 @@ class _$GetManualFieldsStateSuccess implements GetManualFieldsStateSuccess {
     TResult Function(GetManualFieldsStateLoading value)? loading,
     TResult Function(GetManualFieldsStateSuccess value)? success,
     TResult Function(GetManualFieldsStateError value)? error,
+    TResult Function(GetManualFieldsStateUpdate value)? update,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -464,11 +488,10 @@ class _$GetManualFieldsStateSuccess implements GetManualFieldsStateSuccess {
 }
 
 abstract class GetManualFieldsStateSuccess implements GetManualFieldsState {
-  const factory GetManualFieldsStateSuccess(
-          {required final DynamicFieldsModel model}) =
+  const factory GetManualFieldsStateSuccess({final DynamicFieldsModel? model}) =
       _$GetManualFieldsStateSuccess;
 
-  DynamicFieldsModel get model;
+  DynamicFieldsModel? get model;
   @JsonKey(ignore: true)
   _$$GetManualFieldsStateSuccessCopyWith<_$GetManualFieldsStateSuccess>
       get copyWith => throw _privateConstructorUsedError;
@@ -553,8 +576,9 @@ class _$GetManualFieldsStateError implements GetManualFieldsStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(DynamicFieldsModel model) success,
+    required TResult Function(DynamicFieldsModel? model) success,
     required TResult Function(KFailure error) error,
+    required TResult Function(UniqueKey key) update,
   }) {
     return error(this.error);
   }
@@ -564,8 +588,9 @@ class _$GetManualFieldsStateError implements GetManualFieldsStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(DynamicFieldsModel model)? success,
+    TResult? Function(DynamicFieldsModel? model)? success,
     TResult? Function(KFailure error)? error,
+    TResult? Function(UniqueKey key)? update,
   }) {
     return error?.call(this.error);
   }
@@ -575,8 +600,9 @@ class _$GetManualFieldsStateError implements GetManualFieldsStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(DynamicFieldsModel model)? success,
+    TResult Function(DynamicFieldsModel? model)? success,
     TResult Function(KFailure error)? error,
+    TResult Function(UniqueKey key)? update,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -592,6 +618,7 @@ class _$GetManualFieldsStateError implements GetManualFieldsStateError {
     required TResult Function(GetManualFieldsStateLoading value) loading,
     required TResult Function(GetManualFieldsStateSuccess value) success,
     required TResult Function(GetManualFieldsStateError value) error,
+    required TResult Function(GetManualFieldsStateUpdate value) update,
   }) {
     return error(this);
   }
@@ -603,6 +630,7 @@ class _$GetManualFieldsStateError implements GetManualFieldsStateError {
     TResult? Function(GetManualFieldsStateLoading value)? loading,
     TResult? Function(GetManualFieldsStateSuccess value)? success,
     TResult? Function(GetManualFieldsStateError value)? error,
+    TResult? Function(GetManualFieldsStateUpdate value)? update,
   }) {
     return error?.call(this);
   }
@@ -614,6 +642,7 @@ class _$GetManualFieldsStateError implements GetManualFieldsStateError {
     TResult Function(GetManualFieldsStateLoading value)? loading,
     TResult Function(GetManualFieldsStateSuccess value)? success,
     TResult Function(GetManualFieldsStateError value)? error,
+    TResult Function(GetManualFieldsStateUpdate value)? update,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -630,5 +659,161 @@ abstract class GetManualFieldsStateError implements GetManualFieldsState {
   KFailure get error;
   @JsonKey(ignore: true)
   _$$GetManualFieldsStateErrorCopyWith<_$GetManualFieldsStateError>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetManualFieldsStateUpdateCopyWith<$Res> {
+  factory _$$GetManualFieldsStateUpdateCopyWith(
+          _$GetManualFieldsStateUpdate value,
+          $Res Function(_$GetManualFieldsStateUpdate) then) =
+      __$$GetManualFieldsStateUpdateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UniqueKey key});
+}
+
+/// @nodoc
+class __$$GetManualFieldsStateUpdateCopyWithImpl<$Res>
+    extends _$GetManualFieldsStateCopyWithImpl<$Res,
+        _$GetManualFieldsStateUpdate>
+    implements _$$GetManualFieldsStateUpdateCopyWith<$Res> {
+  __$$GetManualFieldsStateUpdateCopyWithImpl(
+      _$GetManualFieldsStateUpdate _value,
+      $Res Function(_$GetManualFieldsStateUpdate) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = null,
+  }) {
+    return _then(_$GetManualFieldsStateUpdate(
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as UniqueKey,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetManualFieldsStateUpdate implements GetManualFieldsStateUpdate {
+  const _$GetManualFieldsStateUpdate({required this.key});
+
+  @override
+  final UniqueKey key;
+
+  @override
+  String toString() {
+    return 'GetManualFieldsState.update(key: $key)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetManualFieldsStateUpdate &&
+            (identical(other.key, key) || other.key == key));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, key);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetManualFieldsStateUpdateCopyWith<_$GetManualFieldsStateUpdate>
+      get copyWith => __$$GetManualFieldsStateUpdateCopyWithImpl<
+          _$GetManualFieldsStateUpdate>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(DynamicFieldsModel? model) success,
+    required TResult Function(KFailure error) error,
+    required TResult Function(UniqueKey key) update,
+  }) {
+    return update(key);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(DynamicFieldsModel? model)? success,
+    TResult? Function(KFailure error)? error,
+    TResult? Function(UniqueKey key)? update,
+  }) {
+    return update?.call(key);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(DynamicFieldsModel? model)? success,
+    TResult Function(KFailure error)? error,
+    TResult Function(UniqueKey key)? update,
+    required TResult orElse(),
+  }) {
+    if (update != null) {
+      return update(key);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetManualFieldsStateInitial value) initial,
+    required TResult Function(GetManualFieldsStateLoading value) loading,
+    required TResult Function(GetManualFieldsStateSuccess value) success,
+    required TResult Function(GetManualFieldsStateError value) error,
+    required TResult Function(GetManualFieldsStateUpdate value) update,
+  }) {
+    return update(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetManualFieldsStateInitial value)? initial,
+    TResult? Function(GetManualFieldsStateLoading value)? loading,
+    TResult? Function(GetManualFieldsStateSuccess value)? success,
+    TResult? Function(GetManualFieldsStateError value)? error,
+    TResult? Function(GetManualFieldsStateUpdate value)? update,
+  }) {
+    return update?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetManualFieldsStateInitial value)? initial,
+    TResult Function(GetManualFieldsStateLoading value)? loading,
+    TResult Function(GetManualFieldsStateSuccess value)? success,
+    TResult Function(GetManualFieldsStateError value)? error,
+    TResult Function(GetManualFieldsStateUpdate value)? update,
+    required TResult orElse(),
+  }) {
+    if (update != null) {
+      return update(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetManualFieldsStateUpdate implements GetManualFieldsState {
+  const factory GetManualFieldsStateUpdate({required final UniqueKey key}) =
+      _$GetManualFieldsStateUpdate;
+
+  UniqueKey get key;
+  @JsonKey(ignore: true)
+  _$$GetManualFieldsStateUpdateCopyWith<_$GetManualFieldsStateUpdate>
       get copyWith => throw _privateConstructorUsedError;
 }

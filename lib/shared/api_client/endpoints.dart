@@ -20,4 +20,6 @@ abstract class KEndPoints {
   static String getTicketHistory = '${baseUrl}tickets';
   static String getAccountHistory = '${baseUrl}history';
   static String getManualFields = '${baseUrl}pocket/manual-gateways';
+  static String postManualFields = '${baseUrl}pocket/manual-charge';
+
 }
