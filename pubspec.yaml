@@ -51,6 +51,7 @@ dependencies:
   carousel_slider:
   firebase_core:
   country_code_picker: ^3.0.0
+  flutter_widget_from_html:
 
 dependency_overrides:
   modal_bottom_sheet: ^3.0.0-pre

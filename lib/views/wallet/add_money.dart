@@ -41,7 +41,7 @@ class AddMoneyView extends StatelessWidget {
                         imageUrl: 'assets/images/iqd.png',
                       ),
                       Text(
-                        'IQD',
+                        'دينار',
                         style: KTextStyle.of(context)
                             .fifteen
                             .copyWith(color: KColors.mainColor),

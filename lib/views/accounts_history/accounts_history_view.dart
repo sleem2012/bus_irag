@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // import '../../../shared/api_client/endpoints.dart';
 
 import '../../shared/api_client/endpoints.dart';
+import '../../shared/constants.dart';
 import '../../shared/theme/colors.dart';
 import '../../shared/widgets/titled_container.dart';
 import 'client_accounts_list.dart';
@@ -23,7 +24,7 @@ class AccountsHistory extends StatelessWidget {
           child: Container(
             color: KColors.backgroundD,
             width: double.infinity,
-            child: isClient ? const ClientAccountsList() : const AgentAccountsList(),
+            child: Constant().isClient ? const ClientAccountsList() : const AgentAccountsList(),
           ),
         )
       ],

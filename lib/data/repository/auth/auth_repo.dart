@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import '../../../di.dart';
 import '../../../shared/api_client/dio_client_helper.dart';
 import '../../../shared/api_client/endpoints.dart';
+import '../../../shared/constants.dart';
 import '../../../shared/error/failures.dart';
 import '../../model/user_model.dart';
 
@@ -42,7 +43,7 @@ class AuthRepoImpl implements _AuthRepo {
         "password": password,
         "device_token": "561505158465",
         "device_type": Platform.isIOS ? "ios" : "android",
-        "type": isClient ? "1" : "2"
+        "type": Constant().isClient ? "1" : "2"
       },
     );
 

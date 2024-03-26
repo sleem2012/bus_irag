@@ -150,7 +150,7 @@ class LoginView extends StatelessWidget {
                         },
                       ),
                       20.h,
-                      if (isClient)
+                      if (Constant().isClient)
                         InkWell(
                           onTap: () {
                             Get.to(() => const RegisterView());

@@ -41,9 +41,11 @@ class GetManualFieldsBloc extends Cubit<GetManualFieldsState> {
   }
 
   Map<String, Parameter>? selectedParameters;
+  DynamicFieldsData? selectedData;
 
-  void selectParameters(Map<String, Parameter>? selectedParameters) {
-    this.selectedParameters = selectedParameters;
+  void selectParameters(DynamicFieldsData selected) {
+    selectedParameters = selected.parameters;
+    selectedData=selected;
     // emit(const GetManualFieldsState.loading());
     emit(GetManualFieldsState.update(key: UniqueKey()));
     // emit(const GetManualFieldsState.success());

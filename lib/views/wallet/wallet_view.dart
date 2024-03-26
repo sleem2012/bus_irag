@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import '../../logic/get_wallet_amount/get_wallet_amount_state.dart';
 import '../../shared/api_client/endpoints.dart';
+import '../../shared/constants.dart';
 import '../../shared/route/nav_helper.dart';
 import '../../shared/theme/colors.dart';
 import '../../shared/widgets/custom_button.dart';
@@ -37,39 +38,39 @@ class WalletView extends StatelessWidget {
               physics: const AlwaysScrollableScrollPhysics(),
               child: Column(
                 children: [
-                  isClient ? 130.h : 20.h,
-                  isClient
+                  Constant().isClient ? 130.h : 20.h,
+                  Constant().isClient
                       ? const ClientWalletCard()
                       : Column(
                           children: [
                             const CustomWalletCard(
                                 mainColor: KColors.purple,
                                 keyText: 'الدائن',
-                                valueText: 'IQD 2000',
+                                valueText: 'دينار 2000',
                                 image: 'assets/images/money_man.svg'),
                             10.h,
                             const CustomWalletCard(
                                 mainColor: KColors.boldGreenColor,
                                 keyText: 'المدين',
-                                valueText: 'IQD 2000',
+                                valueText: 'دينار 2000',
                                 image: 'assets/images/money_bag.svg'),
                             10.h,
                             const CustomWalletCard(
                                 mainColor: KColors.mainColor,
                                 keyText: 'رصيد الديون',
-                                valueText: 'IQD 2000',
+                                valueText: 'دينار 2000',
                                 image: 'assets/images/money_bag.svg'),
                             10.h,
                             const CustomWalletCard(
                                 mainColor: Color(0xffAA59B1),
                                 keyText: 'حد الأتمان',
-                                valueText: 'IQD 2000',
+                                valueText: 'دينار 2000',
                                 image: 'assets/images/money_man.svg'),
                             10.h,
                             const CustomWalletCard(
                                 mainColor: Color(0xffAFB159),
                                 keyText: 'الدائن',
-                                valueText: 'IQD 2000',
+                                valueText: 'دينار 2000',
                                 image: 'assets/images/svg_balance.svg'),
                           ],
                         ),
@@ -125,7 +126,7 @@ class ClientWalletCard extends StatelessWidget {
               return KRequestOverlay(
                 isLoading: state is GetWalletAmountStateLoading,
                 child: Text(
-                  "IQD $amount",
+                  "$amount دينار",
                   style: KTextStyle.of(context).fifteen,
                 ),
               );

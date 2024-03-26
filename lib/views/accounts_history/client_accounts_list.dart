@@ -90,7 +90,7 @@ class ClientAccountsHistoryCard extends StatelessWidget {
                 flex: 2,
                 child: TextRichWithIcon(
                   keyText: 'السعر:',
-                  valueText: '${history.amount ?? ''} IQD ',
+                  valueText: '${history.amount ?? ''} دينار ',
                   imagePath: 'assets/images/money_bag.png',
                 ),
               ),

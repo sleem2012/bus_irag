@@ -6,6 +6,7 @@ import 'package:get/route_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 
+import '../cache/locale_storage.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/nav.dart';
 import '../localization/trans.dart';
@@ -95,6 +96,8 @@ abstract class KHelper {
       },
     );
   }
+  // bool isClient = KStorage.i.getRole=='client';
+
 
   static Future customAwosmeDialog<T>(
       {required String title, required Function() onApproveClick}) {

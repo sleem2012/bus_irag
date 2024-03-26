@@ -1,7 +1,6 @@
 import 'package:bus_iraq2/shared/cache/locale_storage.dart';
 
 String? role = KStorage.i.getRole??'client';
-bool isClient = KStorage.i.getRole=='client';
 
 abstract class KEndPoints {
   static String baseUrl = 'https://www.bus-iraq.com/api/v1/client/';
@@ -23,3 +22,4 @@ abstract class KEndPoints {
   static String postManualFields = '${baseUrl}pocket/manual-charge';
 
 }
+

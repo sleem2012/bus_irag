@@ -121,7 +121,7 @@ class AgentAccountsList extends StatelessWidget {
 
                     child: FittedBox(
                       child: Text(
-                        "IQD 2000",
+                        "دينار 2000",
                         textAlign: TextAlign.center,
 
                         style: KTextStyle.of(context).fifteen.copyWith(color: KColors.redColor),
@@ -143,7 +143,7 @@ class AgentAccountsList extends StatelessWidget {
                     // ),
                     child: FittedBox(
                       child: Text(
-                        " IQD 200",
+                        " دينار 200",
                         textAlign: TextAlign.center,
                         style: KTextStyle.of(context).fifteen.copyWith(color: KColors.accentColor),
                       ),

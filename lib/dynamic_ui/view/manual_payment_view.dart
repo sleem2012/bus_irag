@@ -7,6 +7,7 @@ import 'package:bus_iraq2/shared/extensions.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart' hide MultipartFile;
 
 import '../../shared/localization/trans.dart';
@@ -46,11 +47,20 @@ class ManualPaymentView extends StatelessWidget {
               ),
             ],
             child: BlocConsumer<PostManualFildsBloc, PostManualFildsState>(
-              listener: (context, state) {
-                // TODO: implement listener
+              listener: (context, postState) {
+                postState.whenOrNull(
+                  success: () {
+                    KHelper.customAwosmeDialog(
+                      title: "تم ارسال طلبك",
+                      onApproveClick: () {
+                        Get.back();
+                      },
+                    );
+                  },
+                );
               },
-              builder: (context, state) {
-                final postBloc= PostManualFildsBloc.of(context);
+              builder: (context, postState) {
+                final postBloc = PostManualFildsBloc.of(context);
                 return BlocBuilder<GetManualFieldsBloc, GetManualFieldsState>(
                   builder: (context, state) {
                     final model = GetManualFieldsBloc.of(context).model?.data;
@@ -65,12 +75,11 @@ class ManualPaymentView extends StatelessWidget {
                           child: Column(
                             children: [
                               30.h,
-
                               KTextFormField(
                                 labelText: 'المبلغ',
                                 keyboardType: TextInputType.number,
                                 onChanged: (p0) {
-                                 postBloc.setAmount(p0);
+                                  postBloc.setAmount(p0);
                                 },
                                 suffixIcon: Stack(
                                   alignment: Alignment.center,
@@ -79,7 +88,7 @@ class ManualPaymentView extends StatelessWidget {
                                       imageUrl: 'assets/images/iqd.png',
                                     ),
                                     Text(
-                                      'IQD',
+                                      'دينار',
                                       style: KTextStyle.of(context)
                                           .fifteen
                                           .copyWith(color: KColors.mainColor),
@@ -101,13 +110,15 @@ class ManualPaymentView extends StatelessWidget {
                                       KHelper.of(context).circledTopContainer,
                                   title: "طريقة السحب المفضلة",
                                   onChanged: (DynamicFieldsData? p0) {
-                                    getBloc.selectParameters(p0?.parameters);
-                                    postBloc.setGateway(p0?.id??-1);
-                                    // p0?.parameters?.forEach(
-                                    //   (key, value) {
-                                    //     debugPrint("$Key" "${value.type}");
-                                    //   },
-                                    // );
+                                    getBloc.selectParameters(
+                                        p0 ?? DynamicFieldsData());
+                                    postBloc.setGateway(p0?.id ?? -1);
+                                  },
+                                  validator: (p0) {
+                                    if (p0 == null) {
+                                      return Tr.get.field_required;
+                                    }
+                                    return null;
                                   },
                                   items: model
                                           ?.map((e) => KHelper.of(context)
@@ -116,18 +127,26 @@ class ManualPaymentView extends StatelessWidget {
                                                   value: e))
                                           .toList() ??
                                       []),
+                              20.h,
+                              HtmlWidget(
+                                getBloc.selectedData?.description ?? '',
+                                textStyle: KTextStyle.of(context)
+                                    .ten
+                                    .copyWith(color: KColors.mainColor),
+                              ),
                               40.h,
                               ...?getBloc.selectedParameters?.entries.map((e) {
                                 final type = e.value.type;
                                 return Padding(
-                                  padding: EdgeInsets.only(bottom: 20),
+                                  padding: const EdgeInsets.only(bottom: 20),
                                   child: type?.when(
                                         textField: () => KTextFormField(
                                           // width: Get.width * .75,
                                           // textFiledHieght: Get.height * .045,
                                           // controller: nameController,
                                           onChanged: (p0) {
-                                            postBloc.addText({"${e.value.fieldName}":p0});
+                                            postBloc.addText(
+                                                {"${e.value.fieldName}": p0});
                                           },
                                           decoration: InputDecoration(
                                             suffixIcon: const Icon(
@@ -174,14 +193,22 @@ class ManualPaymentView extends StatelessWidget {
                                         dateTimePiker: () => const SizedBox(),
                                         dropDownButton: () => const SizedBox(),
                                         fileInput: () => FilePickerWidget(
-                                          onSelect: (File? s) async{
-                                            final file=  MultipartFile.fromFileSync(s?.path??'', filename: s?.path.split('/').last);
-                                            postBloc.addFile({"${e.value.fieldName}":"$file"});
+                                          onSelect: (File? s) async {
+                                            final file =
+                                                MultipartFile.fromFileSync(
+                                                    s?.path ?? '',
+                                                    filename: s?.path
+                                                        .split('/')
+                                                        .last);
+                                            postBloc.addFile({
+                                              "${e.value.fieldName}": "$file"
+                                            });
                                           },
                                           title: e.value.fieldLevel ?? '',
                                           validator: (p0) {
-                                            if (e.value.validation ==
-                                                'required') {
+                                            if (p0 == null &&
+                                                e.value.validation ==
+                                                    'required') {
                                               return Tr.get.field_required;
                                             }
                                             return null;
@@ -193,24 +220,24 @@ class ManualPaymentView extends StatelessWidget {
                                       const SizedBox(),
                                 );
                               }),
-                              60.h,
+                              40.h,
                               Padding(
                                 padding:
                                     EdgeInsets.only(bottom: Get.height * .2),
                                 child: KButton(
                                   title: "تأكيد",
                                   onPressed: () {
-                                    // if (formKey.currentState!.validate()) {
-                                    //   formKey.currentState!.save();
-                                    // }
-                                    debugPrint(postBloc.json.toString());
+                                    if (formKey.currentState!.validate()) {
+                                      debugPrint(postBloc.json.toString());
 
-                                    postBloc.post();
+                                      postBloc.post();
+                                    }
                                   },
+                                  isLoading:
+                                      postState is PostManualFildsStateLoading,
                                   kFillColor: KColors.mainColor,
                                   textColor: KColors.whiteColor,
                                   hieght: 55,
-                                  // bordrerRadius: 34,
                                   width: Get.width * .7,
                                 ),
                               ),

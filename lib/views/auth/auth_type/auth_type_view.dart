@@ -1,3 +1,4 @@
+import 'package:bus_iraq2/shared/api_client/endpoints.dart';
 import 'package:bus_iraq2/shared/cache/locale_storage.dart';
 import 'package:bus_iraq2/shared/extensions.dart';
 import 'package:bus_iraq2/shared/widgets/custom_button.dart';
@@ -72,6 +73,7 @@ class AuthTypeView extends StatelessWidget {
 
   void setUserRole(String userRole) {
     Get.to(() => const LoginView());
+    debugPrint(role);
     KStorage.i.setRole(userRole);
   }
 }

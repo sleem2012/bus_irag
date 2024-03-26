@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 import '../../data/model/get_ticket_model.dart';
 import '../../logic/get_ticket/get_ticket_state.dart';
 import '../../shared/api_client/endpoints.dart';
+import '../../shared/constants.dart';
 import '../../shared/small_button.dart';
 import '../../shared/theme/colors.dart';
 import '../../shared/theme/helper.dart';
@@ -157,14 +158,14 @@ class ReservationHistoryCard extends StatelessWidget {
                 keyText: "مبلغ الحجز",
                 valueText: "${double.parse(ticket.subTotal ?? '0')} دينار",
               ),
-              (!isClient)
+              (!Constant().isClient)
                   ? const NameWithIcon(
                       iconPath: "assets/images/money_bag.png",
                       keyText: "مبلغ التسديد",
                       valueText: "200 دينار",
                     )
                   : const Spacer(),
-              if (!isClient)
+              if (!Constant().isClient)
                 const NameWithIcon(
                   iconPath: "assets/images/commision.png",
                   keyText: "عمولة الوكيل",
