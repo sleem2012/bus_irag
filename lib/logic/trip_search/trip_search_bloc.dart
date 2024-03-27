@@ -1,3 +1,4 @@
+import 'package:bus_iraq2/data/model/fleet_type_model.dart';
 import 'package:bus_iraq2/data/repository/direct_trip/direct_trip_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,7 +58,6 @@ class TripSearchBloc extends Cubit<TripSearchState> {
     emit(const TripSearchState.loading());
     emit(const TripSearchState.initial());
     emit(const TripSearchState.selected());
-
   }
 
   String? travelType;
@@ -77,14 +77,12 @@ class TripSearchBloc extends Cubit<TripSearchState> {
     sentModel = sentModel.copyWith(backDate: date);
   }
 
-  void setFleetType(String type) {
-    sentModel = sentModel.copyWith(fleetType: type);
+  int? numberDecks;
+
+  void setFleetType(FleetTypeData type) {
+    sentModel = sentModel.copyWith(fleetType: type.id.toString());
+    numberDecks = type.numberDecks;
   }
 
-
   int selected = 0;
-
-  // clear(){
-  //   travelType=='go';
-  // }
 }

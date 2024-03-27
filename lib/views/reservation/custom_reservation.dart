@@ -141,15 +141,15 @@ class CustomReservation extends StatelessWidget {
                               },
                             ),
                             if (searchBloc.travelType == 'back')
-                            DateContainer(
-                              firstTextColor: KColors.greenColor,
-                              secondTextColor: KColors.greenColor,
-                              firstContainerColor: KColors.lightGreen,
-                              title: 'تاريخ العودة',
-                              onPressed: (String value) {
-                                searchBloc.setReturnDate(value);
-                              },
-                            ),
+                              DateContainer(
+                                firstTextColor: KColors.greenColor,
+                                secondTextColor: KColors.greenColor,
+                                firstContainerColor: KColors.lightGreen,
+                                title: 'تاريخ العودة',
+                                onPressed: (String value) {
+                                  searchBloc.setReturnDate(value);
+                                },
+                              ),
                           ],
                         ),
                         29.h,
@@ -173,12 +173,14 @@ class CustomReservation extends StatelessWidget {
                                           : "نوع المركبة",
                                       onChanged: (p0) {
                                         searchBloc.setFleetType(
-                                            p0?.id.toString() ?? '');
+                                            p0 ?? FleetTypeData());
                                       },
                                       items: fleet
                                               ?.map((e) => KHelper.of(context)
                                                   .itemView(
-                                                      itemText: e.name ?? '',
+                                                      itemText:
+                                                          "${e.name}     عدد الركاب ${e.numberDecks}     السعر ${e.amount}" ??
+                                                              '',
                                                       value: e))
                                               .toList() ??
                                           [],

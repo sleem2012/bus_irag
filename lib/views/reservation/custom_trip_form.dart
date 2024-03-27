@@ -11,6 +11,7 @@ import 'package:bus_iraq2/shared/widgets/text_field.dart';
 import 'package:bus_iraq2/views/auth/widget/phone_form.dart';
 import 'package:bus_iraq2/views/reservation/widget/passenger_info_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -57,6 +58,10 @@ class _CustomTripFormState extends State<CustomTripForm> {
             },
             builder: (context, state) {
               final book = BookCustomTripBloc.of(context);
+              final decksNumber = TripSearchBloc.of(context).numberDecks;
+              debugPrint(decksNumber.toString());
+              final _numberInputFormatter = FilteringTextInputFormatter.allow(RegExp('^[1-$decksNumber]\$'));
+
               return Expanded(
                 child: Container(
                     color: KColors.backgroundD,
@@ -95,6 +100,7 @@ class _CustomTripFormState extends State<CustomTripForm> {
                               keyboardType: TextInputType.number,
                               controller: book.passNumberController,
                               width: Get.width * .5,
+                              formatter: [_numberInputFormatter],
                               onChanged: (String p0) {
                                 book.namesControllerList.clear();
                                 book.phoneControllerList.clear();
