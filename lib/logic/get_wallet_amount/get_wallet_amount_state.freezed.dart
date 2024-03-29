@@ -20,7 +20,7 @@ mixin _$GetWalletAmountState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String model) success,
+    required TResult Function(WalletAmountModel model) success,
     required TResult Function(KFailure error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$GetWalletAmountState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String model)? success,
+    TResult? Function(WalletAmountModel model)? success,
     TResult? Function(KFailure error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$GetWalletAmountState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String model)? success,
+    TResult Function(WalletAmountModel model)? success,
     TResult Function(KFailure error)? error,
     required TResult orElse(),
   }) =>
@@ -131,7 +131,7 @@ class _$GetWalletAmountStateInitial implements GetWalletAmountStateInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String model) success,
+    required TResult Function(WalletAmountModel model) success,
     required TResult Function(KFailure error) error,
   }) {
     return initial();
@@ -142,7 +142,7 @@ class _$GetWalletAmountStateInitial implements GetWalletAmountStateInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String model)? success,
+    TResult? Function(WalletAmountModel model)? success,
     TResult? Function(KFailure error)? error,
   }) {
     return initial?.call();
@@ -153,7 +153,7 @@ class _$GetWalletAmountStateInitial implements GetWalletAmountStateInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String model)? success,
+    TResult Function(WalletAmountModel model)? success,
     TResult Function(KFailure error)? error,
     required TResult orElse(),
   }) {
@@ -249,7 +249,7 @@ class _$GetWalletAmountStateLoading implements GetWalletAmountStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String model) success,
+    required TResult Function(WalletAmountModel model) success,
     required TResult Function(KFailure error) error,
   }) {
     return loading();
@@ -260,7 +260,7 @@ class _$GetWalletAmountStateLoading implements GetWalletAmountStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String model)? success,
+    TResult? Function(WalletAmountModel model)? success,
     TResult? Function(KFailure error)? error,
   }) {
     return loading?.call();
@@ -271,7 +271,7 @@ class _$GetWalletAmountStateLoading implements GetWalletAmountStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String model)? success,
+    TResult Function(WalletAmountModel model)? success,
     TResult Function(KFailure error)? error,
     required TResult orElse(),
   }) {
@@ -330,7 +330,7 @@ abstract class _$$GetWalletAmountStateSuccessCopyWith<$Res> {
           $Res Function(_$GetWalletAmountStateSuccess) then) =
       __$$GetWalletAmountStateSuccessCopyWithImpl<$Res>;
   @useResult
-  $Res call({String model});
+  $Res call({WalletAmountModel model});
 }
 
 /// @nodoc
@@ -352,7 +352,7 @@ class __$$GetWalletAmountStateSuccessCopyWithImpl<$Res>
       model: null == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
-              as String,
+              as WalletAmountModel,
     ));
   }
 }
@@ -363,7 +363,7 @@ class _$GetWalletAmountStateSuccess implements GetWalletAmountStateSuccess {
   const _$GetWalletAmountStateSuccess({required this.model});
 
   @override
-  final String model;
+  final WalletAmountModel model;
 
   @override
   String toString() {
@@ -393,7 +393,7 @@ class _$GetWalletAmountStateSuccess implements GetWalletAmountStateSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String model) success,
+    required TResult Function(WalletAmountModel model) success,
     required TResult Function(KFailure error) error,
   }) {
     return success(model);
@@ -404,7 +404,7 @@ class _$GetWalletAmountStateSuccess implements GetWalletAmountStateSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String model)? success,
+    TResult? Function(WalletAmountModel model)? success,
     TResult? Function(KFailure error)? error,
   }) {
     return success?.call(model);
@@ -415,7 +415,7 @@ class _$GetWalletAmountStateSuccess implements GetWalletAmountStateSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String model)? success,
+    TResult Function(WalletAmountModel model)? success,
     TResult Function(KFailure error)? error,
     required TResult orElse(),
   }) {
@@ -464,10 +464,10 @@ class _$GetWalletAmountStateSuccess implements GetWalletAmountStateSuccess {
 }
 
 abstract class GetWalletAmountStateSuccess implements GetWalletAmountState {
-  const factory GetWalletAmountStateSuccess({required final String model}) =
-      _$GetWalletAmountStateSuccess;
+  const factory GetWalletAmountStateSuccess(
+      {required final WalletAmountModel model}) = _$GetWalletAmountStateSuccess;
 
-  String get model;
+  WalletAmountModel get model;
   @JsonKey(ignore: true)
   _$$GetWalletAmountStateSuccessCopyWith<_$GetWalletAmountStateSuccess>
       get copyWith => throw _privateConstructorUsedError;
@@ -552,7 +552,7 @@ class _$GetWalletAmountStateError implements GetWalletAmountStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String model) success,
+    required TResult Function(WalletAmountModel model) success,
     required TResult Function(KFailure error) error,
   }) {
     return error(this.error);
@@ -563,7 +563,7 @@ class _$GetWalletAmountStateError implements GetWalletAmountStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String model)? success,
+    TResult? Function(WalletAmountModel model)? success,
     TResult? Function(KFailure error)? error,
   }) {
     return error?.call(this.error);
@@ -574,7 +574,7 @@ class _$GetWalletAmountStateError implements GetWalletAmountStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String model)? success,
+    TResult Function(WalletAmountModel model)? success,
     TResult Function(KFailure error)? error,
     required TResult orElse(),
   }) {

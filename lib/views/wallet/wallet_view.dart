@@ -37,42 +37,39 @@ class WalletView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               physics: const AlwaysScrollableScrollPhysics(),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Constant().isClient ? 130.h : 20.h,
                   Constant().isClient
                       ? const ClientWalletCard()
-                      : Column(
-                          children: [
-                            const CustomWalletCard(
-                                mainColor: KColors.purple,
-                                keyText: 'الدائن',
-                                valueText: 'دينار 2000',
-                                image: 'assets/images/money_man.svg'),
-                            10.h,
-                            const CustomWalletCard(
-                                mainColor: KColors.boldGreenColor,
-                                keyText: 'المدين',
-                                valueText: 'دينار 2000',
-                                image: 'assets/images/money_bag.svg'),
-                            10.h,
-                            const CustomWalletCard(
-                                mainColor: KColors.mainColor,
-                                keyText: 'رصيد الديون',
-                                valueText: 'دينار 2000',
-                                image: 'assets/images/money_bag.svg'),
-                            10.h,
-                            const CustomWalletCard(
-                                mainColor: Color(0xffAA59B1),
-                                keyText: 'حد الأتمان',
-                                valueText: 'دينار 2000',
-                                image: 'assets/images/money_man.svg'),
-                            10.h,
-                            const CustomWalletCard(
-                                mainColor: Color(0xffAFB159),
-                                keyText: 'الدائن',
-                                valueText: 'دينار 2000',
-                                image: 'assets/images/svg_balance.svg'),
-                          ],
+                      : BlocBuilder<GetWalletAmountBloc, GetWalletAmountState>(
+                          builder: (context, state) {
+                            final amount = state.whenOrNull(
+                              success: (model) => model.data,
+                            );
+                            return Column(
+                              children: [
+                                10.h,
+                                 CustomWalletCard(
+                                    mainColor: KColors.mainColor,
+                                    keyText: 'رصيد الديون',
+                                    valueText: ' ${amount?.debtBalance} دينار',
+                                    image: 'assets/images/money_bag.svg'),
+                                10.h,
+                                 CustomWalletCard(
+                                    mainColor: const Color(0xffAA59B1),
+                                    keyText: 'حد الأتمان',
+                                    valueText: ' ${amount?.creditLimit} دينار',
+                                    image: 'assets/images/money_man.svg'),
+                                10.h,
+                                 CustomWalletCard(
+                                    mainColor: const Color(0xffAFB159),
+                                    keyText: 'الدائن',
+                                    valueText: ' ${amount?.amount} دينار',
+                                    image: 'assets/images/svg_balance.svg'),
+                              ],
+                            );
+                          },
                         ),
                   20.h,
                   Padding(
@@ -121,12 +118,12 @@ class ClientWalletCard extends StatelessWidget {
           BlocBuilder<GetWalletAmountBloc, GetWalletAmountState>(
             builder: (context, state) {
               final amount = state.whenOrNull(
-                success: (model) => model,
+                success: (model) => model.data,
               );
               return KRequestOverlay(
                 isLoading: state is GetWalletAmountStateLoading,
                 child: Text(
-                  "$amount دينار",
+                  "${amount?.amount} دينار",
                   style: KTextStyle.of(context).fifteen,
                 ),
               );
