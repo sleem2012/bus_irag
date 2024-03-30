@@ -4,6 +4,7 @@ import 'package:bus_iraq2/shared/extensions.dart';
 import 'package:bus_iraq2/shared/theme/text_theme.dart';
 import 'package:bus_iraq2/shared/widgets/flux_image.dart';
 import 'package:bus_iraq2/shared/widgets/loading/loading_overlay.dart';
+import 'package:bus_iraq2/shared/widgets/shimmer_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -47,27 +48,31 @@ class WalletView extends StatelessWidget {
                             final amount = state.whenOrNull(
                               success: (model) => model.data,
                             );
-                            return Column(
-                              children: [
-                                10.h,
-                                 CustomWalletCard(
-                                    mainColor: KColors.mainColor,
-                                    keyText: 'رصيد الديون',
-                                    valueText: ' ${amount?.debtBalance} دينار',
-                                    image: 'assets/images/money_bag.svg'),
-                                10.h,
-                                 CustomWalletCard(
-                                    mainColor: const Color(0xffAA59B1),
-                                    keyText: 'حد الأتمان',
-                                    valueText: ' ${amount?.creditLimit} دينار',
-                                    image: 'assets/images/money_man.svg'),
-                                10.h,
-                                 CustomWalletCard(
-                                    mainColor: const Color(0xffAFB159),
-                                    keyText: 'الدائن',
-                                    valueText: ' ${amount?.amount} دينار',
-                                    image: 'assets/images/svg_balance.svg'),
-                              ],
+                            return KRequestOverlay(
+                              isLoading: state is GetWalletAmountStateLoading,
+                              // loadingWidget: ShimmerList(),
+                              child: Column(
+                                children: [
+                                  10.h,
+                                   CustomWalletCard(
+                                      mainColor: KColors.mainColor,
+                                      keyText: 'رصيد الديون',
+                                      valueText: ' ${amount?.debtBalance} دينار',
+                                      image: 'assets/images/money_bag.svg'),
+                                  10.h,
+                                   CustomWalletCard(
+                                      mainColor: const Color(0xffAA59B1),
+                                      keyText: 'حد الأتمان',
+                                      valueText: ' ${amount?.creditLimit} دينار',
+                                      image: 'assets/images/money_man.svg'),
+                                  10.h,
+                                   CustomWalletCard(
+                                      mainColor: const Color(0xffAFB159),
+                                      keyText: 'الدائن',
+                                      valueText: ' ${amount?.amount} دينار',
+                                      image: 'assets/images/svg_balance.svg'),
+                                ],
+                              ),
                             );
                           },
                         ),

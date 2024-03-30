@@ -44,25 +44,40 @@ class InnerAccountData {
   int? userId;
   String? route;
   int? passengerNumbers;
+  String? passengerPhone;
+  String? passengerName;
   int? amount;
+  int? creditor;
+  int? debtor;
+  int? total;
   String? type;
   String? createdAt;
 
   InnerAccountData(
       {this.id,
-      this.userId,
-      this.route,
-      this.passengerNumbers,
-      this.amount,
-      this.type,
-      this.createdAt});
+        this.userId,
+        this.route,
+        this.passengerNumbers,
+        this.passengerPhone,
+        this.passengerName,
+        this.amount,
+        this.creditor,
+        this.debtor,
+        this.total,
+        this.type,
+        this.createdAt});
 
   InnerAccountData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId = json['user_id'];
     route = json['route'];
     passengerNumbers = json['passenger_numbers'];
+    passengerPhone = json['passenger_phone'];
+    passengerName = json['passenger_name'];
     amount = json['amount'];
+    creditor = json['creditor'];
+    debtor = json['debtor'];
+    total = json['total'];
     type = json['type'];
     createdAt = json['created_at'];
   }
@@ -73,9 +88,17 @@ class InnerAccountData {
     data['user_id'] = userId;
     data['route'] = route;
     data['passenger_numbers'] = passengerNumbers;
+    data['passenger_phone'] = passengerPhone;
+    data['passenger_name'] = passengerName;
     data['amount'] = amount;
+    data['creditor'] = creditor;
+    data['debtor'] = debtor;
+    data['total'] = total;
     data['type'] = type;
     data['created_at'] = createdAt;
     return data;
   }
 }
+
+
+
