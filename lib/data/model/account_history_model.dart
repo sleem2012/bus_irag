@@ -46,10 +46,10 @@ class InnerAccountData {
   int? passengerNumbers;
   String? passengerPhone;
   String? passengerName;
-  int? amount;
-  int? creditor;
-  int? debtor;
-  int? total;
+  num? amount;
+  num? creditor;
+  num? debtor;
+  num? total;
   String? type;
   String? createdAt;
 

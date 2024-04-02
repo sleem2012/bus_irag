@@ -14,6 +14,7 @@ import '../../logic/main_view/main_view_bloc.dart';
 import '../../shared/localization/trans.dart';
 import '../../shared/theme/colors.dart';
 import '../accounts_history/accounts_history_view.dart';
+import '../notification/notification_view.dart';
 import '../reservation/available_trips.dart';
 import '../reservation/custom_reservation.dart';
 import '../reservation/custom_trip_form.dart';
@@ -80,19 +81,20 @@ class MainNavPages extends StatelessWidget {
               body: PageView(
                 controller: MainViewBloc.of(context).pageCtrl,
                 physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  const HomeView(),
-                  const ReservationHistory(),
-                  const AccountsHistory(),
-                  Container(),
-                  const DirectReservation(), //direct reserve
-                  const AvailableTrips(),
-                  const BookDirectTripView(),
-                  const CustomReservation(),
-                  const CustomTripForm(),
-                  const WalletView(),
-                  const AddMoneyView(),
-                  const ManualPaymentView()
+                children: const [
+                  HomeView(),
+                  ReservationHistory(),
+                  AccountsHistory(),
+                  NotificationView(),
+                  DirectReservation(), //direct reserve
+                  AvailableTrips(),
+                  BookDirectTripView(),
+                  CustomReservation(),
+                  CustomTripForm(),
+                  WalletView(),
+                  // const AddMoneyView(),
+                  ManualPaymentView(),
+                  ManualPaymentView()
                 ],
               ),
               bottomNavigationBar: AnimatedBottomNavigationBar.builder(

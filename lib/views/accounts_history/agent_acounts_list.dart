@@ -38,27 +38,31 @@ class AgentAccountsList extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     CustomTextRich(
+                    CustomTextRich(
                       keyText: 'نوع الحركة: ',
-                      valueText: processType.firstWhereOrNull((element) => element['id']==history?[index].type)?['name']??'',
+                      valueText: processType.firstWhereOrNull((element) =>
+                              element['id'] == history?[index].type)?['name'] ??
+                          '',
                     ),
-                    12.h,
-                     CustomTextRich(
+                    if (history?[index].passengerPhone != null)  ...[ 12.h,
+                    CustomTextRich(
                       keyText: 'رقم: ',
-                      valueText: history?[index].passengerPhone??'',
-                    ),
-                    12.h,
-                     CustomTextRich(
-                      keyText: 'اسم المسافر: ',
-                      valueText: history?[index].passengerName??'' ,
-                    ),
+                      valueText: history?[index].passengerPhone ?? '',
+                    ),],
+                    if (history?[index].passengerName != null) ...[
+                      12.h,
+                      CustomTextRich(
+                        keyText: 'اسم المسافر: ',
+                        valueText: history?[index].passengerName ?? '',
+                      ),
+                    ],
                     16.h,
                     Row(
                       children: [
                         Expanded(
                           flex: 1,
                           child: Container(
-                            padding: EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(10),
                             height: 40,
                             color: KColors.redColor,
                             child: Row(
@@ -128,7 +132,7 @@ class AgentAccountsList extends StatelessWidget {
                             color: KColors.redColor.withOpacity(.13),
                             child: FittedBox(
                               child: Text(
-                                "${history?[index].debtor??''} دينار",
+                                "${history?[index].debtor ?? ''} دينار",
                                 textAlign: TextAlign.center,
                                 style: KTextStyle.of(context)
                                     .fifteen
@@ -150,7 +154,7 @@ class AgentAccountsList extends StatelessWidget {
                             // ),
                             child: FittedBox(
                               child: Text(
-                                "${history?[index].creditor??''} دينار",
+                                "${history?[index].creditor ?? ''} دينار",
                                 textAlign: TextAlign.center,
                                 style: KTextStyle.of(context)
                                     .fifteen
@@ -162,7 +166,7 @@ class AgentAccountsList extends StatelessWidget {
                         Expanded(
                           flex: 1,
                           child: Container(
-                            padding: EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(10),
                             color: KColors.greenColor.withOpacity(.21),
                             height: 40,
 
@@ -171,7 +175,7 @@ class AgentAccountsList extends StatelessWidget {
                             // ),
                             child: FittedBox(
                               child: Text(
-                                "${history?[index].total??''} دينار",
+                                "${history?[index].total ?? ''} دينار",
                                 textAlign: TextAlign.center,
                                 style: KTextStyle.of(context)
                                     .fifteen
@@ -190,7 +194,7 @@ class AgentAccountsList extends StatelessWidget {
                   height: 20,
                 );
               },
-              itemCount: history?.length??0,
+              itemCount: history?.length ?? 0,
             ),
           ),
         );
@@ -229,14 +233,13 @@ class CustomTextRich extends StatelessWidget {
   }
 }
 
-
-List<Map<String,dynamic>>processType=[
+List<Map<String, dynamic>> processType = [
   {
     "id": "1",
     "name": "حجز تذكره",
   },
   {
     "id": "2",
-    "name": "سحب تذكره",
+    "name": "الغاء الحجز",
   },
 ];

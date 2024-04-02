@@ -2,6 +2,7 @@ import 'package:bus_iraq2/di.dart';
 import 'package:bus_iraq2/logic/book_custom_trip/book_custom_trip_bloc.dart';
 import 'package:bus_iraq2/logic/book_custom_trip/book_custom_trip_bloc.dart';
 import 'package:bus_iraq2/logic/trip_search/trip_search_bloc.dart';
+import 'package:bus_iraq2/shared/constants.dart';
 import 'package:bus_iraq2/shared/extensions.dart';
 import 'package:bus_iraq2/shared/route/nav_helper.dart';
 import 'package:bus_iraq2/shared/theme/helper.dart';
@@ -20,6 +21,7 @@ import '../../logic/book_custom_trip/book_custom_trip_state.dart';
 import '../../logic/get_ticket/get_ticket_bloc.dart';
 import '../../shared/localization/trans.dart';
 import '../../shared/theme/colors.dart';
+import '../../shared/widgets/drop_down.dart';
 import '../../shared/widgets/selectable_container.dart';
 import '../../shared/widgets/titled_container.dart';
 
@@ -60,7 +62,8 @@ class _CustomTripFormState extends State<CustomTripForm> {
               final book = BookCustomTripBloc.of(context);
               final decksNumber = TripSearchBloc.of(context).numberDecks;
               debugPrint(decksNumber.toString());
-              final _numberInputFormatter = FilteringTextInputFormatter.allow(RegExp('^[1-$decksNumber]\$'));
+              final _numberInputFormatter = FilteringTextInputFormatter.allow(
+                  RegExp('^[1-$decksNumber]\$'));
 
               return Expanded(
                 child: Container(
@@ -94,6 +97,66 @@ class _CustomTripFormState extends State<CustomTripForm> {
                                 book.dialCode = c?.dialCode ?? '';
                               },
                             ),
+                            if (!Constant().isClient) ...[
+                              10.h,
+                              KTextFormField(
+                                labelText: "اقرب نقطة دالة",
+                                controller: book.nearPointController,
+                                suffixIcon: const Icon(Icons.location_on),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return Tr.get.field_required;
+                                  }
+                                  return null;
+                                },
+                              ),
+                              10.h,
+                              // Row(
+                              //   children: [
+                              //     Expanded(
+                              //       flex: 2,
+                              //       child: KDropdownBtn(
+                              //         // validator: (values) {
+                              //         //   if (values == null) {
+                              //         //     return "الحقل مطلوب";
+                              //         //   } else {
+                              //         //     return null;
+                              //         //   }
+                              //         // },
+                              //         title: "المحافظة",
+                              //         onChanged: (p0) {
+                              //           // searchBloc.setPickupDirection(
+                              //           //     p0?.id.toString() ?? '');
+                              //         },
+                              //         items: [],
+                              //         hintColor: KColors.mainColor,
+                              //       ),
+                              //     ),
+                              //     const Spacer(
+                              //       flex: 1,
+                              //     ),
+                              //     Expanded(
+                              //       flex: 2,
+                              //       child: KDropdownBtn(
+                              //         // validator: (values) {
+                              //         //   if (values == null) {
+                              //         //     return "الحقل مطلوب";
+                              //         //   } else {
+                              //         //     return null;
+                              //         //   }
+                              //         // },
+                              //         title: "المدينه",
+                              //         onChanged: (p0) {
+                              //           // searchBloc.setPickupDirection(
+                              //           //     p0?.id.toString() ?? '');
+                              //         },
+                              //         items: const [],
+                              //         hintColor: KColors.mainColor,
+                              //       ),
+                              //     ),
+                              //   ],
+                              // )
+                            ],
                             10.h,
                             KTextFormField(
                               labelText: "عدد الركاب",

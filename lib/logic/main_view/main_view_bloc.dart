@@ -21,12 +21,12 @@ class MainViewBloc extends Cubit<MainViewState> {
 
   void navTaped(int page) {
     if (page != pageCtrl.page?.toInt()) {
-      // pageCtrl.jumpToPage(page);
+      pageCtrl.jumpToPage(page);
       index = page;
 
-      pageCtrl.animateToPage(page,
-          duration: const Duration(milliseconds: 450),
-          curve: Curves.decelerate);
+      // pageCtrl.animateToPage(page,
+      //     duration: const Duration(milliseconds: 450),
+      //     curve: Curves.decelerate);
     }
     emit(MainViewState(index: page));
   }

@@ -30,7 +30,7 @@ class LoginBloc extends Cubit<LoginState> {
       result.fold(
         (l) {
           emit(LoginState.error(failure: l));
-          debugPrint('================= Login (Bloc): Failed => $l ');
+          debugPrint('================= Login (Bloc): Failed => ${KFailure.toError(l)} ');
 
         },
         (r) {

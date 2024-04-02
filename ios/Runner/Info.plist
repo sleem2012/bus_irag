@@ -14,8 +14,14 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>bus_iraq2</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>This app needs access to Gallery to change profile picture.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>This app needs access to Camera to take pictures to use as a profile picture.</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>this application needs access to the microphone to record audio </string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>

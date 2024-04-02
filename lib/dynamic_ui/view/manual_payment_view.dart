@@ -18,6 +18,7 @@ import '../../shared/widgets/custom_button.dart';
 import '../../shared/widgets/drop_down.dart';
 import '../../shared/widgets/file_picker_widget.dart';
 import '../../shared/widgets/flux_image.dart';
+import '../../shared/widgets/pick_image_widget.dart';
 import '../../shared/widgets/text_field.dart';
 import '../../shared/widgets/titled_container.dart';
 import '../data/model/fields_model.dart';
@@ -104,10 +105,10 @@ class ManualPaymentView extends StatelessWidget {
                               ),
                               20.h,
                               KDropdownBtn<DynamicFieldsData>(
-                                  // minHeight: Get.height * .038,
+                                // minHeight: Get.height * .038,
                                   hintColor: KColors.mainColor.withOpacity(.40),
                                   btnDecoration:
-                                      KHelper.of(context).circledTopContainer,
+                                  KHelper.of(context).circledTopContainer,
                                   title: "طريقة السحب المفضلة",
                                   onChanged: (DynamicFieldsData? p0) {
                                     getBloc.selectParameters(
@@ -121,11 +122,11 @@ class ManualPaymentView extends StatelessWidget {
                                     return null;
                                   },
                                   items: model
-                                          ?.map((e) => KHelper.of(context)
-                                              .itemView(
-                                                  itemText: e.name ?? '',
-                                                  value: e))
-                                          .toList() ??
+                                      ?.map((e) => KHelper.of(context)
+                                      .itemView(
+                                      itemText: e.name ?? '',
+                                      value: e))
+                                      .toList() ??
                                       []),
                               20.h,
                               HtmlWidget(
@@ -140,90 +141,90 @@ class ManualPaymentView extends StatelessWidget {
                                 return Padding(
                                   padding: const EdgeInsets.only(bottom: 20),
                                   child: type?.when(
-                                        textField: () => KTextFormField(
-                                          // width: Get.width * .75,
-                                          // textFiledHieght: Get.height * .045,
-                                          // controller: nameController,
-                                          onChanged: (p0) {
-                                            postBloc.addText(
-                                                {"${e.value.fieldName}": p0});
-                                          },
-                                          decoration: InputDecoration(
-                                            suffixIcon: const Icon(
-                                              Icons.person_outline,
-                                              color: KColors.mainColor,
-                                            ),
-                                            fillColor: KColors.whiteColor,
-                                            filled: true,
-                                            hintStyle: KTextStyle.of(context)
-                                                .ten
-                                                .copyWith(
-                                                    color: KColors.mainColor
-                                                        .withOpacity(.5)),
-                                            contentPadding:
-                                                const EdgeInsets.only(
-                                                    right: 15),
-                                            hintText: e.value.fieldLevel,
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey
-                                                      .withOpacity(.5)),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                                borderSide: BorderSide(
-                                                    color: KColors.mainColor
-                                                        .withOpacity(.5))),
-                                          ),
+                                    textField: () => KTextFormField(
+                                      // width: Get.width * .75,
+                                      // textFiledHieght: Get.height * .045,
+                                      // controller: nameController,
+                                      onChanged: (p0) {
+                                        postBloc.addText(
+                                            {"${e.value.fieldName}": p0});
+                                      },
+                                      decoration: InputDecoration(
+                                        suffixIcon: const Icon(
+                                          Icons.person_outline,
+                                          color: KColors.mainColor,
+                                        ),
+                                        fillColor: KColors.whiteColor,
+                                        filled: true,
+                                        hintStyle: KTextStyle.of(context)
+                                            .ten
+                                            .copyWith(
+                                            color: KColors.mainColor
+                                                .withOpacity(.5)),
+                                        contentPadding:
+                                        const EdgeInsets.only(
+                                            right: 15),
+                                        hintText: e.value.fieldLevel,
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(8),
+                                          borderSide: BorderSide(
+                                              color: Colors.grey
+                                                  .withOpacity(.5)),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(8),
+                                            borderSide: BorderSide(
+                                                color: KColors.mainColor
+                                                    .withOpacity(.5))),
+                                      ),
 
-                                          keyboardType: TextInputType.name,
-                                          validator: (p0) {
-                                            if (p0!.isEmpty &&
-                                                e.value.validation ==
-                                                    'required') {
-                                              return Tr.get.field_required;
-                                            }
-                                            return null;
-                                          },
-                                        ),
-                                        checkbox: () => const SizedBox(),
-                                        dateTimePiker: () => const SizedBox(),
-                                        dropDownButton: () => const SizedBox(),
-                                        fileInput: () => FilePickerWidget(
-                                          onSelect: (File? s) async {
-                                            final file =
-                                                MultipartFile.fromFileSync(
-                                                    s?.path ?? '',
-                                                    filename: s?.path
-                                                        .split('/')
-                                                        .last);
-                                            postBloc.addFile({
-                                              "${e.value.fieldName}": "$file"
-                                            });
-                                          },
-                                          title: e.value.fieldLevel ?? '',
-                                          validator: (p0) {
-                                            if (p0 == null &&
-                                                e.value.validation ==
-                                                    'required') {
-                                              return Tr.get.field_required;
-                                            }
-                                            return null;
-                                          },
-                                        ),
-                                        imageInput: () => const SizedBox(),
-                                        radioButton: () => const SizedBox(),
-                                      ) ??
+                                      keyboardType: TextInputType.name,
+                                      validator: (p0) {
+                                        if (p0!.isEmpty &&
+                                            e.value.validation ==
+                                                'required') {
+                                          return Tr.get.field_required;
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    checkbox: () => const SizedBox(),
+                                    dateTimePiker: () => const SizedBox(),
+                                    dropDownButton: () => const SizedBox(),
+                                    fileInput: () => PickProImageWidget(
+                                      onSelect: (File? s) async {
+                                        final file =
+                                        MultipartFile.fromFileSync(
+                                          s!.path,
+                                          filename:
+                                          "getImageName(profilePicture)",
+                                        );
+
+                                        // debugPrint(file.headers.toString()+"شسيسشيس");
+                                        postBloc.addFile(file: file, filedName: e.value.fieldName??'');
+                                      },
+                                      title: e.value.fieldLevel ?? '',
+                                      validator: (p0) {
+                                        if (p0 == null &&
+                                            e.value.validation ==
+                                                'required') {
+                                          return Tr.get.field_required;
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    imageInput: () => const SizedBox(),
+                                    radioButton: () => const SizedBox(),
+                                  ) ??
                                       const SizedBox(),
                                 );
                               }),
                               40.h,
                               Padding(
                                 padding:
-                                    EdgeInsets.only(bottom: Get.height * .2),
+                                EdgeInsets.only(bottom: Get.height * .2),
                                 child: KButton(
                                   title: "تأكيد",
                                   onPressed: () {
@@ -234,7 +235,7 @@ class ManualPaymentView extends StatelessWidget {
                                     }
                                   },
                                   isLoading:
-                                      postState is PostManualFildsStateLoading,
+                                  postState is PostManualFildsStateLoading,
                                   kFillColor: KColors.mainColor,
                                   textColor: KColors.whiteColor,
                                   hieght: 55,

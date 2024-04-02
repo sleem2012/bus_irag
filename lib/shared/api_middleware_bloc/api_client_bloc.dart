@@ -15,7 +15,8 @@ import 'api_client_state.dart';
 class ApiClientBloc extends Cubit<ApiClientState> {
   ApiClientBloc() : super(const ApiClientState.initial());
 
-  static ApiClientBloc of(BuildContext context) => BlocProvider.of<ApiClientBloc>(context);
+  static ApiClientBloc of(BuildContext context) =>
+      BlocProvider.of<ApiClientBloc>(context);
 
   Future<void> onErrorCallBack(DioException error) async {
     emit(const ApiClientState.initial());
@@ -35,9 +36,11 @@ class ApiClientBloc extends Cubit<ApiClientState> {
     final language = KStorage.i.getLang ?? "ar";
     request
       ..headers.addAll({'Authorization': "Bearer $token"})
-      ..headers.addAll({"lang": language});
+      ..headers.addAll({"lang": language})
+      ..headers.addAll(
+        {"Accept": "application/json"},
+      );
   }
-
 
   Future<Response> scheduleRetry(RequestOptions options) {
     final responseCompleter = Completer<Response>();

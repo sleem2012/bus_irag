@@ -65,7 +65,7 @@ abstract class ApiClientHelper {
       500: const KFailure.server(),
       422: response?.data['errors'] is Map<String, dynamic>
           ? KFailure.error422(Error422Model.fromJson(response?.data))
-          : KFailure.error(response?.statusMessage ?? ""),
+          : KFailure.error(response?.data['message'] ?? ""),
     };
 
     return map[response?.statusCode];

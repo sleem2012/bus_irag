@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import '../../../di.dart';
 import '../../../shared/api_client/dio_client_helper.dart';
 import '../../../shared/api_client/endpoints.dart';
@@ -24,6 +26,8 @@ class ManualPaymentRepoImp implements ManualPaymentRepoAbs {
     );
   }  @override
   Future<Either<KFailure, Unit>> post_manual_payment({required Map<String,dynamic>json}) async {
+    // debugPrint(json.toString());
+
     Future<Response<dynamic>> func =
         Di.dioClient.postWithFiles(KEndPoints.postManualFields,data: json);
     final result = await ApiClientHelper.responseOrFailure(func: func);

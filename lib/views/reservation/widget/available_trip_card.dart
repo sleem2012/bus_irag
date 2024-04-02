@@ -30,28 +30,20 @@ class AvailableTripCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const CircleAvatar(
+                   CircleAvatar(
                     // backgroundColor: KColors.whiteColor,
                     child: FluxImage(
-                      imageUrl: Constant.appLogo,
+                      imageUrl: data.fleetImage??'',
                     ),
                   ),
                   8.w,
-                  Column(
-                    children: [
-                      Text(
-                        data.fleetType??'',
-                        style: KTextStyle.of(context)
-                            .ten
-                            .copyWith(color: KColors.mainColor),
-                      ),
-                      Text(
-                        "28/1/204",
-                        style: KTextStyle.of(context).seven.copyWith(
-                            color: KColors.blackColor.withOpacity(.25)),
-                      ),
-                    ],
+                  Text(
+                    data.fleetType??'',
+                    style: KTextStyle.of(context)
+                        .ten
+                        .copyWith(color: KColors.mainColor),
                   )
                 ],
               ),
@@ -71,7 +63,7 @@ class AvailableTripCard extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    Text("موعد الحضور",
+                    Text("موعد إلانطلاق",
                         style: KTextStyle.of(context)
                             .seven
                             .copyWith(color: KColors.accentColor)),
@@ -135,7 +127,7 @@ class AvailableTripCard extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    Text("موعد الأنطلاق",
+                    Text("موعد الوصول",
                         style: KTextStyle.of(context)
                             .seven
                             .copyWith(color: KColors.accentColor)),

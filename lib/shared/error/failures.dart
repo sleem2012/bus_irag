@@ -61,7 +61,7 @@ class KFailure with _$KFailure {
       someThingWrongPleaseTryAgain: () => Tr.get.try_later,
       error: (error) => error,
       error422: (error) =>
-          error.errors.values.map((e) => e.first.toString()).toString(),
+          error.errors.values.map((e) => e.first.toString()).toString().replaceAll('.', '').replaceAll(')', '').replaceAll('(', ''),
       error401: () => Tr.get.unauthorized,
       error403: () => Tr.get.forbidden,
       error404: () => Tr.get.not_found,

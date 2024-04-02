@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../shared/error/failures.dart';
@@ -60,8 +61,9 @@ class PostManualFildsBloc extends Cubit<PostManualFildsState> {
     // debugPrint('================ $json');
   }
 
-  addFile(Map<String, dynamic> fileJson) {
-    json.addAll(fileJson);
+  addFile({required MultipartFile file, required String filedName}) {
+    // json.addAll(fileJson);
+    json[filedName]=file;
     // debugPrint('================ $json');
   }
 }

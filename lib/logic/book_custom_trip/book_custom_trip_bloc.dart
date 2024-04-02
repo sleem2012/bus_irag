@@ -1,4 +1,5 @@
 import 'package:bus_iraq2/data/repository/direct_trip/direct_trip_repo.dart';
+import 'package:bus_iraq2/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/model/seats_model.dart';
@@ -43,6 +44,7 @@ class BookCustomTripBloc extends Cubit<BookCustomTripState> {
   Map<String, dynamic> jsonValues = {};
 
   final TextEditingController passNumberController = TextEditingController();
+  final TextEditingController nearPointController = TextEditingController();
   final TextEditingController responsibleNameController =
       TextEditingController();
   final TextEditingController responsiblePhoneController = TextEditingController();
@@ -75,9 +77,9 @@ class BookCustomTripBloc extends Cubit<BookCustomTripState> {
         "passenger_numbers": passNumberController.text,
         "responsible_name": responsibleNameController.text,
         "responsible_phone": dialCode+responsiblePhoneController.text,
-        // "address": "ttwdfdg",
-        // "government_id": "1",
-        // "city_id": "1",
+    if(!Constant().isClient)    "address": nearPointController.text,
+        if(!Constant().isClient)   "government_id": "1",
+        if(!Constant().isClient)     "city_id": "1",
       },
     );
     for (var i = 0; i < length; i++) {

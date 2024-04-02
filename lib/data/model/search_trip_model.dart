@@ -50,6 +50,7 @@ class InnerSearchData {
   String? title;
   String? seatLayout;
   String? fleetType;
+  String? fleetImage;
   String? startDate;
   String? endDate;
   String? pickup;
@@ -58,24 +59,27 @@ class InnerSearchData {
   List<String>? facilities;
   String? createdAt;
 
-  InnerSearchData(
-      {this.id,
-      this.title,
-      this.seatLayout,
-      this.fleetType,
-      this.startDate,
-      this.endDate,
-      this.pickup,
-      this.destination,
-      this.amount,
-      this.facilities,
-      this.createdAt});
+  InnerSearchData({
+    this.id,
+    this.title,
+    this.seatLayout,
+    this.fleetType,
+    this.fleetImage,
+    this.startDate,
+    this.endDate,
+    this.pickup,
+    this.destination,
+    this.amount,
+    this.facilities,
+    this.createdAt,
+  });
 
   InnerSearchData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title '];
     seatLayout = json['seat_layout'];
     fleetType = json['fleet_type'];
+    fleetImage = json['fleet_image'];
     startDate = json['start_date'];
     endDate = json['end_date'];
     pickup = json['pickup'];
@@ -91,6 +95,7 @@ class InnerSearchData {
     data['title '] = title;
     data['seat_layout'] = seatLayout;
     data['fleet_type'] = fleetType;
+    data['fleet_image'] = fleetImage;
     data['start_date'] = startDate;
     data['end_date'] = endDate;
     data['pickup'] = pickup;

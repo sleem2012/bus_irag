@@ -4,6 +4,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import '../enums.dart';
 import '../extensions.dart';
+import '../theme/colors.dart';
 import '../theme/helper.dart';
 import '../theme/text_theme.dart';
 import 'image_widget.dart';
@@ -26,10 +27,11 @@ class PickProImageWidget extends StatefulWidget {
       CropAspectRatioPreset.ratio16x9,
     ],
     this.hint,
-    this.decoration,
+    this.decoration,required this.title,
   }) : super(key: key);
 
   final String? initialImg;
+  final String title;
   final Function(File? file) onSelect;
   final double? maxWidth;
   final double? maxHeight;
@@ -56,42 +58,41 @@ class _PickProImageWidgetState extends State<PickProImageWidget> {
       validator: widget.validator,
       builder: (formState) {
         return Container(
-          height: widget.radius ?? 70,
-          width: widget.radius ?? 70,
-          decoration: (widget.decoration ?? KHelper.of(context).roundedContainer).copyWith(
-            borderRadius: borderRadius,
-            border: formState.hasError ? KHelper.of(context).eBorder : null,
-          ),
+          // height: widget.radius ?? 70,
+          // width: widget.radius ?? 70,
+          decoration: formState.hasError
+              ? KHelper.of(context).titledContainer.copyWith(border: Border.all(color: KColors.redColor))
+              : KHelper.of(context).titledContainer,
           child: RawMaterialButton(
             shape: RoundedRectangleBorder(borderRadius: borderRadius),
             elevation: 0,
             onPressed: () => pick(formState, widget.aspRat),
-            child: SizedBox(
-              height: widget.radius ?? 70,
-              width: widget.radius ?? 70,
-              child: ClipRRect(
-                borderRadius: borderRadius,
-                child: (state == GeneralState.initial && widget.initialImg != null)
-                    ? KImageWidget(imageUrl: widget.initialImg!, fit: BoxFit.cover)
-                    : (state == GeneralState.success && file != null)
-                        ? Image.file(file!, fit: BoxFit.cover)
-                        : Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.camera, size: (widget.radius ?? 70) * .25),
-                              8.h,
-                              if (widget.hint != null)
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                                  child: Text(
-                                    widget.hint!,
-                                    style: KTextStyle.of(context).hint,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                )
-                            ],
-                          ),
+            child: ClipRRect(
+              borderRadius: borderRadius,
+              child: (state == GeneralState.initial && widget.initialImg != null)
+                  ? KImageWidget(imageUrl: widget.initialImg!, fit: BoxFit.cover)
+                  : (state == GeneralState.success && file != null)
+                      ? Image.file(file!, fit: BoxFit.cover)
+                      : Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(width: 5),
+                  const Icon(Icons.upload_file_rounded, size: 18),
+                  const SizedBox(width: 5),
+                  Expanded(
+                    child: Text(
+                      (file?.path.split('/').last ??
+                          widget.title ??
+                          ""),
+                      style: (file?.path != null
+                          ? KTextStyle.of(context).ten.copyWith(color: KColors.accentColor)
+                          : KTextStyle.of(context).hint)
+                          .copyWith(fontSize: 11),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

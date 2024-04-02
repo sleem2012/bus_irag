@@ -77,7 +77,7 @@ class DioClientImpl implements ApiClientAbs {
       options: options
         ?..headers?.addAll(
           {
-            "Accept": "application/json",
+            // "Accept": "application/json",
             "Content-Type": "multipart/form-data",
           },
         ),

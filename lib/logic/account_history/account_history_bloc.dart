@@ -27,6 +27,7 @@ class AccountHistoryBloc extends Cubit<AccountHistoryState> {
         },
       );
     } catch (e) {
+
       debugPrint('================= AccountHistory Bloc (Catch): ${e.toString()} ');
       emit(const AccountHistoryState.error(error: KFailure.someThingWrongPleaseTryAgain()));
     }

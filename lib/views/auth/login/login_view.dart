@@ -122,21 +122,23 @@ class LoginView extends StatelessWidget {
                           },
                         ),
                       ),
-                      11.h,
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: InkWell(
-                          onTap: () {
-                            Get.to(() => const ForgetPassView());
-                          },
-                          child: Text(
-                            Tr.get.forget_password,
-                            style: KTextStyle.of(context).ten.copyWith(
-                                  color: KColors.mainColor,
-                                ),
-                          ),
-                        ),
-                      ),
+
+                      ///TODO: add
+                      // 11.h,
+                      // Align(
+                      //   alignment: Alignment.bottomRight,
+                      //   child: InkWell(
+                      //     onTap: () {
+                      //       Get.to(() => const ForgetPassView());
+                      //     },
+                      //     child: Text(
+                      //       Tr.get.forget_password,
+                      //       style: KTextStyle.of(context).ten.copyWith(
+                      //             color: KColors.mainColor,
+                      //           ),
+                      //     ),
+                      //   ),
+                      // ),
                       38.h,
 
                       KButton(
