@@ -7,17 +7,17 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import '../../../di.dart';
 
-
-
 abstract class TicketRepoAbs {
   Future<Either<KFailure, TicketData>> get_ticket_history();
+
+  Future<Either<KFailure, Unit>> cancel_ticket({required String ticketId});
 }
 
 class TicketRepoImp implements TicketRepoAbs {
-
   @override
   Future<Either<KFailure, TicketData>> get_ticket_history() async {
-    Future<Response<dynamic>> func = Di.dioClient.get(KEndPoints.getTicketHistory);
+    Future<Response<dynamic>> func =
+        Di.dioClient.get(KEndPoints.getTicketHistory);
     final result = await ApiClientHelper.responseOrFailure(func: func);
     return result.fold(
       (l) => left(l),
@@ -25,4 +25,14 @@ class TicketRepoImp implements TicketRepoAbs {
     );
   }
 
+  @override
+  Future<Either<KFailure, Unit>> cancel_ticket({required String ticketId}) async {
+    Future<Response<dynamic>> func =
+        Di.dioClient.get("${KEndPoints.cancelTicket}$ticketId");
+    final result = await ApiClientHelper.responseOrFailure(func: func);
+    return result.fold(
+      (l) => left(l),
+      (r) => right(unit),
+    );
+  }
 }

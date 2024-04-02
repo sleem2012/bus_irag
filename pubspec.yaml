@@ -52,6 +52,7 @@ dependencies:
   firebase_core:
   country_code_picker: ^3.0.0
   flutter_widget_from_html:
+  printing:
 
 dependency_overrides:
   modal_bottom_sheet: ^3.0.0-pre

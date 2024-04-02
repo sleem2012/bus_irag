@@ -78,14 +78,15 @@ class ClientAccountsHistoryCard extends StatelessWidget {
           14.h,
           Row(
             children: [
-              Expanded(
+              if(history.passengerNumbers!=null)
+           ...[   Expanded(
                   flex: 2,
                   child: TextRichWithIcon(
                     keyText: 'عدد:',
                     valueText: '${history.passengerNumbers ?? ''} ركاب',
                     imagePath: 'assets/images/two_persons.png',
                   )),
-              Spacer(flex: 1),
+              const Spacer(flex: 1),],
               Expanded(
                 flex: 2,
                 child: TextRichWithIcon(

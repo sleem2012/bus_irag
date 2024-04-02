@@ -5,6 +5,7 @@ import 'package:bus_iraq2/dynamic_ui/logic/post_manual_filds/post_manual_filds_b
 import 'package:bus_iraq2/logic/banner/banner_bloc.dart';
 import 'package:bus_iraq2/logic/book_custom_trip/book_custom_trip_bloc.dart';
 import 'package:bus_iraq2/logic/book_direct_trip/book_direct_trip_bloc.dart';
+import 'package:bus_iraq2/logic/cancel_ticket/cancel_ticket_bloc.dart';
 import 'package:bus_iraq2/logic/choose_seet/choose_seet_bloc.dart';
 import 'package:bus_iraq2/logic/get_ticket/get_ticket_bloc.dart';
 import 'package:bus_iraq2/logic/get_wallet_amount/get_wallet_amount_bloc.dart';
@@ -84,6 +85,7 @@ abstract class Di {
     _i.registerFactory(() => AccountHistoryBloc(accountHistoryRepoImp: _i()));
     _i.registerFactory(() => GetManualFieldsBloc(getManualFieldsRepoImp: _i()));
     _i.registerFactory(() => PostManualFildsBloc(postManualFildsRepoImp: _i()));
+    _i.registerFactory(() => CancelTicketBloc(cancelTicketRepoImp: _i()));
   }
 
   static _unReg() async {
@@ -136,4 +138,5 @@ abstract class Di {
   static AccountHistoryBloc get getAccountHistory => _i.get<AccountHistoryBloc>();
   static GetManualFieldsBloc get getManualFields=> _i.get<GetManualFieldsBloc>();
   static PostManualFildsBloc get postManualFields=> _i.get<PostManualFildsBloc>();
+  static CancelTicketBloc get cancelTicket=> _i.get<CancelTicketBloc>();
 }

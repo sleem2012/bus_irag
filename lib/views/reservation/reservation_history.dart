@@ -1,17 +1,18 @@
-import 'package:bus_iraq2/logic/get_ticket/get_ticket_bloc.dart';
+import 'package:bus_iraq2/di.dart';
+import 'package:bus_iraq2/logic/cancel_ticket/cancel_ticket_bloc.dart';
 import 'package:bus_iraq2/logic/get_ticket/get_ticket_bloc.dart';
 import 'package:bus_iraq2/shared/extensions.dart';
 import 'package:bus_iraq2/shared/theme/text_theme.dart';
 import 'package:bus_iraq2/shared/widgets/flux_image.dart';
 import 'package:bus_iraq2/shared/widgets/loading/loading_overlay.dart';
 import 'package:bus_iraq2/shared/widgets/shimmer_box.dart';
+import 'package:bus_iraq2/views/reservation/widget/pdf_ticket.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-
 import '../../data/model/get_ticket_model.dart';
+import '../../logic/cancel_ticket/cancel_ticket_state.dart';
 import '../../logic/get_ticket/get_ticket_state.dart';
-import '../../shared/api_client/endpoints.dart';
 import '../../shared/constants.dart';
 import '../../shared/small_button.dart';
 import '../../shared/theme/colors.dart';
@@ -110,7 +111,10 @@ class ReservationHistoryCard extends StatelessWidget {
                 hieght: Get.height * .035,
                 width: Get.width * .25,
                 iconPath: "assets/images/ticket.png",
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(()=>
+                      PdfPreviewPage(ticket: ticket,),);
+                },
               )
             ],
           ),
@@ -135,15 +139,45 @@ class ReservationHistoryCard extends StatelessWidget {
                   ],
                 ),
               ),
-              SmallButton(
-                title: "الغاء الحجز",
-                textColor: KColors.boldRedColor,
-                kFillColor: KColors.redColor.withOpacity(.13),
-                hieght: Get.height * .035,
-                width: Get.width * .25,
-                iconPath: "assets/images/cancel_reserve.png",
-                onPressed: () {},
-              )
+              ticket.status != 3
+                  ? BlocProvider(
+                      create: (context) => Di.cancelTicket,
+                      child: BlocConsumer<CancelTicketBloc, CancelTicketState>(
+                        listener: (context, state) {
+                          state.whenOrNull(
+                            success: () {
+                              KHelper.customAwosmeDialog(
+                                title: "تم الغاء التذكره",
+                                onApproveClick: () {
+                                  GetTicketBloc.of(context).get();
+                                },
+                              );
+                            },
+                          );
+                        },
+                        builder: (context, state) {
+                          final cancel = CancelTicketBloc.of(context);
+                          return SmallButton(
+                            title: "الغاء الحجز",
+                            textColor: KColors.boldRedColor,
+                            kFillColor: KColors.redColor.withOpacity(.13),
+                            hieght: Get.height * .035,
+                            width: Get.width * .25,
+                            isLoading: state is CancelTicketStateLoading,
+                            iconPath: "assets/images/cancel_reserve.png",
+                            onPressed: () {
+                              cancel.cancel(ticketId: ticket.id.toString());
+                            },
+                          );
+                        },
+                      ),
+                    )
+                  : Text(
+                      "التذكره ملغيه",
+                      style: KTextStyle.of(context)
+                          .ten
+                          .copyWith(color: KColors.mainColor),
+                    )
             ],
           ),
           10.h,
@@ -159,17 +193,19 @@ class ReservationHistoryCard extends StatelessWidget {
                 valueText: "${double.parse(ticket.subTotal ?? '0')} دينار",
               ),
               (!Constant().isClient)
-                  ? const NameWithIcon(
+                  ? NameWithIcon(
                       iconPath: "assets/images/money_bag.png",
                       keyText: "مبلغ التسديد",
-                      valueText: "200 دينار",
+                      valueText:
+                          "${double.parse(ticket.subTotal ?? '0') - (double.parse(ticket.subTotal ?? '0') * .05)} دينار",
                     )
                   : const Spacer(),
               if (!Constant().isClient)
-                const NameWithIcon(
+                NameWithIcon(
                   iconPath: "assets/images/commision.png",
                   keyText: "عمولة الوكيل",
-                  valueText: "50 دينار",
+                  valueText:
+                      "${double.parse(ticket.subTotal ?? '0') * .05} دينار",
                 ),
             ],
           )
