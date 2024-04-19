@@ -40,7 +40,7 @@ class DioClientImpl implements ApiClientAbs {
     followRedirects: false,
     connectTimeout: const Duration(seconds: 40),
     receiveTimeout: const Duration(seconds: 60),
-    sendTimeout: const Duration(seconds: 60),
+    sendTimeout: const Duration(minutes: 4),
     validateStatus: (status) => status! < 500,
   );
 

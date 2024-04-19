@@ -11,6 +11,7 @@ import '../../data/model/account_history_model.dart';
 import '../../logic/account_history/account_history_state.dart';
 import '../../shared/theme/colors.dart';
 import '../../shared/theme/helper.dart';
+import '../../shared/theme/text_theme.dart';
 import 'accounts_history_view.dart';
 
 class ClientAccountsList extends StatelessWidget {
@@ -30,7 +31,7 @@ class ClientAccountsList extends StatelessWidget {
             onRefresh: () async {
               await AccountHistoryBloc.of(context).get();
             },
-            child: ListView.separated(
+            child:((history??[]).isNotEmpty)? ListView.separated(
                 padding: EdgeInsets.only(
                     top: 20, left: 20, right: 20, bottom: Get.height * .2),
                 itemBuilder: (context, index) => ClientAccountsHistoryCard(
@@ -41,7 +42,7 @@ class ClientAccountsList extends StatelessWidget {
                     height: 20,
                   );
                 },
-                itemCount: history?.length ?? 0),
+                itemCount: history?.length ?? 0):Center(child: Text("لا توجد حسابات حاليا",style: KTextStyle.of(context).fifteen.copyWith(color: KColors.mainColor)),),
           ),
         );
       },

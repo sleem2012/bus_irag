@@ -57,19 +57,19 @@ class WalletView extends StatelessWidget {
                                    CustomWalletCard(
                                       mainColor: KColors.mainColor,
                                       keyText: 'رصيد الديون',
-                                      valueText: ' ${amount?.debtBalance} دينار',
+                                      valueText: ' ${amount?.debtBalance??''} دينار',
                                       image: 'assets/images/money_bag.svg'),
                                   10.h,
                                    CustomWalletCard(
                                       mainColor: const Color(0xffAA59B1),
                                       keyText: 'حد الأتمان',
-                                      valueText: ' ${amount?.creditLimit} دينار',
+                                      valueText: ' ${amount?.creditLimit??''} دينار',
                                       image: 'assets/images/money_man.svg'),
                                   10.h,
                                    CustomWalletCard(
                                       mainColor: const Color(0xffAFB159),
                                       keyText: 'الدائن',
-                                      valueText: ' ${amount?.amount} دينار',
+                                      valueText: ' ${amount?.amount??""} دينار',
                                       image: 'assets/images/svg_balance.svg'),
                                 ],
                               ),

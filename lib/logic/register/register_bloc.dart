@@ -14,20 +14,26 @@ class RegisterBloc extends Cubit<RegisterState> {
 
   final AuthRepoImpl registerRepoImp;
   final TextEditingController userNameController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
-   CountryCode countryCode = CountryCode(code: 'IQ', dialCode: '+964');
+  CountryCode countryCode = CountryCode(code: 'IQ', dialCode: '+964');
 
   register() async {
     try {
       emit(const RegisterState.loading());
       final result = await registerRepoImp.register(
-          username: userNameController.text,
-          phone: phoneController.text,
-          password: passController.text,
-          address: addressController.text,
-          countryCode: countryCode);
+        username: userNameController.text,
+        phone: phoneController.text,
+        password: passController.text,
+        address: addressController.text,
+        countryCode: countryCode, email: emailController.text,
+        firstName: firstNameController.text,
+        lastname: lastNameController.text,
+      );
       result.fold(
         (l) {
           debugPrint(

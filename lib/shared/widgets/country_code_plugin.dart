@@ -28,6 +28,7 @@ class CountryCodeWidget extends StatelessWidget {
       backgroundColor: KColors.blackColor,
       showFlagDialog: true,
       showCountryOnly: true,
+
       showFlagMain: false,
       closeIcon: const Icon(Icons.close, color: KColors.redColor),
       dialogBackgroundColor: KColors.backgroundD,

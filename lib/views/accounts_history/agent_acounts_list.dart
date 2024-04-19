@@ -29,173 +29,186 @@ class AgentAccountsList extends StatelessWidget {
             onRefresh: () async {
               await AccountHistoryBloc.of(context).get();
             },
-            child: ListView.separated(
-              padding: EdgeInsets.only(
-                  top: 20, left: 20, right: 20, bottom: Get.height * .2),
-              itemBuilder: (context, index) => Container(
-                padding: const EdgeInsets.all(16),
-                decoration: KHelper.of(context).titledContainer,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomTextRich(
-                      keyText: 'نوع الحركة: ',
-                      valueText: processType.firstWhereOrNull((element) =>
-                              element['id'] == history?[index].type)?['name'] ??
-                          '',
-                    ),
-                    if (history?[index].passengerPhone != null)  ...[ 12.h,
-                    CustomTextRich(
-                      keyText: 'رقم: ',
-                      valueText: history?[index].passengerPhone ?? '',
-                    ),],
-                    if (history?[index].passengerName != null) ...[
-                      12.h,
-                      CustomTextRich(
-                        keyText: 'اسم المسافر: ',
-                        valueText: history?[index].passengerName ?? '',
-                      ),
-                    ],
-                    16.h,
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            height: 40,
-                            color: KColors.redColor,
-                            child: Row(
-                              children: [
-                                FluxImage(imageUrl: 'assets/images/madden.svg'),
-                                5.w,
-                                Text(
-                                  "المدين",
-                                  style: KTextStyle.of(context).ten,
-                                )
-                              ],
-                            ),
+            child: ((history ?? []).isNotEmpty)
+                ? ListView.separated(
+                    padding: EdgeInsets.only(
+                        top: 20, left: 20, right: 20, bottom: Get.height * .2),
+                    itemBuilder: (context, index) => Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: KHelper.of(context).titledContainer,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomTextRich(
+                            keyText: 'نوع الحركة: ',
+                            valueText: processType.firstWhereOrNull((element) =>
+                                    element['id'] ==
+                                    history?[index].type)?['name'] ??
+                                '',
                           ),
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            color: KColors.accentColor,
-                            height: 40,
-
-                            // decoration: BoxDecoration(
-                            //   borderRadius: BorderRadius.only(topLeft: Radius.circular(2),topRight: Radius.circular(2)),
-                            // ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                FluxImage(imageUrl: 'assets/images/daaen.png'),
-                                5.w,
-                                Text(
-                                  "الدائن",
-                                  style: KTextStyle.of(context).ten,
-                                )
-                              ],
+                          if (history?[index].passengerPhone != null) ...[
+                            12.h,
+                            CustomTextRich(
+                              keyText: 'رقم: ',
+                              valueText: history?[index].passengerPhone ?? '',
                             ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            color: KColors.greenColor,
-                            height: 40,
-                            child: Row(
-                              children: [
-                                Text(
-                                  "رصيد",
-                                  style: KTextStyle.of(context).ten,
+                          ],
+                          if (history?[index].passengerName != null) ...[
+                            12.h,
+                            CustomTextRich(
+                              keyText: 'اسم المسافر: ',
+                              valueText: history?[index].passengerName ?? '',
+                            ),
+                          ],
+                          16.h,
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  height: 40,
+                                  color: KColors.redColor,
+                                  child: Row(
+                                    children: [
+                                      FluxImage(
+                                          imageUrl: 'assets/images/madden.svg'),
+                                      5.w,
+                                      Text(
+                                        "المدين",
+                                        style: KTextStyle.of(context).ten,
+                                      )
+                                    ],
+                                  ),
                                 ),
-                                5.w,
-                                const FluxImage(
-                                    imageUrl: 'assets/images/balance.png'),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    7.h,
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            height: 40,
-                            color: KColors.redColor.withOpacity(.13),
-                            child: FittedBox(
-                              child: Text(
-                                "${history?[index].debtor ?? ''} دينار",
-                                textAlign: TextAlign.center,
-                                style: KTextStyle.of(context)
-                                    .fifteen
-                                    .copyWith(color: KColors.redColor),
                               ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: Container(
-                            margin: EdgeInsets.symmetric(horizontal: 4),
-                            padding: EdgeInsets.all(10),
-                            color: KColors.accentColor.withOpacity(.2),
-                            height: 40,
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  padding: EdgeInsets.all(10),
+                                  color: KColors.accentColor,
+                                  height: 40,
 
-                            // decoration: BoxDecoration(
-                            //   borderRadius: BorderRadius.only(topLeft: Radius.circular(2),topRight: Radius.circular(2)),
-                            // ),
-                            child: FittedBox(
-                              child: Text(
-                                "${history?[index].creditor ?? ''} دينار",
-                                textAlign: TextAlign.center,
-                                style: KTextStyle.of(context)
-                                    .fifteen
-                                    .copyWith(color: KColors.accentColor),
+                                  // decoration: BoxDecoration(
+                                  //   borderRadius: BorderRadius.only(topLeft: Radius.circular(2),topRight: Radius.circular(2)),
+                                  // ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      FluxImage(
+                                          imageUrl: 'assets/images/daaen.png'),
+                                      5.w,
+                                      Text(
+                                        "الدائن",
+                                        style: KTextStyle.of(context).ten,
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ),
-                            ),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  padding: EdgeInsets.all(10),
+                                  color: KColors.greenColor,
+                                  height: 40,
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        "رصيد",
+                                        style: KTextStyle.of(context).ten,
+                                      ),
+                                      5.w,
+                                      const FluxImage(
+                                          imageUrl:
+                                              'assets/images/balance.png'),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            color: KColors.greenColor.withOpacity(.21),
-                            height: 40,
+                          7.h,
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  padding: EdgeInsets.all(10),
+                                  height: 40,
+                                  color: KColors.redColor.withOpacity(.13),
+                                  child: FittedBox(
+                                    child: Text(
+                                      "${history?[index].debtor ?? ''} دينار",
+                                      textAlign: TextAlign.center,
+                                      style: KTextStyle.of(context)
+                                          .fifteen
+                                          .copyWith(color: KColors.redColor),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 4),
+                                  padding: EdgeInsets.all(10),
+                                  color: KColors.accentColor.withOpacity(.2),
+                                  height: 40,
 
-                            // decoration: BoxDecoration(
-                            //   borderRadius: BorderRadius.only(topLeft: Radius.circular(2),topRight: Radius.circular(2)),
-                            // ),
-                            child: FittedBox(
-                              child: Text(
-                                "${history?[index].total ?? ''} دينار",
-                                textAlign: TextAlign.center,
-                                style: KTextStyle.of(context)
-                                    .fifteen
-                                    .copyWith(color: KColors.accentColor),
+                                  // decoration: BoxDecoration(
+                                  //   borderRadius: BorderRadius.only(topLeft: Radius.circular(2),topRight: Radius.circular(2)),
+                                  // ),
+                                  child: FittedBox(
+                                    child: Text(
+                                      "${history?[index].creditor ?? ''} دينار",
+                                      textAlign: TextAlign.center,
+                                      style: KTextStyle.of(context)
+                                          .fifteen
+                                          .copyWith(color: KColors.accentColor),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  color: KColors.greenColor.withOpacity(.21),
+                                  height: 40,
+
+                                  // decoration: BoxDecoration(
+                                  //   borderRadius: BorderRadius.only(topLeft: Radius.circular(2),topRight: Radius.circular(2)),
+                                  // ),
+                                  child: FittedBox(
+                                    child: Text(
+                                      "${history?[index].total ?? ''} دينار",
+                                      textAlign: TextAlign.center,
+                                      style: KTextStyle.of(context)
+                                          .fifteen
+                                          .copyWith(color: KColors.accentColor),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ),
-              separatorBuilder: (context, index) {
-                return const SizedBox(
-                  height: 20,
-                );
-              },
-              itemCount: history?.length ?? 0,
-            ),
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(
+                        height: 20,
+                      );
+                    },
+                    itemCount: history?.length ?? 0,
+                  )
+                : Center(
+                    child: Text("لا توجد حسابات حاليا",
+                        style: KTextStyle.of(context)
+                            .fifteen
+                            .copyWith(color: KColors.mainColor)),
+                  ),
           ),
         );
       },

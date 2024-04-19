@@ -86,9 +86,47 @@ class RegisterView extends StatelessWidget {
                     11.h,
 
                     KTextFormField(
-                      labelText: "ادخل اسمك بالكامل",
+                      labelText: "ادخل الأسم الأول",
+                      controller: register.firstNameController,
+                      upperTitle: "الأسم الأول",
+                      validator: (p0) {
+                        if (p0!.isEmpty) {
+                          return Tr.get.name_validation;
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.visiblePassword,
+                    ),   11.h,
+
+                    KTextFormField(
+                      labelText: "ادخل اسم العائله",
+                      controller: register.lastNameController,
+                      upperTitle: "اسم العائله",
+                      validator: (p0) {
+                        if (p0!.isEmpty) {
+                          return Tr.get.name_validation;
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.visiblePassword,
+                    ),   11.h,
+
+                    KTextFormField(
+                      labelText: "ادخل اسمك المستخدم",
                       controller: register.userNameController,
-                      upperTitle: "الأسم",
+                      upperTitle: "اسم المستخدم",
+                      validator: (p0) {
+                        if (p0!.isEmpty) {
+                          return Tr.get.name_validation;
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.visiblePassword,
+                    ),
+                    11.h, KTextFormField(
+                      labelText: "ادخل البريد الإلكتروني",
+                      controller: register.emailController,
+                      upperTitle: "البريد الإلكتروني",
                       validator: (p0) {
                         if (p0!.isEmpty) {
                           return Tr.get.name_validation;
@@ -104,7 +142,6 @@ class RegisterView extends StatelessWidget {
                       labelText: "ادخل العنوان الخاص بك",
 
                       upperTitle: "العنوان",
-                      // obscureText: login.isVisible,
                       validator: (p0) {
                         if (p0!.isEmpty) {
                           return Tr.get.address_validation;

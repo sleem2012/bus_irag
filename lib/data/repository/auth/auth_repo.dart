@@ -19,10 +19,13 @@ abstract class _AuthRepo {
 
   Future<Either<KFailure, UserModel>> register(
       {required String username,
-      required String phone,
-      required String password,
-      required String address,
-      required CountryCode countryCode});
+        required String email,
+        required String lastname,
+        required String firstName,
+        required String phone,
+        required String password,
+        required String address,
+        required CountryCode countryCode});
 
 // Future<Either<KFailure, Unit>> logout();
 }
@@ -57,6 +60,9 @@ class AuthRepoImpl implements _AuthRepo {
   @override
   Future<Either<KFailure, UserModel>> register(
       {required String username,
+      required String email,
+      required String lastname,
+      required String firstName,
       required String phone,
       required String password,
       required String address,
@@ -66,11 +72,14 @@ class AuthRepoImpl implements _AuthRepo {
       data: {
         "username": username,
         "country_code": countryCode.code,
-        "mobile_code": countryCode.dialCode,
+        "mobile_code": countryCode.dialCode?.replaceAll("+", "") ?? '',
         "mobile": phone,
-        "country": address,
+        "address[address]": address,
         "password": password,
         "password_confirmation": password,
+        "firstname":firstName,
+        "lastname":lastname,
+        "email":email,
       },
     );
 

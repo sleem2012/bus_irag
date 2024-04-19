@@ -51,7 +51,6 @@ class _CustomTripFormState extends State<CustomTripForm> {
                     title: "تم الحجز بنجاح",
                     onApproveClick: () {
                       GetTicketBloc.of(context).get();
-
                       NavHelper.of(context).navToReservationHistory;
                     },
                   );
@@ -94,7 +93,8 @@ class _CustomTripFormState extends State<CustomTripForm> {
                               showUpperTitle: false,
                               controller: book.responsiblePhoneController,
                               onDialChanged: (c) {
-                                book.dialCode = c?.dialCode ?? '';
+                                book.dialCode =
+                                    c?.dialCode?.replaceAll("+", "") ?? '';
                               },
                             ),
                             if (!Constant().isClient) ...[

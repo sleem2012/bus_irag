@@ -45,21 +45,30 @@ class ReservationHistory extends StatelessWidget {
                   onRefresh: () async {
                     GetTicketBloc.of(context).get();
                   },
-                  child: ListView.separated(
-                      padding: EdgeInsets.only(
-                          top: 20,
-                          left: 20,
-                          right: 20,
-                          bottom: Get.height * .2),
-                      itemBuilder: (context, index) => ReservationHistoryCard(
-                            ticket: tickets?[index] ?? TicketInnerData(),
+                  child: (tickets ?? []).isNotEmpty
+                      ? ListView.separated(
+                          padding: EdgeInsets.only(
+                            top: 20,
+                            left: 20,
+                            right: 20,
+                            bottom: Get.height * .2,
                           ),
-                      separatorBuilder: (context, index) {
-                        return const SizedBox(
-                          height: 20,
-                        );
-                      },
-                      itemCount: tickets?.length ?? 0),
+                          itemBuilder: (context, index) =>
+                              ReservationHistoryCard(
+                                ticket: tickets?[index] ?? TicketInnerData(),
+                              ),
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(
+                              height: 20,
+                            );
+                          },
+                          itemCount: tickets?.length ?? 0)
+                      : Center(
+                          child: Text("لا توجد حجوزات حاليا",
+                              style: KTextStyle.of(context)
+                                  .fifteen
+                                  .copyWith(color: KColors.mainColor)),
+                        ),
                 ),
               );
             },
@@ -112,8 +121,11 @@ class ReservationHistoryCard extends StatelessWidget {
                 width: Get.width * .25,
                 iconPath: "assets/images/ticket.png",
                 onPressed: () {
-                  Get.to(()=>
-                      PdfPreviewPage(ticket: ticket,),);
+                  Get.to(
+                    () => PdfPreviewPage(
+                      ticket: ticket,
+                    ),
+                  );
                 },
               )
             ],

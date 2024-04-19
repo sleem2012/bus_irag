@@ -72,7 +72,7 @@ flutter_icons:
   android: true
   ios: true
   remove_alpha_ios: true
-  image_path: "assets/launcher/White.jpg"
+  image_path: "assets/launcher/launcher.jpg"
 
 flutter_native_splash:
   background_image: "assets/launcher/icon.png"

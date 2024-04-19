@@ -90,7 +90,8 @@ class LoginView extends StatelessWidget {
                       PhoneFormField(
                         controller: login.phoneController,
                         onDialChanged: ( code) {
-                          login.countryCode = code?.dialCode ?? '';
+                          debugPrint("Phone""$code");
+                          login.countryCode = code?.dialCode?.replaceAll("+", "") ?? '';
                         },
                       ),
                       SizedBox(height: KHelper.listPadding),
